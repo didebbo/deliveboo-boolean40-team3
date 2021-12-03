@@ -13,10 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Public routes
 Route::get('/', function () {
     return view('welcome');
 });
+// Route::get('/home', 'HomeController@index')->name('home');
 
+// Authentication routes
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Merchant area routes
+Route::middleware('auth')->namespace('Merchant')->name('merchant.')->prefix('merchant')->group(function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    // Route::resource('dishes', 'DishController');
+    // Route::resource('orders', 'OrderController');
+});
+
