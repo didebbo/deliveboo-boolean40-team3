@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +25,7 @@ Auth::routes();
 
 //Merchant area routes
 Route::middleware('auth')->namespace('Merchant')->name('merchant.')->prefix('merchant')->group(function () {
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index')->name('home');
     // Route::resource('dishes', 'DishController');
     // Route::resource('orders', 'OrderController');
 });
-
