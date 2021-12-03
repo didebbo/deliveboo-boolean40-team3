@@ -26,6 +26,6 @@ Auth::routes();
 //Merchant area routes
 Route::middleware('auth')->namespace('Merchant')->name('merchant.')->prefix('merchant')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
-    // Route::resource('dishes', 'DishController');
+    Route::resource('dishes', 'DishController');
     // Route::resource('orders', 'OrderController');
 });
