@@ -17,11 +17,11 @@ class CreateDishesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('name', 50);
-            $table->text('ingredients');
-            $table->text('description');
+            $table->text('ingredients')->nullable();
+            $table->text('description')->nullable();
             $table->float('price', 5, 2)->unsigned();
             $table->tinyInteger('visible')->unsigned();
-            $table->string('url_picture');
+            $table->string('url_picture')->nullable();
             $table->timestamps();
         });
     }
