@@ -15,6 +15,17 @@
                         @endif
 
                         {{ __('You are logged in!') }}
+
+                        <div>
+                            <ul>
+                                <li>
+                                    <a href="{{ route('merchant.dishes.index') }}">Dishes</a>
+                                </li>
+                                <li>
+                                    <a href="#">Orders</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
