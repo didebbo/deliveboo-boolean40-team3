@@ -20,18 +20,14 @@
                             </div>
                             <div class="form-group">
                                 <textarea class="form-control" name="ingredients" id="ingredients"
-                                    placeholder="ingredients">
-                                                                    {{ old('ingredients') ?? $dish['ingredients'] }}
-                                                                </textarea>
+                                    placeholder="ingredients">{{ old('ingredients') ?? $dish['ingredients'] }}</textarea>
                                 @error('ingredients')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <textarea class="form-control" name="description" id="description"
-                                    placeholder="description">
-                                                                    {{ old('description') ?? $dish['description'] }}
-                                                                </textarea>
+                                    placeholder="description">{{ old('description') ?? $dish['description'] }}</textarea>
                                 @error('description')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror

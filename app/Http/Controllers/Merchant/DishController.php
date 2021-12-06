@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Merchant;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Dish;
+use Illuminate\Support\Facades\Auth;
 
 class DishController extends Controller
 {
@@ -14,7 +15,7 @@ class DishController extends Controller
         'description' => ['nullable', 'string'],
         'price' => ['required', 'numeric', 'min:0', 'max:999.99'],
         'visible' => ['required', 'numeric', 'min:0', 'max:1'],
-        'url_picture' => ['string', 'max:255'],
+        'url_picture' => ['nullable', 'string', 'max:255'],
     ];
     /**
      * Display a listing of the resource.
@@ -47,11 +48,12 @@ class DishController extends Controller
     {
         $request->validate($this->validator);
         $data = $request->all();
+        $data['user_id'] = Auth::user()->id;
         $data['ingredients'] = $data['ingredients'] ?? NULL;
         $data['description'] = $data['description'] ?? NULL;
         $data['url_picture'] = $data['url_picture'] ?? NULL;
-        $newDish = Dish::create($data);
-        return redirect()->route('merchant.dishes.show', compact('newDish'));
+        $dish = Dish::create($data);
+        return redirect()->route('merchant.dishes.show', compact('dish'));
     }
 
     /**
