@@ -8,9 +8,27 @@
                     <div class="card-header">{{ __('Dashboard') }}</div>
 
                     <div class="card-body">
-                        @dd($dish)
+                        <ul>
+                            <li>
+                                name: {{ $dish['name'] }}
+                            </li>
+                            <li>
+                                ingredients: {{ $dish['ingredients'] }}
+                            </li>
+                            <li>
+                                description: {{ $dish['description'] }}
+                            </li>
+                            <li>
+                                price: {{ $dish['price'] }}
+                            </li>
+                        </ul>
+                        <a href="{{ route('merchant.dishes.edit', $dish['id']) }}" class="btn btn-primary">
+                            Edit
+                        </a>
+                        <a href="{{ route('merchant.dishes.destroy', $dish['id']) }}" class="btn btn-danger">
+                            Delete
+                        </a>
                     </div>
-                    
                 </div>
             </div>
         </div>

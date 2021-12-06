@@ -8,6 +8,14 @@ use App\Dish;
 
 class DishController extends Controller
 {
+    protected $validator = [
+        'name' => ['required', 'string', 'max:50'],
+        'ingredients' => ['nullable', 'string'],
+        'description' => ['nullable', 'string'],
+        'price' => ['required', 'numeric', 'min:0', 'max:999.99'],
+        'visible' => ['required', 'numeric', 'min:0', 'max:1'],
+        'url_picture' => ['string', 'max:255'],
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +24,7 @@ class DishController extends Controller
     public function index()
     {
         $dishes = Dish::all();
-        dd($dishes);
-        return view('merchant.dishes.index');
+        return view('merchant.dishes.index', compact('dishes'));
     }
 
     /**
@@ -38,17 +45,13 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
-        $newDish = new Dish();
-        $newDish->user_id = 1;
-        $newDish->name = 'pasta';
-        $newDish->ingredients = 'farina, pomodoro';
-        $newDish->description = 'buonissima';
-        $newDish->price = 4;
-        $newDish->visible = 1;
-        $newDish->url_picture = '/foto';
-        $newDish->save();
-
-        return redirect()->route('merchant.dishes.index');
+        $request->validate($this->validator);
+        $data = $request->all();
+        $data['ingredients'] = $data['ingredients'] ?? NULL;
+        $data['description'] = $data['description'] ?? NULL;
+        $data['url_picture'] = $data['url_picture'] ?? NULL;
+        $newDish = Dish::create($data);
+        return redirect()->route('merchant.dishes.show', compact('newDish'));
     }
 
     /**
@@ -81,18 +84,15 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Dish $dish)
+    public function update(Request $request, Dish $dish)
     {
-        $dish->user_id = 1;
-        $dish->name = 'spaghetti';
-        $dish->ingredients = 'farina, pomodoro';
-        $dish->description = 'cosi cosi';
-        $dish->price = 5;
-        $dish->visible = 1;
-        $dish->url_picture = '/foto';
-        $dish->save();
-
-        return redirect()->route('merchant.dishes.index');
+        $request->validate($this->validator);
+        $data = $request->all();
+        $data['ingredients'] = $data['ingredients'] ?? NULL;
+        $data['description'] = $data['description'] ?? NULL;
+        $data['url_picture'] = $data['url_picture'] ?? NULL;
+        $dish->update($data);
+        return redirect()->route('merchant.dishes.show', compact('dish'));
     }
 
     /**
