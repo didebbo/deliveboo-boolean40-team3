@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Category;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -55,10 +56,17 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'city' => ['required', 'string', 'max:50'],
             'address' => ['required', 'string', 'max:150'],
-            'vat' => ['required', 'string', 'max:11'],
+            'vat' => ['required', 'string', 'max:11', 'unique:users,vat'],
             'adv' => ['string', 'max:11'],
             'url_picture' => ['string', 'max:11'],
         ]);
+    }
+
+    protected function showRegistrationForm()
+    {
+        $categories = Category::all();
+        // dd($categories);
+        return view('auth.register', compact('categories'));
     }
 
     /**
@@ -71,16 +79,19 @@ class RegisterController extends Controller
     {
         $data["adv"] = $data["adv"] ?? NULL;
         $data["url_picture"] = $data["url_picture"] ?? NULL;
-
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'city' => $data['city'],
-            'address' => $data['address'],
-            'vat' => $data['vat'],
-            'adv' => $data['adv'],
-            'url_picture' => $data['url_picture'],
-        ]);
+        $data['categories'] = $data['categories'] ?? [];
+        $user = User::create($data);
+        $user->categories()->attach($data['categories']);
+        return $user;
+        // return User::create([
+        //     'name' => $data['name'],
+        //     'email' => $data['email'],
+        //     'password' => Hash::make($data['password']),
+        //     'city' => $data['city'],
+        //     'address' => $data['address'],
+        //     'vat' => $data['vat'],
+        //     'adv' => $data['adv'],
+        //     'url_picture' => $data['url_picture'],
+        // ]);
     }
 }

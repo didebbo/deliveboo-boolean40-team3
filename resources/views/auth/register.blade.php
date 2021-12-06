@@ -6,18 +6,15 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Register') }}</div>
-
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                                    <input type="text" id="name" class="form-control @error('name') is-invalid @enderror"
                                         name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -77,8 +74,6 @@
                                     <select name="city" id="city" class="form-control" required autocomplete="city">
                                         <option value="milan">Milano</option>
                                     </select>
-                                    {{-- <input id="city" type="text" class="form-control" name="city" required
-                                        autocomplete="city"> --}}
                                 </div>
                             </div>
 
@@ -97,8 +92,7 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Insert Vat') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="vat" type="text" class="form-control" name="vat" required
-                                        autocomplete="vat">
+                                    <input id="vat" type="text" class="form-control" name="vat" autocomplete="vat">
                                 </div>
                             </div>
 
@@ -107,28 +101,36 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Insert Adv') }}</label>
 
                                 <div class="col-md-6">
-                                    <textarea name="adv" id="adv" class="form-control" cols="30" rows="10"
-                                        autocomplete="adv">
-
-                                            </textarea>
-                                    {{-- <input id="adv" type="text" class="form-control" name="adv" required
-                                        autocomplete="adv"> --}}
+                                    <textarea name="adv" id="adv" class="form-control" autocomplete="adv"></textarea>
                                 </div>
                             </div>
 
-                            {{-- TODO upload immagine ristorante (non obligatorio) --}}
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                            @foreach ($categories as $category)
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" name="categories[]"
+                                        id="{{ 'category-' . $category['id'] }}" value="{{ $category['id'] }}"
+                                        @if (old('categories') && in_array($category['id'], old('categories')))
+                                    checked
+                            @endif
+                            >
+                            <label class="form-check-label"
+                                for="{{ 'category-' . $category['id'] }}">{{ $category['name'] }}</label>
                     </div>
+                    @endforeach
+
+                    {{-- TODO upload immagine ristorante (non obligatorio) --}}
+
+                    <div class="form-group row mb-0">
+                        <div class="col-md-6 offset-md-4">
+                            <button type="submit" class="btn btn-primary">
+                                {{ __('Register') }}
+                            </button>
+                        </div>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection
