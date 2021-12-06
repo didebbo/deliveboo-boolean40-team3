@@ -27,5 +27,7 @@ Auth::routes();
 Route::middleware('auth')->namespace('Merchant')->name('merchant.')->prefix('merchant')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::resource('dishes', 'DishController');
-    // Route::resource('orders', 'OrderController');
+    Route::get('/orders', 'OrderController@index')->name('orders.index');
+    Route::get('/statistics', 'OrderController@statistics')->name('orders.statistics');
+    Route::get('/order/{order}', 'OrderController@show')->name('order.show');
 });
