@@ -25,7 +25,7 @@
                                     <a href="{{ route('merchant.dishes.index') }}">Dishes</a>
                                 </li>
                                 <li>
-                                    <a href="#">Orders</a>
+                                    <a href="{{ route('merchant.orders.index') }}">Orders</a>
                                 </li>
                             </ul>
                         </div>
