@@ -64,6 +64,7 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
+        if ($dish['user_id'] != Auth::user()->id) abort('401');
         return view('merchant.dishes.show', compact('dish'));
     }
 
@@ -75,7 +76,7 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
-        // dd($dish);
+        if ($dish['user_id'] != Auth::user()->id) abort('401');
         return view('merchant.dishes.edit', compact('dish'));
     }
 
