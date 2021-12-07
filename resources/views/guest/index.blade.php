@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravelllll</title>
+    <title>Laravelllll user</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
@@ -63,7 +63,6 @@
         .m-b-md {
             margin-bottom: 30px;
         }
-
     </style>
 </head>
 
@@ -85,11 +84,11 @@
 
         <div class="content">
             <div class="title m-b-md">
-                Laravel
+                Laravellll ciaone
             </div>
             
             <div class="links">
-                <a href="{{ route('orders.create') }}">Nuovo Ordine</a>
+                <a href="{{ route('guest.orders.create') }}">Nuovo Ordine</a>
                 <a href="https://laravel.com/docs">Docs</a>
                 <a href="https://laracasts.com">Laracasts</a>
                 <a href="https://laravel-news.com">News</a>
