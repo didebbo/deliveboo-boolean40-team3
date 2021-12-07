@@ -10,99 +10,69 @@
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
-                            <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="name" class="form-control @error('name') is-invalid @enderror"
-                                        name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="name"
+                                    value="{{ old('name') }}" required>
+                                @error('name')
+                                    <small class="form-text text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
-                            <div class="form-group row">
-                                <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                        name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="email"
+                                    value="{{ old('email') }}" required>
+                                @error('email')
+                                    <small class="form-text text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
-                            <div class="form-group row">
-                                <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="new-password">
-
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="password" required>
+                                @error('password')
+                                    <small class="form-text text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
-                            <div class="form-group row">
-                                <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" required autocomplete="new-password">
-                                </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="password-confirm" name="password-confirm"
+                                    placeholder="password-confirm" required>
+                                @error('password-confirm')
+                                    <small class="form-text text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
-                            <div class="form-group row">
-                                <label for="city"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Insert City') }}</label>
-
-                                <div class="col-md-6">
-                                    <select name="city" id="city" class="form-control" required autocomplete="city">
-                                        <option value="milan">Milano</option>
-                                    </select>
-                                </div>
+                            <div class="form-group">
+                                <select name="city" id="city" class="form-control" required autocomplete="city">
+                                    <option value="milan">Milano</option>
+                                </select>
+                                @error('city')
+                                    <small class="form-text text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
-                            <div class="form-group row">
-                                <label for="address"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Insert Address') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="address" type="text" class="form-control" name="address" required
-                                        autocomplete="address">
-                                </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="address" name="address" placeholder="address"
+                                    value="{{ old('address') }}" required>
+                                @error('address')
+                                    <small class="form-text text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
-                            <div class="form-group row">
-                                <label for="vat"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Insert Vat') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="vat" type="text" class="form-control" name="vat" autocomplete="vat">
-                                </div>
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="vat" name="vat" placeholder="vat"
+                                    value="{{ old('vat') }}" required>
+                                @error('vat')
+                                    <small class="form-text text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
-                            <div class="form-group row">
-                                <label for="adv"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Insert Adv') }}</label>
-
-                                <div class="col-md-6">
-                                    <textarea name="adv" id="adv" class="form-control" autocomplete="adv"></textarea>
-                                </div>
+                            <div class="form-group">
+                                <textarea name="adv" id="adv" class="form-control" autocomplete="adv"
+                                    placeholder="adv">{{ old('adv') }}</textarea>
+                                @error('adv')
+                                    <small class="form-text text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             @foreach ($categories as $category)

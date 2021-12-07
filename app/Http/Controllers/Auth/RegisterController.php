@@ -84,15 +84,5 @@ class RegisterController extends Controller
         $user = User::create($data);
         $user->categories()->attach($data['categories']);
         return $user;
-        // return User::create([
-        //     'name' => $data['name'],
-        //     'email' => $data['email'],
-        //     'password' => Hash::make($data['password']),
-        //     'city' => $data['city'],
-        //     'address' => $data['address'],
-        //     'vat' => $data['vat'],
-        //     'adv' => $data['adv'],
-        //     'url_picture' => $data['url_picture'],
-        // ]);
     }
 }
