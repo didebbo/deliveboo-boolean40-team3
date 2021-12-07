@@ -10,6 +10,9 @@
                     <div class="card-body">
                         <ul>
                             <li>
+                                id: {{ $dish['id'] }}
+                            </li>
+                            <li>
                                 name: {{ $dish['name'] }}
                             </li>
                             <li>
@@ -25,9 +28,15 @@
                         <a href="{{ route('merchant.dishes.edit', $dish['id']) }}" class="btn btn-primary">
                             Edit
                         </a>
-                        <a href="{{ route('merchant.dishes.destroy', $dish['id']) }}" class="btn btn-danger">
-                            Delete
-                        </a>
+
+                        <form style="display: inline-block" action="{{ route('merchant.dishes.destroy', $dish['id']) }}"
+                            method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">
+                                Delete
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
