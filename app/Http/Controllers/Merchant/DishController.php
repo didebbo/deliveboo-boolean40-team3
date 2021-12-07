@@ -24,7 +24,7 @@ class DishController extends Controller
      */
     public function index()
     {
-        $dishes = Dish::all();
+        $dishes = Dish::where('user_id', Auth::user()->id)->get();
         return view('merchant.dishes.index', compact('dishes'));
     }
 
