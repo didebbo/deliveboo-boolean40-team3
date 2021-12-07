@@ -77,6 +77,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $data["password"] = Hash::make($data['password']);
         $data["adv"] = $data["adv"] ?? NULL;
         $data["url_picture"] = $data["url_picture"] ?? NULL;
         $data['categories'] = $data['categories'] ?? [];
