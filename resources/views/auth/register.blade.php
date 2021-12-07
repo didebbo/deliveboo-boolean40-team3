@@ -35,9 +35,9 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="password" class="form-control" id="password-confirm" name="password-confirm"
-                                    placeholder="password-confirm" required>
-                                @error('password-confirm')
+                                <input type="password" class="form-control" id="password_confirmation"
+                                    name="password_confirmation" placeholder="password_confirmation" required>
+                                @error('password_confirmation')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
