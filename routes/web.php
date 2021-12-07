@@ -15,8 +15,6 @@ use Illuminate\Support\Facades\Auth;
 */
 
 // Public routes
-Route::get('/{any}', 'Guest\HomeController@index')->where('any', '.*');
-
 // Route::namespace('Guest')->name('guest.')->prefix('/')->group(function () {
 //     Route::get('/', 'HomeController@index')->name('index');
 //     Route::get('/orders/create', 'GuestOrderController@create')->name('orders.create');
@@ -35,3 +33,5 @@ Route::middleware('auth')->namespace('Merchant')->name('merchant.')->prefix('mer
     Route::get('/statistics', 'OrderController@statistics')->name('orders.statistics');
     Route::get('/orders/{order}', 'OrderController@show')->name('orders.show');
 });
+
+Route::get('/{any}', 'Guest\HomeController@index')->where('any', '.*');
