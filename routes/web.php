@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/guest/orders/create', 'guest\GuestOrderController@create')->name('orders.create');
+Route::get('/guest/orders', 'guest\GuestOrderController@index')->name('orders.index');
+Route::post('/guest/orders', 'guest\GuestOrderController@store')->name('orders.store');
 
 // Authentication routes
 Auth::routes();
@@ -29,5 +31,5 @@ Route::middleware('auth')->namespace('Merchant')->name('merchant.')->prefix('mer
     Route::resource('dishes', 'DishController');
     Route::get('/orders', 'OrderController@index')->name('orders.index');
     Route::get('/statistics', 'OrderController@statistics')->name('orders.statistics');
-    Route::get('/order/{order}', 'OrderController@show')->name('order.show');
+    Route::get('/orders/{order}', 'OrderController@show')->name('orders.show');
 });
