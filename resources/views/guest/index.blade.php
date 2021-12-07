@@ -17,7 +17,7 @@
             csrfToken: "{{ csrf_token() }}"
         }
     </script>
-    <script src="{{ asset('/js/guest.js') }}"></script>
+    <script src="{{ asset('/js/front.js') }}"></script>
 </body>
 
 </html>

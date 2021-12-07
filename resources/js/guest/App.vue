@@ -1,14 +1,22 @@
 <template>
-  <div>
-    <router-view></router-view>
-  </div>
+	<div>
+		<Header/>
+		<main>
+			<router-view></router-view>
+		</main>
+		<Footer/>
+	</div>
 </template>
 
 <script>
-export default {
-  name: "App",
-};
-</script>
+import Header from './components/Header.vue';
+import Footer from './components/Footer.vue';
 
-<style>
-</style>
+export default {
+	name: 'App',
+	components: {
+		Header,
+		Footer
+	}	
+}
+</script>
