@@ -1,6 +1,6 @@
 <template>
-	<section id="infobox">
-		<img class="triangle-yellow" src="../assets/media/imgs/xk-scegliere-top.png">
+	<section id="WhyUs">
+		<img class="triangle-yellow" src="../../../media/images/xk-scegliere-top.png">
 		<div class="color-bg">
 			<div class="title-box">
 			<h2>perché sceglierci?</h2>
@@ -25,12 +25,12 @@
 				in pochi minuti!
 			</div>
 			<div class="box-hand-img">
-				<img class="hand-image" src="../assets/media/imgs/smartphone-yaah.png">
+				<img class="hand-image" src="../../../media/images/smartphone-yaah.png">
 			</div>
 			</div>
 		</div>
 	</div>
-		<img class="triangle-yellow" src="../assets/media/imgs/xk-scegliere-bottom.png">
+		<img class="triangle-yellow" src="../../../media/images/xk-scegliere-bottom.png">
 	</section>
 </template>
 
@@ -44,25 +44,27 @@ export default {
 
 @import '../../../sass/_variables.scss';
 
-#infobox {
+#WhyUs {
     display: flex;
     flex-direction: column;
+	margin: 120px 0;
     .triangle-yellow {
-    	width: 100%;
+		width: 100%;
     }
     .color-bg {
-    	background-color: $c-04;
+		background-color: $c-04;
 
     .title-box {
-    	text-align: center;
-    	margin-bottom: 4rem;
-    	padding-top: 4rem;
-    	h2 {
+		text-align: center;
+		margin-bottom: 4rem;
+		padding-top: 4rem;
+		
+		h2 {
         @include sans-extrabold-i;
         font-size: 3.4375rem;
         text-transform: uppercase;
         color: $c-05;
-    	}
+		}
 		p {
 			color: $text-light-white;
 			max-width: 41.25rem;
@@ -72,59 +74,57 @@ export default {
     }
 		.container-m {
 			display: flex;
-		.box-left {
-			width: 50%;
+			.box-left {
+				width: 50%;
 
-			h2 {
-				@include sans-extrabold-i;
-				font-size: 2.8125rem;
-				color: $c-05;
+				h2 {
+					@include sans-extrabold-i;
+					font-size: 2.8125rem;
+					color: $c-05;
+				}
+				p {
+					color: $text-light-white;
+					max-width: 26.5625rem;
+					margin-bottom: 3rem;
+					font-size: 1.375rem;
+				}
 			}
-			p {
+			.box-right{
 				color: $text-light-white;
-				max-width: 26.5625rem;
-				margin-bottom: 3rem;
-				font-size: 1.375rem;
+				// border: 2px solid #fff;
+				width: 50%;
+				position: relative;
+			
+				.box-hand-img {
+					position: absolute;
+					overflow: hidden;
+					height: 600px;
+					width: 50%;
+					bottom: 0;
+					right: -20px;
+
+					.hand-image {
+						height: 145%;
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50% , -50%);
+					}
+				}
+				.vertical-text{
+					@include sans-extrabold-i;
+					font-family: "Sarabun", sans-serif;
+					font-weight: 800;
+					font-style: italic;
+					font-size: 4.25rem;
+					text-transform: uppercase;
+					transform: rotate(-90deg) translate(50%);
+					position: absolute;
+					right: -290px;
+					bottom: 0;
+				}
 			}
 		}
-		.box-right{
-			color: $text-light-white;
-			// border: 2px solid #fff;
-			width: 50%;
-			position: relative;
-        
-			.box-hand-img {
-				position: absolute;
-				overflow: hidden;
-				height: 600px;
-				width: 50%;
-				bottom: 0;
-				right: -20px;
-
-				.hand-image {
-					height: 145%;
-					position: absolute;
-					top: 50%;
-					left: 50%;
-					transform: translate(-50% , -50%);
-				}
-        	}
-        	.vertical-text{
-				@include sans-extrabold-i;
-				font-family: "Sarabun", sans-serif;
-				font-weight: 800;
-				font-style: italic;
-				font-size: 4.25rem;
-				text-transform: uppercase;
-				transform: rotate(-90deg) translate(50%);
-				position: absolute;
-				right: -290px;
-				bottom: 0;
-        }
-        
-
     }
-    }
-    }
-  }
+}
 </style>

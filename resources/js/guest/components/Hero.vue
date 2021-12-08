@@ -1,5 +1,5 @@
 <template>
-    <section id="Hero" :style="`background-image: url(${require('@/assets/media/imgs/' + url)})`">
+    <section id="Hero" :style="`background-image: url(${require('../../../media/images/' + url)})`">
         <div class="container-m">
             <div>
                 <h2>{{headline}}</h2>
@@ -31,9 +31,11 @@ export default {
 @import '../../../sass/_variables.scss';
 
 #Hero{
-    height: 500px;
+    height: 560px;
+    background-color: $c-04;
     width: 100%;
-    border-bottom-left-radius: 65px;
+    // border-bottom-left-radius: 65px;
+    border-radius: 30px;
     background-size: cover;
     background-position: center center;
 

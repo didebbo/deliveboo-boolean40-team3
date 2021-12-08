@@ -4,8 +4,9 @@
         <h2><span>Ristorante</span> Random</h2>
         <div>
             <div class="text-box">
+                    <img id="random-icon" src="../../../media/icons/random.svg" alt="">
                 <div class="img-box">
-                    <img id="random" :src="rImg" alt="">
+                    <img id="random" src="https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?cs=srgb&dl=pexels-pixabay-315755.jpg&fm=jpg" alt="">
                 </div>
                 <p>lasciati proporre un Ristorante Casuale</p>
                 <button class="btn-danger">Estrai</button>
@@ -22,7 +23,7 @@ export default {
     },
     data(){
         return{
-            rImg: "https://images.pexels.com/photos/2641886/pexels-photo-2641886.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            //
         }
     },
     methods: {
@@ -72,11 +73,20 @@ export default {
             transform: translateY(-50%);
             overflow: hidden;
 
-            img{
+            img#random{
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
             }
+        }
+        img#random-icon{
+            height: 100px;
+            position: absolute;
+            top: 50%;
+            left: 435px;
+            z-index: 2;
+            transform: translate(-100%, -50%);
+            filter: drop-shadow($shadow-01);
         }
     }
 }
