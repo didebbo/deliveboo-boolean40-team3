@@ -12,7 +12,7 @@
 
                             <div class="form-group">
                                 <input type="text" class="form-control" id="name" name="name" placeholder="name"
-                                    value="{{ old('name') }}" required>
+                                    value="{{ old('name') }}">
                                 @error('name')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
@@ -20,7 +20,7 @@
 
                             <div class="form-group">
                                 <input type="email" class="form-control" id="email" name="email" placeholder="email"
-                                    value="{{ old('email') }}" required>
+                                    value="{{ old('email') }}">
                                 @error('email')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
@@ -28,7 +28,7 @@
 
                             <div class="form-group">
                                 <input type="password" class="form-control" id="password" name="password"
-                                    placeholder="password" required>
+                                    placeholder="password">
                                 @error('password')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
@@ -36,14 +36,14 @@
 
                             <div class="form-group">
                                 <input type="password" class="form-control" id="password_confirmation"
-                                    name="password_confirmation" placeholder="password_confirmation" required>
+                                    name="password_confirmation" placeholder="password_confirmation">
                                 @error('password_confirmation')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
 
                             <div class="form-group">
-                                <select name="city" id="city" class="form-control" required autocomplete="city">
+                                <select name="city" id="city" class="form-control">
                                     <option value="milan">Milano</option>
                                 </select>
                                 @error('city')
@@ -53,7 +53,7 @@
 
                             <div class="form-group">
                                 <input type="text" class="form-control" id="address" name="address" placeholder="address"
-                                    value="{{ old('address') }}" required>
+                                    value="{{ old('address') }}">
                                 @error('address')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
@@ -61,14 +61,14 @@
 
                             <div class="form-group">
                                 <input type="number" class="form-control" id="vat" name="vat" placeholder="vat"
-                                    value="{{ old('vat') }}" required>
+                                    value="{{ old('vat') }}">
                                 @error('vat')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
 
                             <div class="form-group">
-                                <textarea name="adv" id="adv" class="form-control" autocomplete="adv"
+                                <textarea name="adv" id="adv" class="form-control"
                                     placeholder="adv">{{ old('adv') }}</textarea>
                                 @error('adv')
                                     <small class="form-text text-danger">{{ $message }}</small>

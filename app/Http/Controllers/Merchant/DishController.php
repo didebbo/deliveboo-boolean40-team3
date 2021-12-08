@@ -54,7 +54,7 @@ class DishController extends Controller
         $data['description'] = $data['description'] ?? NULL;
         $data["url_picture"] = $data["url_picture"] ?? NULL;
         if ($data["url_picture"] != NULL) {
-            $ulr_path = Storage::put('uploads', $data["url_picture"]);
+            $ulr_path = Storage::put('uploads/dishes', $data["url_picture"]);
             $data["url_picture"] = $ulr_path;
         }
         $dish = Dish::create($data);
@@ -99,6 +99,11 @@ class DishController extends Controller
         $data['ingredients'] = $data['ingredients'] ?? NULL;
         $data['description'] = $data['description'] ?? NULL;
         $data['url_picture'] = $data['url_picture'] ?? NULL;
+        if ($data["url_picture"] != NULL) {
+            if ($dish['url_picture']) Storage::delete($dish['url_picture']);
+            $ulr_path = Storage::put('uploads/dishes', $data["url_picture"]);
+            $data["url_picture"] = $ulr_path;
+        }
         $dish->update($data);
         return redirect()->route('merchant.dishes.show', compact('dish'));
     }

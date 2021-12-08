@@ -55,7 +55,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            // 'password_confirmation' => ['required', 'string', 'min:8', 'confirmed'],
             'city' => ['required', 'string', 'max:50'],
             'address' => ['required', 'string', 'max:150'],
             'vat' => ['required', 'string', 'size:11', 'unique:users,vat'],
@@ -80,15 +80,13 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $data["password"] = Hash::make($data['password']);
-        $data["adv"] = $data["adv"] ?? NULL;
         $data["url_picture"] = $data["url_picture"] ?? NULL;
-        if ($data["url_picture"] != NULL) {
-            $ulr_path = Storage::put('uploads', $data["url_picture"]);
+        if ($data["url_picture"]) {
+            $ulr_path = Storage::put('uploads/users', $data["url_picture"]);
             $data["url_picture"] = $ulr_path;
         }
-        $data['categories'] = $data['categories'] ?? [];
         $user = User::create($data);
-        $user->categories()->attach($data['categories']);
+        if (in_array('categories', $data)) $user->categories()->attach($data['categories']);
         return $user;
     }
 }

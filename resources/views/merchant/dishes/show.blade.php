@@ -25,9 +25,11 @@
                                 price: {{ $dish['price'] }}
                             </li>
                         </ul>
-                        <div class="mb-2">
-                            <img style="width: 90%" src="{{ asset('/storage/' . $dish->url_picture) }}">
-                        </div>
+                        @if ($dish['url_picture'])
+                            <div class="mb-2">
+                                <img style="width: 90%" src="{{ asset('/storage/' . $dish['url_picture']) }}">
+                            </div>
+                        @endif
                         <a href="{{ route('merchant.dishes.edit', $dish['id']) }}" class="btn btn-primary">
                             Edit
                         </a>

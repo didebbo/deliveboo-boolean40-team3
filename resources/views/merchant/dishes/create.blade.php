@@ -43,7 +43,7 @@
                                     <option value="0">not visible</option>
                                     <option value="1">visible</option>
                                 </select>
-                                @error('price')
+                                @error('visible')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
