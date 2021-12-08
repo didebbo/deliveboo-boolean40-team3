@@ -116,6 +116,7 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
+        if ($dish['url_picture']) Storage::delete($dish['url_picture']);
         $dish->delete();
         return redirect()->route('merchant.dishes.index');
     }
