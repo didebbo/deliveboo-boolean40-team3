@@ -57,9 +57,9 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'city' => ['required', 'string', 'max:50'],
             'address' => ['required', 'string', 'max:150'],
-            'vat' => ['required', 'string', 'max:11', 'unique:users,vat'],
-            'adv' => ['string', 'max:11'],
-            'url_picture' => ['string', 'max:11'],
+            'vat' => ['required', 'string', 'size:11', 'unique:users,vat'],
+            'adv' => ['nullable','string', 'max:65535'],
+            'url_picture' => ['nullable','string', 'max:255'],
         ]);
     }
 
