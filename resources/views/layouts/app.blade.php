@@ -40,6 +40,9 @@
                         <li>
                             <a class="text-dark" href="{{ url('/merchant') }}">Dashboard</a>
                         </li>
+                        <li class="ml-2">
+                            <a class="text-dark" href="{{ url('/merchant/dishes/create') }}">Nuovo Piatto</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -64,7 +67,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                         document.getElementById('logout-form').submit();">
+                                                                                                                             document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
