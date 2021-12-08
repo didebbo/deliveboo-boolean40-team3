@@ -1,19 +1,106 @@
-// Body
-$body-bg: #f8fafc;
 
-// Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+// Palette COLORS
+$c-01: #FF5334;
+$c-02: #FF8A32;
+$c-03: #FDCE24;
+$c-04: #31BFA0;
+$c-05: #363A3B;
 
-// Colors
-$blue: #3490dc;
-$indigo: #6574cd;
-$purple: #9561e2;
-$pink: #f66d9b;
-$red: #e3342f;
-$orange: #f6993f;
-$yellow: #ffed4a;
-$green: #38c172;
-$teal: #4dc0b5;
-$cyan: #6cb2eb;
+$text-light-white: #FFFAE9;
+
+// Shadows
+$shadow-01: -3px 2px 0px $c-01;
+$shadow-02: -3px 2px 0px $c-02;
+$shadow-03: -3px 2px 0px $c-03;
+$shadow-04: -3px 2px 0px $c-04;
+$shadow-05: -3px 2px 0px $c-05;
+
+$shadow-white: -3px 2px 0px white;
+
+
+// Google Fonts
+// Sarabun
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,500;0,600;0,800;1,300;1,400;1,500;1,600;1,800&display=swap');
+
+// Fonts
+@mixin sans-light {
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 300;
+}
+@mixin sans-light-i {
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+@mixin sans-regular {
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 400;
+}
+@mixin sans-regular-i {
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+@mixin sans-medium {
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 500;
+}
+@mixin sans-medium-i {
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 500;
+    font-style: italic;
+}
+@mixin sans-semibold {
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 600;
+}
+@mixin sans-semibold-i {
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 600;
+    font-style: italic;
+}
+@mixin sans-extrabold {
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 800;
+}
+@mixin sans-extrabold-i {
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 800;
+    font-style: italic;
+}
+
+// Stili di Carattere
+@mixin f-hero-title {
+    @include sans-extrabold-i;
+    font-size: 4.375rem;
+    filter: drop-shadow($shadow-02);
+    color: $text-light-white;
+}
+
+@mixin f-section-title { //better inside h2
+    @include sans-light-i;
+    font-size: 2.8125rem;
+    color: $c-02;
+    span{ //inside span for use bold
+        @include sans-extrabold-i;
+    }
+}
+
+@mixin f-corpo-white {
+    @include sans-medium;
+    font-size: 1.5625rem;
+    color: white;
+}
+
+// Magic
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@mixin flex-col-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
