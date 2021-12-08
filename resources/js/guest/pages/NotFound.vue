@@ -10,5 +10,7 @@
 
 <style scoped lang="scss">
 @import '../../../sass/_variables.scss';
-
+h1{
+	margin: 400px 0;
+}
 </style>
