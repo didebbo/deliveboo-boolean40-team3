@@ -1,7 +1,7 @@
 <template>
 	<footer>
 		<div class="container">
-			Made with <i class="fas fa-heart"></i> by classe 40
+			Made with love!
 		</div>
 	</footer>
 </template>
