@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Register') }}</div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
@@ -71,6 +71,13 @@
                                 <textarea name="adv" id="adv" class="form-control" autocomplete="adv"
                                     placeholder="adv">{{ old('adv') }}</textarea>
                                 @error('adv')
+                                    <small class="form-text text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <input type="file" id="url_picture" name="url_picture" accept="image/jpeg">
+                                @error('url_picture')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
                             </div>

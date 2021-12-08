@@ -9,6 +9,7 @@ use App\Category;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
@@ -58,8 +59,8 @@ class RegisterController extends Controller
             'city' => ['required', 'string', 'max:50'],
             'address' => ['required', 'string', 'max:150'],
             'vat' => ['required', 'string', 'size:11', 'unique:users,vat'],
-            'adv' => ['nullable','string', 'max:65535'],
-            'url_picture' => ['nullable','string', 'max:255'],
+            'adv' => ['nullable', 'string', 'max:65535'],
+            'url_picture' => ['nullable', 'image', 'max:1000'],
         ]);
     }
 
@@ -81,6 +82,10 @@ class RegisterController extends Controller
         $data["password"] = Hash::make($data['password']);
         $data["adv"] = $data["adv"] ?? NULL;
         $data["url_picture"] = $data["url_picture"] ?? NULL;
+        if ($data["url_picture"] != NULL) {
+            $ulr_path = Storage::put('uploads', $data["url_picture"]);
+            $data["url_picture"] = $ulr_path;
+        }
         $data['categories'] = $data['categories'] ?? [];
         $user = User::create($data);
         $user->categories()->attach($data['categories']);

@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('Dashboard') }}</div>
 
                     <div class="card-body">
-                        <form action="{{ route('merchant.dishes.store') }}" method="POST">
+                        <form action="{{ route('merchant.dishes.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <input type="text" class="form-control" id="name" name="name" placeholder="name"
@@ -44,6 +44,12 @@
                                     <option value="1">visible</option>
                                 </select>
                                 @error('price')
+                                    <small class="form-text text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <input type="file" id="url_picture" name="url_picture" accept="image/jpeg">
+                                @error('url_picture')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
                             </div>

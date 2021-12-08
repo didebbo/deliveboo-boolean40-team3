@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Dish;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class DishController extends Controller
 {
@@ -15,7 +16,7 @@ class DishController extends Controller
         'description' => ['nullable', 'string'],
         'price' => ['required', 'numeric', 'min:0', 'max:999.99'],
         'visible' => ['required', 'numeric', 'min:0', 'max:1'],
-        'url_picture' => ['nullable', 'string', 'max:255'],
+        'url_picture' => ['nullable', 'image', 'max:1000'],
     ];
     /**
      * Display a listing of the resource.
@@ -51,7 +52,11 @@ class DishController extends Controller
         $data['user_id'] = Auth::user()->id;
         $data['ingredients'] = $data['ingredients'] ?? NULL;
         $data['description'] = $data['description'] ?? NULL;
-        $data['url_picture'] = $data['url_picture'] ?? NULL;
+        $data["url_picture"] = $data["url_picture"] ?? NULL;
+        if ($data["url_picture"] != NULL) {
+            $ulr_path = Storage::put('uploads', $data["url_picture"]);
+            $data["url_picture"] = $ulr_path;
+        }
         $dish = Dish::create($data);
         return redirect()->route('merchant.dishes.show', compact('dish'));
     }
