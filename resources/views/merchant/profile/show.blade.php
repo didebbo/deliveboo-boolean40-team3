@@ -5,12 +5,16 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
-                    <h2>Profilo ristorante</h2>
+                    <div class="card-header">Profilo ristorante</div>
                     <div class="card-body">
-                        @dd($user)
+                        <h3>Nome ristorante: {{ $user['name'] }}</h3>
+                        <p>email: {{ $user['email'] }}</p>
+                        <p>Città: {{ $user['city'] }}</p>
+                        <p>Indirizzo: {{ $user['address'] }}</p>
+                        <p>vat: {{ $user['vat'] }}</p>
+                        <p>Messaggio di presentazione: {{ $user['adv'] }}</p>
+                        {{-- todo inserire foto --}}
                     </div>
-                    
                 </div>
             </div>
         </div>
