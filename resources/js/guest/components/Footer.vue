@@ -1,8 +1,31 @@
 <template>
 	<footer>
-		<div class="container">
-			Made with love!
-		</div>
+        <div class="footer-left">
+			<img src="../../../media/images/logo-int-4x.png" alt="Logo DeliveBoo">
+			<span>Sei un ristoratore? <a href="/register">Registrati</a></span>
+        </div>
+        <div class="footer-center">
+			<ul>
+				<li><router-link :to="{ name: 'home' }">
+					Home
+				</router-link></li>
+
+				<li>|</li>
+
+				<li><router-link :to="{ name: 'about' }">
+					Chi Siamo
+				</router-link></li>
+
+				<li>|</li>
+
+				<li><router-link :to="{ name: 'shop-cart' }">
+					Visualizza il Carrello
+				</router-link></li>
+			</ul>
+        </div>
+        <div class="footer-right">
+			<a href="#"><img src="../../../media/icons/search-white.svg" alt="Icona ricerca"></a>
+        </div>
 	</footer>
 </template>
 
@@ -13,13 +36,60 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-	footer {
-		background-color: #222;
-		padding: .625rem 0;
-		text-align: center;
+@import '../../../sass/_variables.scss';
 
-		i {
-			color: #D26;
+	footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		outline: $c-03 solid 5px;
+		border-top-left-radius: 1.875rem;
+		border-top-right-radius: 1.875rem;
+		padding: 1.25rem 2.5rem;
+		color: white;
+
+		.footer-left {
+			display: flex;
+			flex-direction: column;
+
+			img {
+				height: 30px;
+			}
+
+			span {
+				color: white;
+				margin-top: 1.25rem  ;
+			}
+			span a {
+				text-decoration: underline;
+				color: currentColor;
+			}
+		}
+
+		.footer-center {
+			ul {
+				list-style: none;
+				display: flex;
+				transform: translateX(-80px); //centramento
+
+				li{
+					margin: 0 .3125rem;
+					color: white;
+
+					a{
+						text-decoration: none;
+						color: white;
+					}
+				}
+			}
+		}
+
+		.footer-right {
+			img {
+				height: 20px;
+			}
 		}
 	}
+
+
 </style>

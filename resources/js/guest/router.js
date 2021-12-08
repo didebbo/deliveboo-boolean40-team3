@@ -6,7 +6,9 @@ Vue.use(VueRouter)
 import Home from './pages/Home';
 import SearchPage from './pages/SearchPage';
 import Ristorante from './pages/Ristorante';
+import ShopCart from './pages/ShopCart';
 import NotFound from './pages/NotFound';
+import About from './pages/About';
 
 const router = new VueRouter({
     mode: 'history',
@@ -25,6 +27,16 @@ const router = new VueRouter({
             path: '/ristorante/:id',
             name: 'ristorante',
             component: Ristorante,
+        },
+        {
+            path: '/il-tuo-carrello',
+            name: 'shop-cart',
+            component: ShopCart,
+        },
+        {
+            path: '/chi-siamo',
+            name: 'about',
+            component: About,
         },
         {
             path: '/*',
