@@ -80,13 +80,14 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $data["password"] = Hash::make($data['password']);
-        $data["url_picture"] = $data["url_picture"] ?? NULL;
-        if ($data["url_picture"]) {
+        // $data["url_picture"] = $data["url_picture"] ?? NULL;
+        $data['categories'] = $data['categories'] ?? [];
+        if (isset($data["url_picture"])) {
             $ulr_path = Storage::put('uploads/users', $data["url_picture"]);
             $data["url_picture"] = $ulr_path;
         }
         $user = User::create($data);
-        if (in_array('categories', $data)) $user->categories()->attach($data['categories']);
+        $user->categories()->attach($data['categories']);
         return $user;
     }
 }

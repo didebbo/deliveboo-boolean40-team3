@@ -19,7 +19,7 @@
                         <div>
                             <ul>
                                 <li>
-                                    <a href="#">Edit My Restourant</a>
+                                    <a href="{{ url('/merchant/profile') }}">My Restourant</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('merchant.dishes.index') }}">Dishes</a>

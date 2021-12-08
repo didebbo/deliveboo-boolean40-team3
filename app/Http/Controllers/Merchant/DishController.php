@@ -52,8 +52,8 @@ class DishController extends Controller
         $data['user_id'] = Auth::user()->id;
         $data['ingredients'] = $data['ingredients'] ?? NULL;
         $data['description'] = $data['description'] ?? NULL;
-        $data["url_picture"] = $data["url_picture"] ?? NULL;
-        if ($data["url_picture"] != NULL) {
+        // $data["url_picture"] = $data["url_picture"] ?? NULL;
+        if (isset($data["url_picture"])) {
             $ulr_path = Storage::put('uploads/dishes', $data["url_picture"]);
             $data["url_picture"] = $ulr_path;
         }
@@ -98,8 +98,8 @@ class DishController extends Controller
         $data = $request->all();
         $data['ingredients'] = $data['ingredients'] ?? NULL;
         $data['description'] = $data['description'] ?? NULL;
-        $data['url_picture'] = $data['url_picture'] ?? NULL;
-        if ($data["url_picture"] != NULL) {
+        // $data['url_picture'] = $data['url_picture'] ?? NULL;
+        if (isset($data["url_picture"])) {
             if ($dish['url_picture']) Storage::delete($dish['url_picture']);
             $ulr_path = Storage::put('uploads/dishes', $data["url_picture"]);
             $data["url_picture"] = $ulr_path;

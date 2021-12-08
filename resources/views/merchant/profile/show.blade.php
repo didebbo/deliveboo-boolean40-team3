@@ -13,7 +13,11 @@
                         <p>Indirizzo: {{ $user['address'] }}</p>
                         <p>vat: {{ $user['vat'] }}</p>
                         <p>Messaggio di presentazione: {{ $user['adv'] }}</p>
-                        {{-- todo inserire foto --}}
+                        @if ($user['url_picture'])
+                            <div class="mb-2">
+                                <img style="width: 90%" src="{{ asset('/storage/' . $user['url_picture']) }}">
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
