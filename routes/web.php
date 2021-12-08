@@ -15,12 +15,12 @@ use Illuminate\Support\Facades\Auth;
 */
 
 // Public routes
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/guest/orders/create', 'guest\GuestOrderController@create')->name('orders.create');
-Route::get('/guest/orders', 'guest\GuestOrderController@index')->name('orders.index');
-Route::post('/guest/orders', 'guest\GuestOrderController@store')->name('orders.store');
+// Route::namespace('Guest')->name('guest.')->prefix('/')->group(function () {
+//     Route::get('/', 'HomeController@index')->name('index');
+//     Route::get('/orders/create', 'GuestOrderController@create')->name('orders.create');
+//     Route::get('/orders', 'GuestOrderController@index')->name('orders.index');
+//     Route::post('/orders', 'GuestOrderController@store')->name('orders.store');
+// });
 
 // Authentication routes
 Auth::routes();
@@ -33,3 +33,5 @@ Route::middleware('auth')->namespace('Merchant')->name('merchant.')->prefix('mer
     Route::get('/statistics', 'OrderController@statistics')->name('orders.statistics');
     Route::get('/orders/{order}', 'OrderController@show')->name('orders.show');
 });
+
+Route::get('/{any}', 'Guest\HomeController@index')->where('any', '.*');
