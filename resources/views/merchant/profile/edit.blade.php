@@ -5,15 +5,15 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
-                    <h2>Modifica profilo ristorante</h2>
+                    <div class="card-header">Modifica profilo ristorante</div>
                     <div class="card-body">
-                        
+                        <h3>{{ $user['name'] }}</h3>
                         <form action="{{ route('merchant.profile.update', $user) }}" method="POST">
                             @csrf
                             @method('PUT')
 
                             <div class="form-group">
+                                <label class="form-label" for="city">Città</label>
                                 <select name="city" id="city" class="form-control" required autocomplete="city">
                                     <option value="milan">Milano</option>
                                 </select>
@@ -23,6 +23,7 @@
                             </div>
 
                             <div class="form-group">
+                                <label class="form-label" for="address">Indirizzo</label>
                                 <input type="text" class="form-control" id="address" name="address" placeholder="address"
                                     value="{{ old('address') ?? $user['address']}}" required>
                                 @error('address')
@@ -31,6 +32,7 @@
                             </div>
 
                             <div class="form-group">
+                                <label class="form-label" for="adv">Messaggio di presentazione</label>
                                 <textarea name="adv" id="adv" class="form-control" autocomplete="adv"
                                     placeholder="adv">{{ old('adv') ?? $user['adv']}}</textarea>
                                 @error('adv')
