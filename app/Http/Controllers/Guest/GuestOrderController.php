@@ -43,7 +43,7 @@ class GuestOrderController extends Controller
         $newOrder['status'] = 1;
         $newOrder->save();        
 
-        return view('/');
+        return redirect()->route('guest.index');
     }
 
 }
