@@ -12,6 +12,12 @@
 
 				<li>|</li>
 
+				<li>
+					<a href="/login">login ristoratore</a>
+				</li>
+
+				<li>|</li>
+
 				<li><router-link :to="{ name: 'about' }">
 					Chi Siamo
 				</router-link></li>

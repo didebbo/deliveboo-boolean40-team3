@@ -10,7 +10,7 @@
 						<p>Home</p>
 					</router-link></li>
 
-					<li><router-link :to="{ name: '' }"> <!-- TODO: Fare Pagina about-us -->
+					<li><router-link :to="{ name: 'About' }"> <!-- TODO: Fare Pagina about-us -->
 						<p>Chi siamo</p>
 					</router-link></li>
 
@@ -80,6 +80,7 @@ header{
 		}
         ul{
             display: flex;
+			// align-items: center;
             list-style: none;
             @include sans-semibold;
             position: relative;
