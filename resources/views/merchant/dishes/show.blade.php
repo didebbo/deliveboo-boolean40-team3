@@ -5,13 +5,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+                    <div class="card-header">{{ $dish['name'] }}</div>
 
                     <div class="card-body">
-                        <ul>
-                            <li>
-                                id: {{ $dish['id'] }}
-                            </li>
+                        <ul class="list-unstyled">
                             <li>
                                 name: {{ $dish['name'] }}
                             </li>
@@ -22,7 +19,7 @@
                                 description: {{ $dish['description'] }}
                             </li>
                             <li>
-                                price: {{ $dish['price'] }}
+                                price: {{ $dish['price'] }}€
                             </li>
                         </ul>
                         @if ($dish['url_picture'])
@@ -33,7 +30,6 @@
                         <a href="{{ route('merchant.dishes.edit', $dish['id']) }}" class="btn btn-primary">
                             Edit
                         </a>
-
                         <form style="display: inline-block" action="{{ route('merchant.dishes.destroy', $dish['id']) }}"
                             method="post">
                             @csrf
@@ -42,6 +38,9 @@
                                 Delete
                             </button>
                         </form>
+                        <a href="{{ route('merchant.dishes.index') }}" class="btn btn-primary">
+                            Tutti i piatti
+                        </a>
                     </div>
                 </div>
             </div>

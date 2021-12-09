@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+                    <div class="card-header">{{ $user['name'] }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -14,18 +14,16 @@
                             </div>
                         @endif
 
-                        {{ __('You are logged in!') }}
-
                         <div>
-                            <ul>
+                            <ul class="list-unstyled">
                                 <li>
-                                    <a href="{{ url('/merchant/profile') }}">My Restourant</a>
+                                    <a class="text-muted" href="{{ url('/merchant/profile') }}">My Restaurant</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('merchant.dishes.index') }}">Dishes</a>
+                                    <a class="text-muted" href="{{ route('merchant.dishes.index') }}">Dishes</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('merchant.orders.index') }}">Orders</a>
+                                    <a class="text-muted" href="{{ route('merchant.orders.index') }}">Orders</a>
                                 </li>
                             </ul>
                         </div>

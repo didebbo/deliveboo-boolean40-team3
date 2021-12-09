@@ -15,9 +15,12 @@
                         <p>Messaggio di presentazione: {{ $user['adv'] }}</p>
                         @if ($user['url_picture'])
                             <div class="mb-2">
-                                <img style="width: 90%" src="{{ asset('/storage/' . $user['url_picture']) }}">
+                                <img class="img-thumbnail" src="{{ asset('/storage/' . $user['url_picture']) }}">
                             </div>
                         @endif
+                        <a href="{{ route('merchant.profile.edit') }}" class="btn btn-primary">
+                            Modifica
+                        </a>
                     </div>
                 </div>
             </div>

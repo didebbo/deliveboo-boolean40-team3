@@ -15,12 +15,12 @@ use Illuminate\Support\Facades\Auth;
 */
 
 // Public routes
-// Route::namespace('Guest')->name('guest.')->prefix('/')->group(function () {
-//     Route::get('/', 'HomeController@index')->name('index');
-//     Route::get('/orders/create', 'GuestOrderController@create')->name('orders.create');
-//     Route::get('/orders', 'GuestOrderController@index')->name('orders.index');
-//     Route::post('/orders', 'GuestOrderController@store')->name('orders.store');
-// });
+Route::namespace('Guest')->name('guest.')->prefix('/')->group(function () {
+    Route::get('/', 'HomeController@index')->name('index');
+    Route::get('/orders/create', 'GuestOrderController@create')->name('orders.create');
+    Route::get('/orders', 'GuestOrderController@index')->name('orders.index');
+    Route::post('/orders', 'GuestOrderController@store')->name('orders.store');
+});
 
 // Authentication routes
 Auth::routes();

@@ -40,9 +40,6 @@
                         <li>
                             <a class="text-dark" href="{{ url('/merchant') }}">Dashboard</a>
                         </li>
-                        <li class="ml-2">
-                            <a class="text-dark" href="{{ url('/merchant/dishes/create') }}">Nuovo Piatto</a>
-                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
