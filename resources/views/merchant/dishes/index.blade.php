@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+                    <div class="card-header">I tuoi piatti</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -15,7 +15,7 @@
                         @endif
 
                         <div>
-                            <ul>
+                            <ul class="list-unstyled">
                                 @foreach ($dishes as $dish)
                                     <li>
                                         <a href="{{ route('merchant.dishes.show', $dish['id']) }}">
@@ -23,6 +23,9 @@
                                         </a>
                                     </li>
                                 @endforeach
+                                <li>
+                                    <a class="btn btn-primary" href="{{ url('/merchant/dishes/create') }}">Aggiungi Piatto</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
