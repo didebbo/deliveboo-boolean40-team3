@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
-use App\Category;
 use Illuminate\Database\Eloquent\Builder;
 
 class RestaurantController extends Controller
@@ -14,11 +13,12 @@ class RestaurantController extends Controller
     {
         // città di default Milano
         $city = $request['city'] ?? 'milan';
+        // query per filtrare la città
+        $users = User::where('city', $city);
 
-        //  filtra by categories && name && city;
+        //  filtra by categories && name
         if (isset($request['categories']) && isset($request['name'])) {
             $categories = explode(",", $request['categories']);
-            $users = User::where('city', $city);
             foreach ($categories as $category) {
                 $users = $users->whereHas('categories', function (Builder $query) use ($category) {
                     $query->where('name', $category);
@@ -26,10 +26,9 @@ class RestaurantController extends Controller
             }
             $users = $users->where('name', 'LIKE', '%' . $request['name'] . '%')->get();
         }
-        // filtra by categories && city;
+        // filtra by categories
         else if (isset($request['categories'])) {
-            $categories = explode(",", $request['categories']);
-            $users = User::where('city', $city);
+            $categories = explode(",", $request['categories']);            
             foreach ($categories as $category) {
                 $users = $users->whereHas('categories', function (Builder $query) use ($category) {
                     $query->where('name', $category);
@@ -37,14 +36,15 @@ class RestaurantController extends Controller
             }
             $users = $users->get();
         }
-        // filtra by name && city;
+        // filtra by name
         else if (isset($request['name'])) {
-            $users = User::where([['city', $city], ['name', 'LIKE', '%' . $request['name'] . '%']])->get();
+            $users->where('name', 'LIKE', '%' . $request['name'] . '%')->get();
         }
         // filtra by city
         else {
-            $users = User::where('city', $city)->get();
+            $users = $users->get();
         }
+        dd($users);
         return response()->json([
             'success' => true,
             'data' => $users
