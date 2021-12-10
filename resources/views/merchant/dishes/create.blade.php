@@ -41,8 +41,8 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="number" class="form-control" id="price" name="price" placeholder="price"
-                                    value="{{ old('price') }}">
+                                <input type="number" step="0.01" class="form-control" id="price" name="price"
+                                    placeholder="price" value="{{ old('price') }}">
                                 @error('price')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
