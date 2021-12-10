@@ -23,7 +23,7 @@
 				<div class="categories">
 					<h4>Categorie:</h4>
 					<ul>
-						<li  :id="`cat-li-${category.id}`" v-for="category in categories" :key="category.id" @click="toggleActive(category.id)">
+						<li  :id="`cat-li-${category.id}`" v-for="category in categories" :key="category.id" @click="toggleActive(category.id, category.name)">
 							<div><img src="../../../media/images/search-bg.jpg" alt=""></div>
 							{{category.name}}
 						</li>
@@ -35,8 +35,10 @@
 
 		<!-- Lista Ristoranti -->
 		<section>
-			<ul>
-				<li></li>
+			<ul style="margin:80px">
+				<li v-for="restaurant in restaurantList" :key="restaurant.id">
+					{{restaurant.name}}
+				</li>
 			</ul>
 		</section>
 
@@ -52,28 +54,35 @@ export default {
 	data(){
 		return{
 			categories: [],
+			activeCategories: [],
+			restaurantList: null,
 		}
 	},
 	methods: {
-		toggleActive(idElm) {
+		toggleActive(idElm, elmName) {
 			let elm = document.getElementById(`cat-li-${idElm}`).classList;
+
 			if ( elm == "active") {
 				elm.remove("active");
 			} else if (elm !== "active" ) {
 				elm.add("active");
+				this.activeCategories.push(elmName);
 			}
+
+			this.getRestaurants();
 		},
+
 		getRestaurants(city, categories, name) {
-			axios
-        .get("/api/restaurants", {
-			params: {
-				city: "milan",
-				categories: "italiano",
-		},
-        })
-        .then((response) => {
-			console.log(response.data)
-        });
+			axios.get("/api/restaurants", {
+				params: {
+					city: "milan",
+					categories: this.activeCategories.toString(),
+				},
+			})
+				.then((response) => {
+					this.restaurantList = response.data.data;
+					console.log(response.data.data);
+				});
 		}
 
 	},
