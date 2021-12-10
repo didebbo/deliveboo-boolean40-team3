@@ -23,7 +23,7 @@
 				<div class="categories">
 					<h4>Categorie:</h4>
 					<ul>
-						<li class="active" v-for="category in categories" :key="category.id">
+						<li  :id="`cat-li-${category.id}`" v-for="category in categories" :key="category.id" @click="toggleActive(category.id)">
 							<div><img src="../../../media/images/search-bg.jpg" alt=""></div>
 							{{category.name}}
 						</li>
@@ -32,6 +32,14 @@
 			</div>
 			<img class="search-box-after-decoration" src="../../../media/images/search-box-after-decoration.png" alt="">
 		</div>
+
+		<!-- Lista Ristoranti -->
+		<section>
+			<ul>
+				<li></li>
+			</ul>
+		</section>
+
 	</section>
 </template>
 
@@ -47,7 +55,27 @@ export default {
 		}
 	},
 	methods: {
-		//
+		toggleActive(idElm) {
+			let elm = document.getElementById(`cat-li-${idElm}`).classList;
+			if ( elm == "active") {
+				elm.remove("active");
+			} else if (elm !== "active" ) {
+				elm.add("active");
+			}
+		},
+		getRestaurants(city, categories, name) {
+			axios
+        .get("/api/restaurants", {
+			params: {
+				city: "milan",
+				categories: "italiano",
+		},
+        })
+        .then((response) => {
+			console.log(response.data)
+        });
+		}
+
 	},
 	mounted() {
 		axios.get('/api/categories')
@@ -57,7 +85,9 @@ export default {
 			array.forEach(element => {
 				this.categories.push(element);
 			});
-		})
+		}),
+
+		this.getRestaurants()
 	}
 }
 </script>
