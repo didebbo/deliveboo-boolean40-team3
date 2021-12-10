@@ -32,6 +32,15 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <input type="checkbox" name="beverage" id="beverage" @if (old('beverage'))
+                                checked
+                                @endif>
+                                <label for="beverage">Beverage</label>
+                                @error('beverage')
+                                    <small class="form-text text-danger" )>{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <input type="number" class="form-control" id="price" name="price" placeholder="price"
                                     value="{{ old('price') }}">
                                 @error('price')

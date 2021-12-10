@@ -19,6 +19,7 @@ class CreateDishesTable extends Migration
             $table->string('name', 50);
             $table->text('ingredients')->nullable();
             $table->text('description')->nullable();
+            $table->boolean('beverage')->unsigned();
             $table->float('price', 5, 2)->unsigned();
             $table->tinyInteger('visible')->unsigned();
             $table->string('url_picture')->nullable();

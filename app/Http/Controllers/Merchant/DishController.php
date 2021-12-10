@@ -14,6 +14,7 @@ class DishController extends Controller
         'name' => ['required', 'string', 'max:50'],
         'ingredients' => ['nullable', 'string'],
         'description' => ['nullable', 'string'],
+        'beverage' => ['nullable'],
         'price' => ['required', 'numeric', 'min:0', 'max:999.99'],
         'visible' => ['required', 'numeric', 'min:0', 'max:1'],
         'url_picture' => ['nullable', 'image', 'max:1000'],
@@ -52,7 +53,7 @@ class DishController extends Controller
         $data['user_id'] = Auth::user()->id;
         $data['ingredients'] = $data['ingredients'] ?? NULL;
         $data['description'] = $data['description'] ?? NULL;
-        // $data["url_picture"] = $data["url_picture"] ?? NULL;
+        $data["beverage"] = isset($data["beverage"]) ? 1 : 0;
         if (isset($data["url_picture"])) {
             $ulr_path = Storage::put('uploads/dishes', $data["url_picture"]);
             $data["url_picture"] = $ulr_path;
@@ -98,7 +99,7 @@ class DishController extends Controller
         $data = $request->all();
         $data['ingredients'] = $data['ingredients'] ?? NULL;
         $data['description'] = $data['description'] ?? NULL;
-        // $data['url_picture'] = $data['url_picture'] ?? NULL;
+        $data["beverage"] = isset($data["beverage"]) ? 1 : 0;
         if (isset($data["url_picture"])) {
             if ($dish['url_picture']) Storage::delete($dish['url_picture']);
             $ulr_path = Storage::put('uploads/dishes', $data["url_picture"]);
