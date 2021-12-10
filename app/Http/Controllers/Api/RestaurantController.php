@@ -25,7 +25,7 @@ class RestaurantController extends Controller
                     $query->where('name', $category);
                 });
             }
-            $users = $users->where('name', 'LIKE', '%' . $request['name'] . '%')->get();
+            $users = $users->where('name', 'LIKE', '%' . $request['name'] . '%');
         }
         // filtra by categories
         else if (isset($request['categories'])) {
@@ -35,46 +35,30 @@ class RestaurantController extends Controller
                     $query->where('name', $category);
                 });
             }
-            $users = $users->get();
         }
         // filtra by name
         else if (isset($request['name'])) {
-            $users->where('name', 'LIKE', '%' . $request['name'] . '%')->get();
+            $users->where('name', 'LIKE', '%' . $request['name'] . '%');
         }
         // filtra by city
-        else {
-            $users = $users->get();
-        }
-        
-        // controllo se la query ha trovato almeno un user(ristorante) e restituisce file json
-        if ($users->isNotEmpty())  {
-            return response()->json([
-                'success' => true,
-                'data' => $users
-            ]);
-        }
+        $users = $users->get();
+
         return response()->json([
-            'success' => false,
-            'data' => null
+            'success' => true,
+            'data' => $users
         ]);
+
     }
 
     public function show($id)
     {
         // query per restituire il ristorante desiderato
-        $user = User::where('id', $id)->first();
-        
-        // controllo se la query ha trovato almeno un user(ristorante) e restituisce file json
-        if ($user){
-            $dishes = Dish::where('user_id', $id)->get();
-            return response()->json([
-                'success' => true,
-                'data' => ['user'=>$user, 'dishes'=> $dishes]
-            ]);
-        }
+        $user = User::where('id', $id)->with('dishes')->first();
+
         return response()->json([
-            'success' => false,
-            'data' => null
+            'success' => $user ? true : false,
+            'data' => $user
         ]);
+
     }
 }
