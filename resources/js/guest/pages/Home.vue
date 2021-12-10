@@ -9,11 +9,20 @@
 
     <WhyUs/>
 
-    <!-- <router-link :to="{ name: 'search' }">
-      <p>Chi Siamo</p>
-    </router-link>
-
-    <a href="/merchant">Merchant</a> -->
+    <div id="call-to-restaurant">
+        <div class="registrazione">
+          <h2><span>Sei un ristorante?</span></h2>
+          <div class="description">
+            <p>
+              Premi sul pulsante " Registrati come Ristoratore " per iniziare la tua collaborazione con noi!
+            </p>
+            <p>
+              Potrai inserire il tuo menù e ricevere subito i tuoi primi ordini
+            </p>
+          </div>
+          <button class="btn-danger">Registrati come Ristoratore</button>
+        </div>
+      </div>
 
   </div>
 </template>
@@ -32,3 +41,33 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="scss">
+@import '../../../sass/_variables.scss';
+
+#call-to-restaurant {
+    margin-bottom: 5rem;
+
+    .registrazione {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .description{
+      text-align: center;
+        margin-top: .625rem;
+        margin-bottom: 1.5625rem;
+    }
+
+    h2 {
+      @include f-section-title;
+      color: $c-01;
+    }
+
+    p {
+      color: white;
+    }
+  }
+}
+
+</style>
