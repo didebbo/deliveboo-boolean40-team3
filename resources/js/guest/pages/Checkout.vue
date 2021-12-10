@@ -16,6 +16,9 @@ export default {
       clientToken: document
         .querySelector("meta[name='clientToken']")
         .getAttribute("content"),
+      csrfToken: document
+        .querySelector("meta[name='csrfToken']")
+        .getAttribute("content"),
     };
   },
   methods: {
