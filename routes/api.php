@@ -20,6 +20,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // http://localhost:8000/api/restaurants
 Route::namespace('Api')->name('api.')->group(function () {
+    // Restaurants
     Route::get('/restaurants', 'RestaurantController@index');
     Route::get('/restaurants/{id}', 'RestaurantController@show');
+    // Categories
+    Route::get('/categories', 'CategoryController@index');
 });

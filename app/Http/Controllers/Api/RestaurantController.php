@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use App\User;
-use App\Dish;
 
 class RestaurantController extends Controller
 {
@@ -29,7 +28,7 @@ class RestaurantController extends Controller
         }
         // filtra by categories
         else if (isset($request['categories'])) {
-            $categories = explode(",", $request['categories']);            
+            $categories = explode(",", $request['categories']);
             foreach ($categories as $category) {
                 $users = $users->whereHas('categories', function (Builder $query) use ($category) {
                     $query->where('name', $category);
@@ -47,7 +46,6 @@ class RestaurantController extends Controller
             'success' => true,
             'data' => $users
         ]);
-
     }
 
     public function show($id)
@@ -59,6 +57,5 @@ class RestaurantController extends Controller
             'success' => $user ? true : false,
             'data' => $user
         ]);
-
     }
 }
