@@ -23,19 +23,9 @@
 				<div class="categories">
 					<h4>Categorie:</h4>
 					<ul>
-						<li class="active">
+						<li class="active" v-for="category in categories" :key="category.id">
 							<div><img src="../../../media/images/search-bg.jpg" alt=""></div>
-							Cat-1
-						</li>
-
-						<li class="active">
-							<div><img src="../../../media/images/search-bg.jpg" alt=""></div>
-							Cat-1
-						</li>
-
-						<li>
-							<div><img src="../../../media/images/search-bg.jpg" alt=""></div>
-							Cat-1
+							{{category.name}}
 						</li>
 					</ul>
 				</div>
@@ -53,11 +43,21 @@ export default {
 	},
 	data(){
 		return{
-			//
+			categories: [],
 		}
 	},
 	methods: {
 		//
+	},
+	mounted() {
+		axios.get('/api/categories')
+		.then((response) => {
+			let array = response.data.data;
+
+			array.forEach(element => {
+				this.categories.push(element);
+			});
+		})
 	}
 }
 </script>
