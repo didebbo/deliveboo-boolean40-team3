@@ -9,11 +9,11 @@ import Ristorante from './pages/Ristorante';
 import ShopCart from './pages/ShopCart';
 import NotFound from './pages/NotFound';
 import About from './pages/About';
+import Checkout from './pages/Checkout';
 
 const router = new VueRouter({
     mode: 'history',
-    routes: [
-        {
+    routes: [{
             path: '/',
             name: 'home',
             component: Home
@@ -37,6 +37,11 @@ const router = new VueRouter({
             path: '/chi-siamo',
             name: 'about',
             component: About,
+        },
+        {
+            path: '/checkout',
+            name: 'checkout',
+            component: Checkout,
         },
         {
             path: '/*',
