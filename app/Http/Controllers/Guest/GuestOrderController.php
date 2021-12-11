@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class GuestOrderController extends Controller
 {
     protected $validator = [
-        'customer_email' => 'required|string|max:255',
+        'customer_email' => 'required|email|max:255',
         'customer_firstname' => 'required|string|max:50',
         'customer_lastname' => 'required|string|max:50',
         'customer_phone' => 'required|string|max:20',
@@ -41,7 +41,7 @@ class GuestOrderController extends Controller
         $newOrder->fill($request->all());
         $newOrder['user_id'] = 1;
         $newOrder['total_price'] = 17;
-        $newOrder['status'] = 1;
+        $newOrder['status'] = 0;
         $newOrder->save();
 
         return redirect()->route('guest.index');
@@ -49,6 +49,7 @@ class GuestOrderController extends Controller
 
     public function checkout(Request $request)
     {
+        $request->validate($this->validator);
         $data = $request->all();
         $gateway = new Braintree\Gateway([
             'environment' => env('BT_ENVIRONMENT'),
@@ -58,12 +59,13 @@ class GuestOrderController extends Controller
         ]);
         $nonceFromTheClient = $data["nonce"];
         $result = $gateway->transaction()->sale([
-            'amount' => $data['amount'],
+            'amount' => $data['total_price'],
             'paymentMethodNonce' => $nonceFromTheClient,
             'options' => [
                 'submitForSettlement' => True
             ]
         ]);
+        if ($result->success) Order::create($data);
         return response()->json(['success' => $result->success]);
     }
 }
