@@ -23,9 +23,8 @@ export default {
   },
   methods: {
     onSuccess(payload) {
-      let nonce = payload.nonce;
       let params = {
-        nonce: nonce,
+        nonce: payload.nonce,
         amount: 20,
       };
       axios
@@ -35,14 +34,17 @@ export default {
           },
         })
         .then(function (response) {
-          // console.log(response);
           console.log(response);
+          /* 
+            Se data.success === true 
+            portami alla pagina di Success
+            effettua una richiesta post al server per salvare i dati dell'ordine
+          */
         });
     },
     onError(error) {
       let message = error.message;
       console.log(message);
-      // Whoops, an error has occured while trying to get the nonce
     },
   },
 };

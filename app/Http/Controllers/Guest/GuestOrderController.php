@@ -64,7 +64,6 @@ class GuestOrderController extends Controller
                 'submitForSettlement' => True
             ]
         ]);
-
         return response()->json(['success' => $result->success]);
     }
 }
