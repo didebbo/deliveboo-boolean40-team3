@@ -17,15 +17,27 @@ export default {
         .querySelector("meta[name='clientToken']")
         .getAttribute("content"),
       csrfToken: document
-        .querySelector("meta[name='csrfToken']")
+        .querySelector("meta[name='csrf-token']")
         .getAttribute("content"),
     };
   },
   methods: {
     onSuccess(payload) {
       let nonce = payload.nonce;
-      console.log(nonce);
-      // Do something great with the nonce...
+      let params = {
+        nonce: nonce,
+        amount: 20,
+      };
+      axios
+        .post("/checkout", params, {
+          headers: {
+            "X-CSRF-TOKEN": this.csrfToken,
+          },
+        })
+        .then(function (response) {
+          // console.log(response);
+          console.log(response);
+        });
     },
     onError(error) {
       let message = error.message;

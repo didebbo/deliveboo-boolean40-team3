@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use App\Order;
+use Braintree;
 use Illuminate\Http\Request;
 
 class GuestOrderController extends Controller
@@ -41,9 +42,29 @@ class GuestOrderController extends Controller
         $newOrder['user_id'] = 1;
         $newOrder['total_price'] = 17;
         $newOrder['status'] = 1;
-        $newOrder->save();        
+        $newOrder->save();
 
         return redirect()->route('guest.index');
     }
 
+    public function checkout(Request $request)
+    {
+        $data = $request->all();
+        $gateway = new Braintree\Gateway([
+            'environment' => env('BT_ENVIRONMENT'),
+            'merchantId' => env('BT_MERCHANT_ID'),
+            'publicKey' => env('BT_PUBLIC_KEY'),
+            'privateKey' => env('BT_PRIVATE_KEY'),
+        ]);
+        $nonceFromTheClient = $data["nonce"];
+        $result = $gateway->transaction()->sale([
+            'amount' => $data['amount'],
+            'paymentMethodNonce' => $nonceFromTheClient,
+            'options' => [
+                'submitForSettlement' => True
+            ]
+        ]);
+
+        return response()->json(['success' => $result->success]);
+    }
 }
