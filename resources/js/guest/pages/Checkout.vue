@@ -76,14 +76,13 @@ export default {
         .querySelector("meta[name='csrf-token']")
         .getAttribute("content"),
       inputs: {
-        customer_firstname: "",
-        customer_lastname: "",
-        customer_email: "",
-        customer_phone: "",
-        customer_address: "",
-        notes: "",
+        customer_firstname: null,
+        customer_lastname: null,
+        customer_email: null,
+        customer_phone: null,
+        customer_address: null,
+        notes: null,
       },
-      errors: [],
     };
   },
   methods: {
@@ -93,15 +92,13 @@ export default {
         user_id: 1,
         total_price: 20,
         status: 0,
-        customer_firstname: this.customer_firstname,
-        customer_lastname: this.customer_lastname,
-        customer_email: this.customer_email,
-        customer_phone: this.customer_phone,
-        customer_address: this.customer_address,
-        notes: this.notes,
+        customer_firstname: this.inputs.customer_firstname,
+        customer_lastname: this.inputs.customer_lastname,
+        customer_email: this.inputs.customer_email,
+        customer_phone: this.inputs.customer_phone,
+        customer_address: this.inputs.customer_address,
+        notes: this.inputs.notes,
       };
-      console.log(params);
-      // this.errors = [];
       axios
         .post("/checkout", params, {
           headers: {
