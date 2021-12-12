@@ -133,7 +133,7 @@ export default {
           /* 
             Se la validazione non va a buon fine 
             salvo gli errori di err.response.data
-            refresho la pagine mostrando per ogni campo l'errore generato. 
+            mostrando per ogni campo l'errore generato. 
           */
         });
     },
