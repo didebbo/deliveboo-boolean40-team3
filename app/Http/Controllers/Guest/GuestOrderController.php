@@ -10,12 +10,12 @@ use Illuminate\Http\Request;
 class GuestOrderController extends Controller
 {
     protected $validator = [
-        'customer_email' => 'required|email|max:255',
-        'customer_firstname' => 'required|string|max:50',
-        'customer_lastname' => 'required|string|max:50',
-        'customer_phone' => 'required|string|max:20',
-        'customer_address' => 'required|string|max:150',
-        'notes' => 'nullable|max:255'
+        'order.customer_email' => 'required|email|max:255',
+        'order.customer_firstname' => 'required|string|max:50',
+        'order.customer_lastname' => 'required|string|max:50',
+        'order.customer_phone' => 'required|string|max:20',
+        'order.customer_address' => 'required|string|max:150',
+        'order.notes' => 'nullable|max:255'
     ];
 
     /**
@@ -59,13 +59,16 @@ class GuestOrderController extends Controller
         ]);
         $nonceFromTheClient = $data["nonce"];
         $result = $gateway->transaction()->sale([
-            'amount' => $data['total_price'],
+            'amount' => $data['order']['total_price'],
             'paymentMethodNonce' => $nonceFromTheClient,
             'options' => [
                 'submitForSettlement' => True
             ]
         ]);
-        if ($result->success) Order::create($data);
+        if ($result->success) {
+            $order = Order::create($data['order']);
+            $order->dishes()->attach($data['dishes']);
+        }
         return response()->json(['success' => $result->success]);
     }
 }
