@@ -9,7 +9,9 @@
           id="customer_firstname"
           v-model="inputs.customer_firstname"
         />
-        <small> Errore: customer_firstname non valido! </small>
+        <small v-if="errors.customer_firstname">
+          {{ errors.customer_firstname[0] }}
+        </small>
       </label>
       <label for="customer_lastname">
         customer_lastname:
@@ -19,7 +21,9 @@
           id="customer_lastname"
           v-model="inputs.customer_lastname"
         />
-        <small> Errore: customer_lastname non valido! </small>
+        <small v-if="errors.customer_lastname">
+          {{ errors.customer_lastname[0] }}
+        </small>
       </label>
       <label for="customer_email">
         customer_email:
@@ -29,7 +33,9 @@
           id="customer_email"
           v-model="inputs.customer_email"
         />
-        <small> Errore: customer_email non valido! </small>
+        <small v-if="errors.customer_email">
+          {{ errors.customer_email[0] }}
+        </small>
       </label>
       <label for="customer_phone">
         customer_phone:
@@ -39,7 +45,9 @@
           id="customer_phone"
           v-model="inputs.customer_phone"
         />
-        <small> Errore: customer_phone non valido! </small>
+        <small v-if="errors.customer_phone">
+          {{ errors.customer_phone[0] }}
+        </small>
       </label>
       <label for="customer_address">
         customer_address:
@@ -49,12 +57,16 @@
           id="customer_address"
           v-model="inputs.customer_address"
         />
-        <small> Errore: customer_address non valido! </small>
+        <small v-if="errors.customer_address">
+          {{ errors.customer_address[0] }}
+        </small>
       </label>
       <label for="notes">
         notes:
         <textarea name="notes" id="notes" v-model="inputs.notes"></textarea>
-        <small> Errore: notes non valido! </small>
+        <small v-if="errors.notes">
+          {{ errors.notes[0] }}
+        </small>
       </label>
     </form>
     <v-braintree
@@ -83,6 +95,7 @@ export default {
         customer_address: null,
         notes: null,
       },
+      errors: {},
     };
   },
   methods: {
@@ -99,21 +112,23 @@ export default {
         customer_address: this.inputs.customer_address,
         notes: this.inputs.notes,
       };
+      this.errors = {};
       axios
         .post("/checkout", params, {
           headers: {
             "X-CSRF-TOKEN": this.csrfToken,
           },
         })
-        .then(function (response) {
+        .then((response) => {
           console.log(response.data);
           /* 
             Se data.success === true 
             portami alla pagina di Success
           */
         })
-        .catch(function (err) {
-          console.log(err.response.data);
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+          console.log(this.errors);
           /* 
             Se la validazione non va a buon fine 
             salvo gli errori di err.response.data
