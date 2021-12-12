@@ -121,6 +121,7 @@ export default {
         })
         .then((response) => {
           console.log(response.data);
+          this.$router.push("/");
           /* 
             Se data.success === true 
             portami alla pagina di Success
