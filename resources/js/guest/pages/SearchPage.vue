@@ -190,6 +190,7 @@ export default {
 				border-radius: 10px;
 				background-color: $c-05;
 				color: $text-light-white;
+				transition: 0.5s;
 
 				div{
 					position: absolute;
