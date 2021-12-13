@@ -10,12 +10,13 @@
 				<div class="inputs">
 					<!-- input name of restaurant -->
 					<label for="restaurant-name">Ristorante:</label>
-					<input name="restaurant-name" id="restaurant-name" type="text" placeholder="nome del ristorante">
+					<input name="restaurant-name" id="restaurant-name" type="text" placeholder="nome del ristorante" v-model="srcName" @change="getRestaurants()">
 
 					<!-- select city -->
 					<label for="city-select">città:</label>
-					<select name="city-select" id="city-select">
-						<option value="mi">Milano</option>
+					<select name="city-select" id="city-select" @change="getRestaurants()" v-model="srcCity">
+						<option value="milan">Milano</option>
+						<!-- <option value="torino">Torino</option> -->
 					</select>
 				</div>
 
@@ -37,7 +38,9 @@
 		<section>
 			<ul style="margin:80px">
 				<li v-for="restaurant in restaurantList" :key="restaurant.id">
-					{{restaurant.name}}
+					<router-link :to="{ name: 'ristorante', params: { id: restaurant.id }}">
+						{{restaurant.name}}
+					</router-link>
 				</li>
 			</ul>
 		</section>
@@ -56,6 +59,10 @@ export default {
 			categories: [],
 			activeCategories: [],
 			restaurantList: null,
+			srcName: "",
+			srcCity: "milan",
+
+			srcParams:{},
 		}
 	},
 	methods: {
@@ -73,12 +80,19 @@ export default {
 			this.getRestaurants();
 		},
 
-		getRestaurants(city, categories, name) {
+		getRestaurants() {
+			this.srcParams = {};
+
+			// controllo categorie
+			this.activeCategories != "" ? this.srcParams["categories"] = this.activeCategories.toString() : null;
+			// Controllo Nome
+			this.srcName != "" ? this.srcParams["name"] = this.srcName : null;
+
+			// set city
+			this.srcParams["city"] = this.srcCity
+
 			axios.get("/api/restaurants", {
-				params: {
-					city: "milan",
-					categories: this.activeCategories.toString(),
-				},
+				params: this.srcParams
 			})
 				.then((response) => {
 					this.restaurantList = response.data.data;
