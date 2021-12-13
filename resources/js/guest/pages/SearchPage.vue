@@ -1,6 +1,6 @@
 <template>
 	<section id="Search">
-		<div id="top-search">
+		<section id="top-search">
 			<div class="img-top-box">
 				<img src="../../../media/images/search-bg.jpg" alt="">
 				<h1>Ricerca Avanzata</h1>
@@ -32,25 +32,33 @@
 				</div>
 			</div>
 			<img class="search-box-after-decoration" src="../../../media/images/search-box-after-decoration.png" alt="">
-		</div>
+		</section>
 
 		<!-- Lista Ristoranti -->
-		<section>
-			<ul style="margin:80px">
-				<li v-for="restaurant in restaurantList" :key="restaurant.id">
-					<router-link :to="{ name: 'ristorante', params: { id: restaurant.id }}">
-						{{restaurant.name}}
-					</router-link>
-				</li>
-			</ul>
+		<section id="restaurants-list">
+
+			<router-link 
+			:to="{ name: 'ristorante', params: { id: restaurant.id }}" 
+			v-for="restaurant in restaurantList" 
+			:key="restaurant.id">
+
+				<ObjRst :nameRst="restaurant.name" :url="restaurant.url_picture" />
+
+			</router-link>
+
 		</section>
 
 	</section>
 </template>
 
 <script>
+import ObjRst from '../components/small/ObjRst.vue'
+
 export default {
 	name: 'SearchPage',
+	components: {
+		ObjRst
+	},
 	props:{
 		// msg: String
 	},
@@ -171,6 +179,8 @@ export default {
 			@include flex-center;
 			flex-wrap: wrap;
 			list-style: none;
+			max-width: 1000px;
+			margin: auto;
 
 			li{
 				cursor: pointer;
@@ -203,6 +213,15 @@ export default {
 				}
 			}
 		}
+	}
+}
+
+#restaurants-list{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	a{
+		text-decoration: none;
 	}
 }
 
