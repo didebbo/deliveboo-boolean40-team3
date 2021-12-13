@@ -11,6 +11,31 @@
                         <form action="{{route('guest.orders.store')}}" method="POST">
                     @csrf
                     
+
+                    <div class="form-group" >
+                      <label for="user_id">user_id</label>
+                      <input type="text" class="form-control @error('user_id') is-invalid @enderror" id="user_id" name="user_id" placeholder="Inserisci email" value="{{old('user_id')}}">
+                      @error('user_id')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                      @enderror
+                    </div>
+
+                    <div class="form-group" >
+                      <label for="total_price">total_price</label>
+                      <input type="number" step="0.01" class="form-control @error('total_price') is-invalid @enderror" id="total_price" name="total_price" placeholder="Inserisci email" value="{{old('total_price')}}">
+                      @error('total_price')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                      @enderror
+                    </div>
+
+                    <div class="form-group" >
+                      <label for="status">status</label>
+                      <input type="number" class="form-control @error('status') is-invalid @enderror" id="status" name="status" placeholder="Inserisci email" value="{{old('status')}}">
+                      @error('status')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                      @enderror
+                    </div>
+
                     <div class="form-group" >
                       <label for="customer_email">Email</label>
                       <input type="text" class="form-control @error('customer_email') is-invalid @enderror" id="customer_email" name="customer_email" placeholder="Inserisci email" value="{{old('customer_email')}}">

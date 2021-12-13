@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 class GuestOrderController extends Controller
 {
     protected $validator = [
+        'user_id' => 'required|exists:users,id',
+        'total_price' => 'required|numeric|min:0|max:9999.99',
+        'status' => 'required|numeric|min:0|max:2',
         'customer_email' => 'required|string|max:255',
         'customer_firstname' => 'required|string|max:50',
         'customer_lastname' => 'required|string|max:50',
@@ -36,12 +39,9 @@ class GuestOrderController extends Controller
     public function store(Request $request)
     {
         $request->validate($this->validator);
-        $newOrder = new Order();
-        $newOrder->fill($request->all());
-        $newOrder['user_id'] = 1;
-        $newOrder['total_price'] = 17;
-        $newOrder['status'] = 1;
-        $newOrder->save();        
+        $newOrder = Order::create($request->all());
+        
+        $newOrder->dishes()->attach($request['categories']);
 
         return redirect()->route('guest.index');
     }
