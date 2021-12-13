@@ -64,6 +64,7 @@ export default {
 
 			if ( elm == "active") {
 				elm.remove("active");
+				this.activeCategories = this.activeCategories.filter(cat => cat != elmName);
 			} else if (elm !== "active" ) {
 				elm.add("active");
 				this.activeCategories.push(elmName);
