@@ -5,7 +5,16 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Modifica Piatto</div>
+                    <div class="card-header">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/merchant">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="/merchant/dishes">Piatti</a></li>
+                                <li class="breadcrumb-item"><a href="/merchant/dishes/{{$dish['id']}}">{{ $dish['name'] }}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                            </ol>
+                        </nav>
+                    </div>
 
                     <div class="card-body">
                         <form action="{{ route('merchant.dishes.update', $dish) }}" method="POST"

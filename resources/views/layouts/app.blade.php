@@ -25,8 +25,8 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="text-dark" href="{{ url('/') }}">
-                    Deliveboo
+                <a class="text-dark" href="{{ url('/merchant') }}">
+                    Dashboard
                 </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -36,11 +36,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto ml-2">
+                    {{-- <ul class="navbar-nav mr-auto ml-2">
                         <li>
                             <a class="text-dark" href="{{ url('/merchant') }}">Dashboard</a>
                         </li>
-                    </ul>
+                    </ul> --}}
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -62,6 +62,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('/') }}">Deliveboo</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                                                                                              document.getElementById('logout-form').submit();">

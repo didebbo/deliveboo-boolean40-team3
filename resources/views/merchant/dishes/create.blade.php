@@ -5,9 +5,17 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Nuovo piatto</div>
+                    <div class="card-header">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/merchant">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="/merchant/dishes">Piatti</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Nuovo Piatto</li>
+                            </ol>
+                        </nav>
+                    </div>
 
-                    <div class="card-body">
+                    <div class="card-body ">
                         <form action="{{ route('merchant.dishes.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
@@ -63,7 +71,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Salva</button>
+                                <button type="submit" class="btn btn-success">Salva</button>
                                 <a href="{{ route('merchant.dishes.index') }}" class="btn btn-danger">Annulla</a>
                             </div>
                         </form>
