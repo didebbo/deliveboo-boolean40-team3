@@ -5,7 +5,7 @@
 
       <div class="rst-img">
         <template v-if="url">
-          <img :src="'./storage/' + url" alt="">
+          <img :src="'/storage/' + url" alt="">
         </template>
         <template v-else>
           <img :src="require('../../../../media/images/fast-food-2.jpg')" alt="">

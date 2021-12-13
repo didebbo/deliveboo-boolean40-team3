@@ -3,12 +3,17 @@
 
     <div :class="`dish-card ${type}` ">
       <div class="circle-img">
-        <img src="" alt="">
+        <template v-if="img">
+          <img :src="'/storage/' + img" alt="">
+        </template>
+        <template v-else>
+          <img :src="require('../../../../media/images/fast-food-2.jpg')" alt="">
+        </template>
       </div>
         <p class="name-dish">{{foodName}}</p>
 
         <div class="icon-cart">
-
+          <img src="../../../../media/icons/cart-white-ADD.svg" alt="">
         </div>
         <div class="obj-price">
           <p class="price-dish">{{price}} €</p>
@@ -63,35 +68,33 @@ export default {
     display: flex;
     align-items: center;
     // filter: $shadow-02;
+
+    .circle-img{
+      border: 4px solid $c-02;
+    }
     
     &.food{
       // filter: $shadow-02;
-
       .circle-img{
         border: 4px solid $c-02;
-
       }
       &.icon-cart {
-
         background-color: $c-02;
       }
     }
+
     &.drink {
       // filter: $shadow-04;
-
       .circle-img{
         border: 4px solid $c-04;
-
       }
       &.icon-cart {
-
         background-color: $c-04;
       }
     }
 
     &.icon-cart {
-
-        background-color: $c-02;
+      background-color: $c-02;
     }
 
       .circle-img{
@@ -121,6 +124,15 @@ export default {
         position: absolute;
         right: -35px;
         top: -20px;
+        cursor: pointer;
+
+        img{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 50px;
+            bottom: 5px;
+        }
       }
       .obj-price {
         color: $c-05;

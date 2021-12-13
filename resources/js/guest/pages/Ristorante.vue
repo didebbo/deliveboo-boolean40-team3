@@ -8,7 +8,12 @@
 				<p class="rst-description">{{ristorante.adv}}</p>
 			</div>
 			<div class="right-side">
-				<img src="" alt="">
+				<template v-if="ristorante.url_picture">
+					<img :src="'/storage/' + ristorante.url_picture" alt="">
+				</template>
+				<template v-else>
+					<img :src="require('../../../media/images/fast-food-2.jpg')" alt="">
+				</template>
 			</div>
 		</section>
 		
@@ -16,17 +21,19 @@
 			
 			<h3 class="title-foods">Cibi e menù</h3>
 			<div class="dishes">
-				<ObjDish/>
-				<ObjDish/>
-				<ObjDish/>
+				<ObjDish v-for="dish in ristorante.dishes" 
+				:key="dish.id" 
+				:foodName="dish.name" 
+				:price="dish.price" 
+				:img="dish.url_picture"/>
 			</div>
 			
-			<h3 class="title-drinks">Cibi e menù</h3>
+			<!-- <h3 class="title-drinks">Cibi e menù</h3>
 			<div class="drinks">
 				<ObjDish/>
 				<ObjDish/>
 				<ObjDish/>
-			</div>
+			</div> -->
 		</section>
 
 	</section>
