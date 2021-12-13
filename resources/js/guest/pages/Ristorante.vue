@@ -1,6 +1,6 @@
 <template>
 	<section id="Ristorante">
-		pagina ristorante
+		pagina ristorante {{id}}
 	</section>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
 	name: 'Ristorante',
 	props:{
-		// msg: String
+		id: Number
 	},
 	data(){
 		return{
