@@ -5,26 +5,40 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Dettagli ordine</div>
+                    <div class="card-header">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/merchant">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="/merchant/orders">Ordini</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Odine: {{$order['id']}}</li>
+                            </ol>
+                        </nav>
+                    </div>
                     <div class="card-body">
-                        <ul class="list-unstyled">
+                        <ul class="list-unstyled" id="order-show">
                             <li>
-                                Nome cliente: {{ $order['customer_firstname'] . ' ' . $order['customer_lastname']}}
+                                <p>nome cliente</p>
+                                <h5>{{ $order['customer_firstname'] . ' ' . $order['customer_lastname']}}</h5>
                             </li>
                             <li>
-                                email cliente: {{ $order['customer_email']}}
+                                <p>email cliente</p>
+                                <h5>{{ $order['customer_email']}}</h5>
                             </li>
                             <li>
-                                telefono cliente: {{ $order['customer_phone']}}
+                                <p>telefono cliente</p>
+                                <h5>{{ $order['customer_phone']}}</h5>
                             </li>
                             <li>
-                                indirizzo cliente: {{ $order['customer_address']}}
+                                <p>indirizzo cliente</p>
+                                <h5>{{ $order['customer_address']}}</h5>
                             </li>
                             <li>
-                                Piatti ordinati: Pasta Carbonara, Pizza Margherita
+                                <p>piatti ordinati</p>
+                                <h5>Pasta Carbonara, Pizza Margherita</h5>
                             </li>
                             <li>
-                                prezzo totale: {{ $order['total_price']}}€
+                                <p>prezzo totale</p>
+                                <h5>{{ $order['total_price']}}€</h5>
                             </li>
                         </ul>
                         <a href="{{ route('merchant.orders.index') }}" class="btn btn-primary">

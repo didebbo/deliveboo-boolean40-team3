@@ -5,12 +5,19 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Ordini</div>
+                    <div class="card-header">
+                      <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/merchant">Dashboard</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Ordini</li>
+                            </ol>
+                        </nav>
+                    </div>
                     <div class="card-body">
                         <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">Ordine</th>
                         <th scope="col">Cliente</th>
                         <th scope="col">Totale</th>
                         <th scope="col"></th>
@@ -20,7 +27,7 @@
                       @foreach ($orders as $order)
                       <tr>
                         <th scope="row">{{$order['id']}}</th>
-                        <td>{{$order['customer_email']}}</td>
+                        <td>{{$order['customer_firstname'] . ' ' . $order['customer_lastname']}}</td>
                         <td>{{$order['total_price']}}€</td>
                         <td>
                           <a href="{{route('merchant.orders.show', $order['id'])}}"><button type="button" class="btn btn-primary">Dettagli</button></a>

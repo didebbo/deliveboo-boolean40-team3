@@ -2,3 +2,15 @@
 @import '~bootstrap/scss/bootstrap';
 
 @import '../app.scss';
+
+
+#order-show li{
+  
+  margin-bottom: 1em;
+
+  p{
+    margin: 0;
+    color: #6c757d;
+  }
+  
+}
