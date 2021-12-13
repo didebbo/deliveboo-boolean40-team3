@@ -46,6 +46,7 @@ body {
     border: none;
     border-radius: 35px;
     @include flex-center;
+    cursor: pointer;
 }
 
 .btn-dark {
