@@ -20,7 +20,7 @@
               Potrai inserire il tuo menù e ricevere subito i tuoi primi ordini
             </p>
           </div>
-          <button class="btn-danger">Registrati come Ristoratore</button>
+          <a href="/register" class="btn-danger">Registrati come Ristoratore</a>
         </div>
       </div>
 
@@ -66,6 +66,10 @@ export default {
 
     p {
       color: white;
+    }
+
+    a{
+      text-decoration: none;
     }
   }
 }
