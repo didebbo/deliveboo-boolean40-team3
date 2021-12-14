@@ -3,7 +3,9 @@
         <div class="container-m">
             <div>
                 <h2>{{headline}}</h2>
-                <button class="btn-dark">Cerca un Ristorante</button>
+                <router-link class="rst-search-btn" :to="{ name: 'search' }">		
+                        <button class="btn-dark">Cerca un Ristorante</button>
+				</router-link>
             </div>
         </div>
     </section>
@@ -52,6 +54,10 @@ export default {
     h2{
         @include f-hero-title;
         max-width: 800px;
+    }
+    .rst-search-btn {
+        
+        text-decoration: none;
     }
     button{
         margin-top: 15px;

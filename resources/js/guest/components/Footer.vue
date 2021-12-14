@@ -53,6 +53,7 @@ export default {
 		border-top-right-radius: 1.875rem;
 		padding: 1.25rem 2.5rem;
 		color: white;
+		margin-top: 100px;
 
 		.footer-left {
 			display: flex;

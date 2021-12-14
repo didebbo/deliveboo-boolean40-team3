@@ -30,6 +30,7 @@ export default {
 
 #ShopCart{
     padding-top: $top-heigth;
+    min-height: 100px;
 }
 
 </style>
