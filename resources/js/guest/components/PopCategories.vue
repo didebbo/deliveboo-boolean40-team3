@@ -12,7 +12,12 @@
             </div>
         </div>
         <div class="carousel" ref="carousel">
-            <div class="card" v-for="category in homeCategories" :key="category.id">
+            <router-link 
+            :to="{ name: 'search', params: { selCategory: category.name }}" 
+            class="card" 
+            v-for="category in homeCategories" 
+            :key="category.id">
+
                 <p class="food-title">
                     {{category.name}}
                 </p>
@@ -22,14 +27,15 @@
                 <div class="search_icon">
                     <img src="../../../media/icons/search-white.svg" alt="Icona Ricerca">
                 </div>
-            </div>
+
+            </router-link>
         </div>
     </section>
 </template>
 
 <script>
 export default {
-    name: 'PopularCategories',
+    name: 'PopCategories',
     props:{
         // msg: String
     },
@@ -126,6 +132,11 @@ export default {
         // justify-content: center;
         padding-left: 28%;
         overflow-x: auto;
+
+        a{
+            color: inherit;
+            text-decoration: none;
+        }
 
         .card {
             @include flex-center;

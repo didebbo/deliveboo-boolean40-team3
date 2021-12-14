@@ -106,7 +106,7 @@ export default {
 					this.restaurantList = response.data.data;
 					console.log(response.data.data);
 				});
-		}
+		},
 
 	},
 	mounted() {
@@ -119,12 +119,17 @@ export default {
 			});
 		});
 
-		// autoselect category from external link
-		if(this.selCategory){
-			toggleActive(this.selCategory)
-		}
 
-		this.getRestaurants()
+		this.$nextTick(function () {
+
+			if(this.selCategory){
+				setTimeout(() => {
+					this.toggleActive(this.selCategory)
+				}, 400);
+			} else {
+				this.getRestaurants()
+			}
+		})
 	}
 }
 </script>
