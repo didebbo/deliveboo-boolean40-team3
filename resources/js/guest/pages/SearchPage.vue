@@ -24,7 +24,7 @@
 				<div class="categories">
 					<h4>Categorie:</h4>
 					<ul>
-						<li  :id="`cat-li-${category.id}`" v-for="category in categories" :key="category.id" @click="toggleActive(category.id, category.name)">
+						<li  :id="`cat-li-${category.name}`" v-for="category in categories" :key="category.id" @click="toggleActive(category.name)">
 							<div><img src="../../../media/images/search-bg.jpg" alt=""></div>
 							{{category.name}}
 						</li>
@@ -60,7 +60,7 @@ export default {
 		ObjRst
 	},
 	props:{
-		// msg: String
+		selCategory: null,
 	},
 	data(){
 		return{
@@ -74,8 +74,8 @@ export default {
 		}
 	},
 	methods: {
-		toggleActive(idElm, elmName) {
-			let elm = document.getElementById(`cat-li-${idElm}`).classList;
+		toggleActive(elmName) {
+			let elm = document.getElementById(`cat-li-${elmName}`).classList;
 
 			if ( elm == "active") {
 				elm.remove("active");
@@ -117,7 +117,12 @@ export default {
 			array.forEach(element => {
 				this.categories.push(element);
 			});
-		}),
+		});
+
+		// autoselect category from external link
+		if(this.selCategory){
+			toggleActive(this.selCategory)
+		}
 
 		this.getRestaurants()
 	}

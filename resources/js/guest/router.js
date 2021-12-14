@@ -24,6 +24,12 @@ const router = new VueRouter({
             component: SearchPage,
         },
         {
+            path: '/search/:selCategory',
+            props: true,
+            name: 'search',
+            component: SearchPage,
+        },
+        {
             path: '/ristorante/:id',
             props: true,
             name: 'ristorante',
