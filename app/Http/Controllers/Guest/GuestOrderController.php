@@ -66,6 +66,7 @@ class GuestOrderController extends Controller
             ]
         ]);
         if ($result->success) {
+            $data['order']['status'] = 0;
             $order = Order::create($data['order']);
             $order->dishes()->attach($data['order']['dishes']);
         }

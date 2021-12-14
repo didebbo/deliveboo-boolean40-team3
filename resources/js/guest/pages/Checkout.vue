@@ -94,9 +94,9 @@ export default {
         customer_phone: null,
         customer_address: null,
         notes: null,
-        user_id: 1,
-        total_price: 20,
-        status: 0,
+        user_id: 1, // Arriva dal carrello (param)
+        total_price: 20, // Arriva dal carrello (param)
+        // dishes: Arriva da carrello (param object)
         dishes: [
           {
             dish_id: 1,
@@ -136,11 +136,6 @@ export default {
         .catch((error) => {
           this.errors = error.response.data.errors;
           console.log(this.errors);
-          /* 
-            Se la validazione non va a buon fine 
-            salvo gli errori di err.response.data
-            mostrando per ogni campo l'errore generato. 
-          */
         });
     },
   },
