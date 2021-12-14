@@ -19,6 +19,12 @@ const router = new VueRouter({
             component: Home
         },
         {
+            path: '/search/:selCategory',
+            props: true,
+            name: 'search',
+            component: SearchPage,
+        },
+        {
             path: '/search',
             name: 'search',
             component: SearchPage,

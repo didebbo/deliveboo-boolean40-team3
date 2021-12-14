@@ -3,7 +3,7 @@
 
     <Hero url="fast-food-2.jpg" headline="Il vero Fast che stavi aspettando!"/>
 
-    <!-- Components (categories) -->
+    <pop-categories/>
 
     <RandomRestaurant/>
 
@@ -31,18 +31,20 @@
 import Hero from '../components/Hero.vue'
 import RandomRestaurant from '../components/RandomRestaurant.vue'
 import WhyUs from '../components/WhyUs.vue'
+import PopCategories from '../components/PopCategories.vue'
 
 export default {
   name: "Home",
   components: {
     Hero,
     RandomRestaurant,
-    WhyUs
+    WhyUs,
+    PopCategories
   },
 };
 </script>
 
-<style scoped lang="scss">
+<style scoped, lang="scss">
 @import '../../../sass/_variables.scss';
 
 #call-to-restaurant {

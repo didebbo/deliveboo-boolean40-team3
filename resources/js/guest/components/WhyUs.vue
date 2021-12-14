@@ -48,6 +48,7 @@ export default {
     display: flex;
     flex-direction: column;
 	margin: 120px 0;
+	overflow: hidden;
     .triangle-yellow {
 		width: 100%;
     }
