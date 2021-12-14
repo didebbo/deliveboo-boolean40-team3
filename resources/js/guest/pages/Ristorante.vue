@@ -1,5 +1,5 @@
 <template>
-  <section id="Ristorante">
+  <section v-if="ristorante" id="Ristorante">
     <section class="top-page">
       <div class="left-side">
         <h2>{{ ristorante.name }}</h2>
@@ -49,20 +49,66 @@ export default {
   components: {
     ObjDish,
   },
-  props: {
-    id: Number,
-  },
+  props: ["id"],
   data() {
     return {
       ristorante: null,
+
+      // [GN] Carrello che verrà sincronizzato con il localStorage.cart
+      cart: {},
     };
   },
   methods: {
+    synCart() {
+      if (localStorage.cart) {
+        this.cart = JSON.parse(localStorage.cart);
+      }
+    },
     addToCart(id) {
-      alert("Id:" + id);
+      if (!this.cart["user_id"]) {
+        this.cart["user_id"] = this.ristorante.id;
+        this.cart["dishes"] = [];
+      } else if (this.cart["user_id"] != this.ristorante.id) {
+        console.log("Non puoi selezionare un piatto da un ristorante diverso");
+        return -1;
+      }
+      if (!this.isDishInCart(id)) {
+        this.cart["dishes"].push({
+          dish_id: id,
+          quantity: 1,
+        });
+        console.log("added new dish");
+      } else {
+        this.addDishQuantity(id);
+      }
+      localStorage.cart = JSON.stringify(this.cart);
+    },
+    isDishInCart(id) {
+      let isDishInCart = false;
+      console.log("isDishInCart");
+      this.cart["dishes"].forEach((dish) => {
+        console.log(dish, id);
+        if (dish["dish_id"] == id) {
+          console.log("dish esistente");
+          isDishInCart = true;
+        }
+      });
+      return isDishInCart;
+    },
+    addDishQuantity(id) {
+      console.log("addDishQuantity");
+      this.cart["dishes"].forEach((dish) => {
+        console.log(dish, id);
+        if (dish["dish_id"] == id) {
+          dish["quantity"] += 1;
+          console.log("quantity + 1");
+          return;
+        }
+      });
     },
   },
   mounted() {
+    this.synCart();
     axios.get(`/api/restaurants/${this.id}`).then((response) => {
       this.ristorante = response.data.data;
       console.log(this.ristorante);
