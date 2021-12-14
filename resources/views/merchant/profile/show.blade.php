@@ -5,7 +5,14 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Profilo ristorante</div>
+                    <div class="card-header">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/merchant">Dashboard</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ $user['name'] }}</li>
+                            </ol>
+                        </nav>
+                    </div>
                     <div class="card-body">
                         <h3>Nome ristorante: {{ $user['name'] }}</h3>
                         <p>email: {{ $user['email'] }}</p>

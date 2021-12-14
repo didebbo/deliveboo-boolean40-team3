@@ -31,7 +31,7 @@
                                     </li>
                                 @endforeach
                                 <li>
-                                    <a class="btn btn-primary" href="{{ url('/merchant/dishes/create') }}">Aggiungi Piatto</a>
+                                    <a class="btn btn-primary mt-3" href="{{ url('/merchant/dishes/create') }}">Aggiungi Piatto</a>
                                 </li>
                             </ul>
                         </div>

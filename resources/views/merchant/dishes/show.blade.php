@@ -47,7 +47,7 @@
                                 Delete
                             </button>
                         </form>
-                        <a href="{{ route('merchant.dishes.index') }}" class="btn btn-primary">
+                        <a href="{{ route('merchant.dishes.index') }}" class="btn btn-primary float-right">
                             Tutti i piatti
                         </a>
                     </div>
