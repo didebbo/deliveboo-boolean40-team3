@@ -88,25 +88,25 @@ export default {
         .querySelector("meta[name='csrf-token']")
         .getAttribute("content"),
       order: {
-        customer_firstname: null,
-        customer_lastname: null,
-        customer_email: null,
-        customer_phone: null,
-        customer_address: null,
-        notes: null,
-        user_id: 1, // Arriva dal carrello (param)
-        total_price: 20, // Arriva dal carrello (param)
-        // dishes: Arriva da carrello (param object)
-        dishes: [
-          {
-            dish_id: 1,
-            quantity: 2,
-          },
-          {
-            dish_id: 2,
-            quantity: 1,
-          },
-        ],
+        // customer_firstname: null,
+        // customer_lastname: null,
+        // customer_email: null,
+        // customer_phone: null,
+        // customer_address: null,
+        // notes: null,
+        // user_id: 1, // Arriva dal carrello (param)
+        // total_price: 20, // Arriva dal carrello (param)
+        // dishes: Prendo da localStorage
+        // dishes: [
+        //   {
+        //     dish_id: 1,
+        //     quantity: 2,
+        //   },
+        //   {
+        //     dish_id: 2,
+        //     quantity: 1,
+        //   },
+        // ],
       },
       errors: {},
     };
