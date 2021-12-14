@@ -25,6 +25,7 @@ const router = new VueRouter({
         },
         {
             path: '/ristorante/:id',
+            props: true,
             name: 'ristorante',
             component: Ristorante,
         },

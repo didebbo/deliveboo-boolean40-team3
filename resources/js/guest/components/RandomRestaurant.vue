@@ -9,7 +9,9 @@
                     <img id="random" src="https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?cs=srgb&dl=pexels-pixabay-315755.jpg&fm=jpg" alt="">
                 </div>
                 <p>lasciati proporre un Ristorante Casuale</p>
-                <button class="btn-danger">Estrai</button>
+
+
+                <button class="btn-danger" @click="goToRandom()">Estrai</button>
             </div>
         </div>
     </section>
@@ -27,7 +29,19 @@ export default {
         }
     },
     methods: {
-        //
+        goToRandom(){
+            axios.get("/api/restaurants")
+				.then((response) => {
+					let list = response.data.data;
+                    let ids= [];
+                    ids = list.map(x => x.id);
+
+
+                    let choose = Math.floor(Math.random() * ids.length);
+                    
+                    this.$router.push({ name: 'ristorante', params: { id: ids[choose] } })
+				});
+        }
     }
 }
 </script>

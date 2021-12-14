@@ -1,6 +1,6 @@
 <template>
 	<section id="Search">
-		<div id="top-search">
+		<section id="top-search">
 			<div class="img-top-box">
 				<img src="../../../media/images/search-bg.jpg" alt="">
 				<h1>Ricerca Avanzata</h1>
@@ -10,12 +10,13 @@
 				<div class="inputs">
 					<!-- input name of restaurant -->
 					<label for="restaurant-name">Ristorante:</label>
-					<input name="restaurant-name" id="restaurant-name" type="text" placeholder="nome del ristorante">
+					<input name="restaurant-name" id="restaurant-name" type="text" placeholder="nome del ristorante" v-model="srcName" @change="getRestaurants()">
 
 					<!-- select city -->
 					<label for="city-select">città:</label>
-					<select name="city-select" id="city-select">
-						<option value="mi">Milano</option>
+					<select name="city-select" id="city-select" @change="getRestaurants()" v-model="srcCity">
+						<option value="milan">Milano</option>
+						<!-- <option value="torino">Torino</option> -->
 					</select>
 				</div>
 
@@ -23,7 +24,7 @@
 				<div class="categories">
 					<h4>Categorie:</h4>
 					<ul>
-						<li class="active" v-for="category in categories" :key="category.id">
+						<li  :id="`cat-li-${category.id}`" v-for="category in categories" :key="category.id" @click="toggleActive(category.id, category.name)">
 							<div><img src="../../../media/images/search-bg.jpg" alt=""></div>
 							{{category.name}}
 						</li>
@@ -31,23 +32,82 @@
 				</div>
 			</div>
 			<img class="search-box-after-decoration" src="../../../media/images/search-box-after-decoration.png" alt="">
-		</div>
+		</section>
+
+		<!-- Lista Ristoranti -->
+		<section id="restaurants-list">
+
+			<router-link 
+			:to="{ name: 'ristorante', params: { id: restaurant.id }}" 
+			v-for="restaurant in restaurantList" 
+			:key="restaurant.id">
+
+				<ObjRst :nameRst="restaurant.name" :url="restaurant.url_picture" />
+
+			</router-link>
+
+		</section>
+
 	</section>
 </template>
 
 <script>
+import ObjRst from '../components/small/ObjRst.vue'
+
 export default {
 	name: 'SearchPage',
+	components: {
+		ObjRst
+	},
 	props:{
 		// msg: String
 	},
 	data(){
 		return{
 			categories: [],
+			activeCategories: [],
+			restaurantList: null,
+			srcName: "",
+			srcCity: "milan",
+
+			srcParams:{},
 		}
 	},
 	methods: {
-		//
+		toggleActive(idElm, elmName) {
+			let elm = document.getElementById(`cat-li-${idElm}`).classList;
+
+			if ( elm == "active") {
+				elm.remove("active");
+				this.activeCategories = this.activeCategories.filter(cat => cat != elmName);
+			} else if (elm !== "active" ) {
+				elm.add("active");
+				this.activeCategories.push(elmName);
+			}
+
+			this.getRestaurants();
+		},
+
+		getRestaurants() {
+			this.srcParams = {};
+
+			// controllo categorie
+			this.activeCategories != "" ? this.srcParams["categories"] = this.activeCategories.toString() : null;
+			// Controllo Nome
+			this.srcName != "" ? this.srcParams["name"] = this.srcName : null;
+
+			// set city
+			this.srcParams["city"] = this.srcCity
+
+			axios.get("/api/restaurants", {
+				params: this.srcParams
+			})
+				.then((response) => {
+					this.restaurantList = response.data.data;
+					console.log(response.data.data);
+				});
+		}
+
 	},
 	mounted() {
 		axios.get('/api/categories')
@@ -57,7 +117,9 @@ export default {
 			array.forEach(element => {
 				this.categories.push(element);
 			});
-		})
+		}),
+
+		this.getRestaurants()
 	}
 }
 </script>
@@ -117,6 +179,8 @@ export default {
 			@include flex-center;
 			flex-wrap: wrap;
 			list-style: none;
+			max-width: 1000px;
+			margin: auto;
 
 			li{
 				cursor: pointer;
@@ -126,6 +190,7 @@ export default {
 				border-radius: 10px;
 				background-color: $c-05;
 				color: $text-light-white;
+				transition: 0.5s;
 
 				div{
 					position: absolute;
@@ -149,6 +214,15 @@ export default {
 				}
 			}
 		}
+	}
+}
+
+#restaurants-list{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	a{
+		text-decoration: none;
 	}
 }
 

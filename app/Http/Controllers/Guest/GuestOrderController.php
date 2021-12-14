@@ -37,13 +37,8 @@ class GuestOrderController extends Controller
     public function store(Request $request)
     {
         $request->validate($this->validator);
-        $newOrder = new Order();
-        $newOrder->fill($request->all());
-        $newOrder['user_id'] = 1;
-        $newOrder['total_price'] = 17;
-        $newOrder['status'] = 0;
-        $newOrder->save();
-
+        $newOrder = Order::create($request->all());
+        $newOrder->dishes()->attach($request['categories']);
         return redirect()->route('guest.index');
     }
 
