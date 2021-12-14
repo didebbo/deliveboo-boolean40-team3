@@ -54,7 +54,7 @@
             />
           </li>
           <li>
-            <button class="btn-danger" @click="deleteDish(2)">Elimina</button>
+            <button class="btn-danger">Elimina</button>
           </li>
         </ul>
       </div>
@@ -92,6 +92,22 @@ export default {
       this.cart["dishes"] = this.cart["dishes"].filter(
         (dish) => dish["dish_id"] != id
       );
+      localStorage.cart = JSON.stringify(this.cart);
+    },
+    removeOne(id) {
+      this.cart["dishes"].forEach((dish) => {
+        if (dish["dish_id"] == id) dish["quantity"]--;
+      });
+      this.cart["dishes"] = this.cart["dishes"].filter(
+        (dish) => dish["quantity"] > 0
+      );
+      localStorage.cart = JSON.stringify(this.cart);
+    },
+    addOne(id) {
+      this.cart["dishes"].forEach((dish) => {
+        if (dish["dish_id"] == id) dish["quantity"]++;
+      });
+      localStorage.cart = JSON.stringify(this.cart);
     },
   },
   mounted() {
