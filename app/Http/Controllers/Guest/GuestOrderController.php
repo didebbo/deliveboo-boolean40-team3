@@ -67,7 +67,7 @@ class GuestOrderController extends Controller
         ]);
         if ($result->success) {
             $order = Order::create($data['order']);
-            $order->dishes()->attach($data['dishes']);
+            $order->dishes()->attach($data['order']['dishes']);
         }
         return response()->json(['success' => $result->success]);
     }

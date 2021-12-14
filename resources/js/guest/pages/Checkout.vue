@@ -97,17 +97,17 @@ export default {
         user_id: 1,
         total_price: 20,
         status: 0,
+        dishes: [
+          {
+            dish_id: 1,
+            quantity: 2,
+          },
+          {
+            dish_id: 2,
+            quantity: 1,
+          },
+        ],
       },
-      dishes: [
-        {
-          dish_id: 1,
-          quantity: 2,
-        },
-        {
-          dish_id: 2,
-          quantity: 1,
-        },
-      ],
       errors: {},
     };
   },
