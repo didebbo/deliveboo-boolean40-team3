@@ -115,13 +115,10 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Dish $dish)
     {
-        $dish = Dish::find($request->id);
         if ($dish['url_picture']) Storage::delete($dish['url_picture']);
-
         $dish->delete();
-        
-        return redirect()->route('merchant.dishes.index')->with('error', "Post {$dish->id} has been deleted!");
+        return redirect()->route('merchant.dishes.index');
     }
 }
