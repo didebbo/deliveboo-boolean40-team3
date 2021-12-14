@@ -12,7 +12,7 @@
 					<img :src="'/storage/' + ristorante.url_picture" alt="">
 				</template>
 				<template v-else>
-					<img :src="require('../../../media/images/fast-food-2.jpg')" alt="">
+					<img :src="require('../../../media/images/segnaposto-rest.jpeg')" alt="">
 				</template>
 			</div>
 		</section>

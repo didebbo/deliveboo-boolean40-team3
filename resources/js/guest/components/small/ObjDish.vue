@@ -7,7 +7,7 @@
           <img :src="'/storage/' + img" alt="">
         </template>
         <template v-else>
-          <img :src="require('../../../../media/images/fast-food-2.jpg')" alt="">
+          <img :src="require('../../../../media/images/segnaposto-food.webp')" alt="">
         </template>
       </div>
         <p class="name-dish">{{foodName}}</p>
