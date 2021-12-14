@@ -54,7 +54,7 @@
             />
           </li>
           <li>
-            <button class="btn-danger">Elimina</button>
+            <button class="btn-danger" @click="deleteDish(2)">Elimina</button>
           </li>
         </ul>
       </div>
@@ -87,6 +87,11 @@ export default {
       if (localStorage.cart) {
         this.cart = JSON.parse(localStorage.cart);
       }
+    },
+    deleteDish(id) {
+      this.cart["dishes"] = this.cart["dishes"].filter(
+        (dish) => dish["dish_id"] != id
+      );
     },
   },
   mounted() {
