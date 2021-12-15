@@ -20,7 +20,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="name">Nome piatto</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="name"
+                                <input type="text" class="form-control" id="name" name="name" placeholder="nome"
                                     value="{{ old('name') }}">
                                 @error('name')
                                     <small class="form-text text-danger">{{ $message }}</small>
@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="ingredients">Ingredienti</label>
-                                <textarea class="form-control" name="ingredients" id="ingredients"
+                                <textarea class="form-control" name="ingredients" id="ingredienti"
                                     placeholder="ingredients">{{ old('ingredients') }}</textarea>
                                 @error('ingredients')
                                     <small class="form-text text-danger">{{ $message }}</small>
@@ -37,7 +37,7 @@
                             <div class="form-group">
                                 <label for="description">Descrizione</label>
                                 <textarea class="form-control" name="description" id="description"
-                                    placeholder="description">{{ old('description') }}</textarea>
+                                    placeholder="descrizione">{{ old('description') }}</textarea>
                                 @error('description')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
@@ -48,13 +48,13 @@
                                 @endif>
                                 <label for="beverage">Beverage</label>
                                 @error('beverage')
-                                    <small class="form-text text-danger" )>{{ $message }}</small>
+                                    <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label for="price">Prezzo in €</label>
                                 <input type="number" step="0.01" class="form-control" id="price" name="price"
-                                    placeholder="price" value="{{ old('price') }}">
+                                    placeholder="prezzo" value="{{ old('price') }}">
                                 @error('price')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror

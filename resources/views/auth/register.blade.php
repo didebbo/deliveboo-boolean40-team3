@@ -5,13 +5,16 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                    <div class="card-header user-title">
+                        <h2>Registrati come nuovo ristoratore</h2>
+                    </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="name"
+                                <label for="name">Nome del ristorante</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="nome"
                                     value="{{ old('name') }}">
                                 @error('name')
                                     <small class="form-text text-danger">{{ $message }}</small>
@@ -19,6 +22,7 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="email">Email</label>
                                 <input type="email" class="form-control" id="email" name="email" placeholder="email"
                                     value="{{ old('email') }}">
                                 @error('email')
@@ -27,6 +31,7 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" name="password"
                                     placeholder="password">
                                 @error('password')
@@ -35,14 +40,16 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="password_confirmation">Conferma password</label>
                                 <input type="password" class="form-control" id="password_confirmation"
-                                    name="password_confirmation" placeholder="password_confirmation">
+                                    name="password_confirmation" placeholder="conferma password">
                                 @error('password_confirmation')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
 
                             <div class="form-group">
+                                <label for="city">Città</label>
                                 <select name="city" id="city" class="form-control">
                                     <option value="milan">Milano</option>
                                 </select>
@@ -52,7 +59,8 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="text" class="form-control" id="address" name="address" placeholder="address"
+                                <label for="address">Indirizzo del ristorante</label>
+                                <input type="text" class="form-control" id="address" name="address" placeholder="indirizzo"
                                     value="{{ old('address') }}">
                                 @error('address')
                                     <small class="form-text text-danger">{{ $message }}</small>
@@ -60,7 +68,8 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="number" class="form-control" id="vat" name="vat" placeholder="vat"
+                                <label for="address">Numero di Partita Iva</label>
+                                <input type="number" class="form-control" id="vat" name="vat" placeholder="partita iva"
                                     value="{{ old('vat') }}">
                                 @error('vat')
                                     <small class="form-text text-danger">{{ $message }}</small>
@@ -68,8 +77,9 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="adv">Messaggio di presentazione</label>
                                 <textarea name="adv" id="adv" class="form-control"
-                                    placeholder="adv">{{ old('adv') }}</textarea>
+                                    placeholder="messaggio di presentazione">{{ old('adv') }}</textarea>
                                 @error('adv')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
@@ -95,13 +105,9 @@
                     </div>
                     @endforeach
 
-                    {{-- TODO upload immagine ristorante (non obligatorio) --}}
-
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Register') }}
-                            </button>
+                            <button type="submit" class="btn-success">Registrati</button>
                         </div>
                     </div>
                     </form>
