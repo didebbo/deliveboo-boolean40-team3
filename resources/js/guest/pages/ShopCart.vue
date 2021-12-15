@@ -14,7 +14,7 @@
                     <div class="record-row">
                         <div class="name-dish">nome piatto</div>
 
-                            <div class="price-dish">198€</div>
+                            <div class="price-dish">198.00€</div>
                             <div class="quantity-dish">
                                 <img class="arrow-less" src="../../../media/icons/small-arrow.svg" alt="Freccia quantità">
                                 <div class="num-quantity">18</div>
@@ -77,7 +77,7 @@ export default {
 
 #ShopCart{
     padding-top: $top-heigth;
-    min-height: 100px;
+    min-height: 800px;
     
     .cart-top {
         display: flex;
@@ -126,11 +126,12 @@ export default {
                     transform: rotate(180deg);
                 }
                 .num-quantity {
-                    margin: 0 3px;
+                    margin: 0 15px;
                 }
             }
             .delete-dish {
                 align-self:flex-end;
+                margin-left: 15px;
             }
         }
     }
