@@ -1,10 +1,6 @@
 <template>
     <section id="ShopCart">
 
-        <p>
-            <a style="color: red; display:inline-block; font-size: 50px; margin: 40px;" href="/orders/create">Completamento Ordine</a>
-        </p>
-
             <div class="container-m">
                 <!-- top -->
                 <div class="cart-top">
@@ -15,30 +11,21 @@
                 <!-- center -->
                 <div class="cart-center">
                         
-                    <ul>
-                        <li class="name-dish">nome piatto</li>
-                        <li class="price-dish">Prezzo</li>
-                        <li class="quantity-dish">
-                            <img src="../../../media/icons/small-arrow.svg" alt="Freccia quantità">
-                            <span>quantità</span>
-                            <img src="../../../media/icons/small-arrow.svg" alt="Freccia quantità">
-                        </li>
-                        <li>
-                            <button class="btn-danger">Elimina</button>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li class="name-dish">nome piattonome piattonome piattonome piattonome piattonome piattonome piattonome piattonome piattonome piattonome piattonome piattonome piatto</li>
-                        <li class="price-dish">Prezzo</li>
-                        <li class="quantity-dish">
-                            <img src="../../../media/icons/small-arrow.svg" alt="Freccia quantità">
-                            <span>quantità</span>
-                            <img src="../../../media/icons/small-arrow.svg" alt="Freccia quantità">
-                        </li>
-                        <li>
-                            <button class="btn-danger">Elimina</button>
-                        </li>
-                    </ul>
+                    <div class="record-row">
+                        <div class="name-dish">nome piatto</div>
+
+                            <div class="price-dish">198€</div>
+                            <div class="quantity-dish">
+                                <img class="arrow-less" src="../../../media/icons/small-arrow.svg" alt="Freccia quantità">
+                                <div class="num-quantity">18</div>
+                                <img class="arrow-more" src="../../../media/icons/small-arrow.svg" alt="Freccia quantità">
+                            </div>
+                            <div class="delete-dish">
+                                <button class="btn-danger">Elimina</button>
+                            </div>
+                        
+                    </div>
+
                 </div>
 
                 <!-- bottom -->
@@ -92,7 +79,7 @@ export default {
     padding-top: $top-heigth;
     min-height: 100px;
     
-    .cart-top, .cart-center ul {
+    .cart-top {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -109,56 +96,44 @@ export default {
         color: #FFFAE9;
         }
     }
-        .cart-center {
-            border-top: 3px solid $c-03;
-            padding-top: 40px;
+    .cart-center {
+        border-top: 3px solid $c-03;
+        color:#FFFAE9;
         
-            .top-tab {
-                display: flex;
-                justify-content: center;
-
-                .dish {
-                    width: 50%;
-                }
-                .price {
-                    padding: 0 15px;
-                }
-                .quantity {
-                    padding: 0 15px;
-
-                }
-            }
-
-
-            ul {
-            list-style: none;
-            .name-dish {
-                
-                width: 50%;
-                overflow: hidden;
-            }
-            .price-dish, .quantity-dish {
-                padding: 0 15px;
-            }
-            }
-            ul li {
-            color: #FFFAE9;
-            font-size: 1.5625rem;
-            }
-            ul li:nth-child(3) {
+        .record-row {
             display: flex;
             align-items: center;
-                img {
-                    height: 40px;
+            justify-content: space-between;
+            padding: 15px 0;
+            @include f-corpo-white;
+
+            .name-dish, .price-dish, 
+            .quantity-dish {
+                padding: 0 15px;
+            }
+            .name-dish{
+                width: 60%;
+            }
+            
+            .quantity-dish {
+                display: flex;
+                align-items: center;
+                
+                [class^="arrow-"]{
+                    height: 50px;
                 }
-                img:last-child {
+                .arrow-more {
                     transform: rotate(180deg);
                 }
-                span {
-                    margin: 0 20px;
+                .num-quantity {
+                    margin: 0 3px;
                 }
             }
+            .delete-dish {
+                align-self:flex-end;
+            }
         }
+    }
         .cart-bottom {
             display: flex;
             justify-content: flex-end;
@@ -169,8 +144,9 @@ export default {
             
 
             h3 {
+            @include f-corpo-white;
             margin-right: 4rem;
-            color: #FFFAE9;
+            font-weight: 800;
 
             }
             .btn-alert {
