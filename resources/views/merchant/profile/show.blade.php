@@ -42,10 +42,11 @@
                         </ul>
                         @if ($user['url_picture'])
                             <div class="mb-2">
-                                <img class="img-thumbnail" src="{{ asset('/storage/' . $user['url_picture']) }}">
+                                <p id="tit-img-rist">Immagine Ristorante</p>
+                                <img class="img-user-profile" src="{{ asset('/storage/' . $user['url_picture']) }}">
                             </div>
                         @endif
-                        <a href="{{ route('merchant.profile.edit') }}" class="btn btn-primary">
+                        <a href="{{ route('merchant.profile.edit') }}" class="btn-success">
                             Modifica
                         </a>
                     </div>

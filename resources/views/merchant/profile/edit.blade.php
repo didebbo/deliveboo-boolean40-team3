@@ -76,8 +76,8 @@
 
                             {{-- TODO upload immagine ristorante (non obligatorio) --}}
 
-                            <button type="submit" class="btn btn-primary">Modifica</button>
-                            <a href="{{ route('merchant.profile.show') }}" class="btn btn-danger">Annulla</a>
+                            <button type="submit" class="btn-alert">Modifica</button>
+                            <a href="{{ route('merchant.profile.show') }}" class="btn-danger">Annulla</a>
 
                         </form>
                     </div>

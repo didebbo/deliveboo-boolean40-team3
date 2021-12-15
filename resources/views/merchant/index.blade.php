@@ -5,7 +5,9 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ $user['name'] }}</div>
+                    <div class="card-header user-title">
+                        <h2>{{ $user['name'] }}</h2>
+                    </div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -17,13 +19,13 @@
                         <div>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a class="text-muted" href="{{ url('/merchant/profile') }}">My Restaurant</a>
+                                    <a class="text-white" href="{{ url('/merchant/profile') }}">Il Mio Ristorante</a>
                                 </li>
                                 <li>
-                                    <a class="text-muted" href="{{ route('merchant.dishes.index') }}">Dishes</a>
+                                    <a class="text-white" href="{{ route('merchant.dishes.index') }}">Piatti</a>
                                 </li>
                                 <li>
-                                    <a class="text-muted" href="{{ route('merchant.orders.index') }}">Orders</a>
+                                    <a class="text-white" href="{{ route('merchant.orders.index') }}">Ordini</a>
                                 </li>
                             </ul>
                         </div>

@@ -62,7 +62,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ url('/') }}">Deliveboo</a>
+                                    <a class="dropdown-item" href="{{ url('/') }}">
+                                        <img 
+                                        style="height: 17px; margin-bottom: 5px"
+                                        src="{{asset('/images/logo-int-4x.png?b0a915484e9ce6ac51163e57ef469185')}}" alt="Deliveboo">
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                                                                                              document.getElementById('logout-form').submit();">
