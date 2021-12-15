@@ -9,25 +9,27 @@
 
       <!-- center -->
       <div class="cart-center">
-        <div class="record-row">
-          <div class="name-dish">nome piatto</div>
+        <div class="record-row" v-for="dish in cart.dishes" v-bind:key="dish.id">
+          <div class="name-dish">{{dish.name}}</div>
 
-          <div class="price-dish">198.00€</div>
+          <div class="price-dish" >{{dish.price}} €</div>
           <div class="quantity-dish">
             <img
               class="arrow-less"
               src="../../../media/icons/small-arrow.svg"
               alt="Freccia quantità"
+              @click="removeOne(dish.id)"
             />
-            <div class="num-quantity">18</div>
-            <img
+            <div class="num-quantity">{{dish.quantity}}</div>
+            <img 
               class="arrow-more"
               src="../../../media/icons/small-arrow.svg"
               alt="Freccia quantità"
+              @click="addOne(dish.id)"
             />
           </div>
           <div class="delete-dish">
-            <button class="btn-danger">Elimina</button>
+            <button class="btn-danger" @click="deleteDish(dish.id)">Elimina</button>
           </div>
         </div>
       </div>
@@ -87,10 +89,14 @@ export default {
       this.synLocalStorage();
     },
     addOne(id) {
+      alert("funziono!");
+
       this.cart["dishes"].forEach((dish) => {
         if (dish["dish_id"] == id) dish["quantity"]++;
       });
       this.synLocalStorage();
+      alert("fine!");
+
     },
   },
   mounted() {
