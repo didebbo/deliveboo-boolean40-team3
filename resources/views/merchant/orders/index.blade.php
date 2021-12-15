@@ -26,11 +26,11 @@
                     <tbody>
                       @foreach ($orders as $order)
                       <tr>
-                        <th scope="row">{{$order['id']}}</th>
+                        <td>{{$order['id']}}</td>
                         <td>{{$order['customer_firstname'] . ' ' . $order['customer_lastname']}}</td>
                         <td>{{$order['total_price']}}€</td>
                         <td>
-                          <a href="{{route('merchant.orders.show', $order['id'])}}"><button type="button" class="btn btn-primary">Dettagli</button></a>
+                          <a href="{{route('merchant.orders.show', $order['id'])}}"><button type="button" class="btn-small btn-success">Dettagli</button></a>
                       </tr>  
                       @endforeach
                     </div>

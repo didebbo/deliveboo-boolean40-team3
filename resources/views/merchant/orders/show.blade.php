@@ -41,7 +41,7 @@
                                 <h5>{{ $order['total_price']}}€</h5>
                             </li>
                         </ul>
-                        <a href="{{ route('merchant.orders.index') }}" class="btn btn-primary">
+                        <a href="{{ route('merchant.orders.index') }}" class="btn-success">
                             Tutti gli ordini
                         </a>
                     </div>

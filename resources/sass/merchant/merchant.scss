@@ -14,9 +14,12 @@
     }
   }
 }
-#order-show li p, p.tit-img, #dish-show li p{
+#order-show li p, p.tit-img, #dish-show li p, .card-body th{
   margin: 0;
   color: $c-backoffice;
+}
+.card-body td{
+  color: white;
 }
 .img-preview{
   background-color: none;
@@ -82,6 +85,11 @@
   display: inline-block;
   padding: 10px 15px;
   margin-right: 15px;
+}
+.btn-small{
+  font-size: 16px;
+  height: 33px;
+  padding: 0 15px;
 }
 
 #app nav.navbar{
