@@ -5,7 +5,16 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Modifica Piatto</div>
+                    <div class="card-header">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/merchant">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="/merchant/dishes">Piatti</a></li>
+                                <li class="breadcrumb-item"><a href="/merchant/dishes/{{$dish['id']}}">{{ $dish['name'] }}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                            </ol>
+                        </nav>
+                    </div>
 
                     <div class="card-body">
                         <form action="{{ route('merchant.dishes.update', $dish) }}" method="POST"
@@ -13,6 +22,7 @@
                             @csrf
                             @method('PUT')
                             <div class="form-group">
+                                <label for="name">Nome piatto</label>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="name"
                                     value="{{ old('name') ?? $dish['name'] }}">
                                 @error('name')
@@ -20,6 +30,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for="ingredients">Ingredienti</label>
                                 <textarea class="form-control" name="ingredients" id="ingredients"
                                     placeholder="ingredients">{{ old('ingredients') ?? $dish['ingredients'] }}</textarea>
                                 @error('ingredients')
@@ -27,6 +38,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for="description">Descrizione</label>
                                 <textarea class="form-control" name="description" id="description"
                                     placeholder="description">{{ old('description') ?? $dish['description'] }}</textarea>
                                 @error('description')
@@ -51,6 +63,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for="price">Prezzo in €</label>
                                 <input type="number" step="0.01" class="form-control" id="price" name="price"
                                     placeholder="price" value="{{ old('price') ?? $dish['price'] }}">
                                 @error('price')
@@ -58,9 +71,10 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for="price">Visibilità</label>
                                 <select id="visible" name="visible" class="form-control form-control-sm">
-                                    <option value="0">not visible</option>
-                                    <option value="1">visible</option>
+                                    <option value="0">non visibile</option>
+                                    <option value="1">visibile</option>
                                 </select>
                                 @error('visible')
                                     <small class="form-text text-danger">{{ $message }}</small>
@@ -73,9 +87,9 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Modifica</button>
+                                <button type="submit" class="btn-alert">Modifica</button>
                                 <a href="{{ route('merchant.dishes.show', $dish['id']) }}"
-                                    class="btn btn-danger">Annulla</a>
+                                    class="btn-danger">Annulla</a>
                             </div>
                         </form>
                     </div>

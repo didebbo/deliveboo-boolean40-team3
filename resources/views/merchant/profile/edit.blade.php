@@ -5,7 +5,15 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Modifica profilo ristorante</div>
+                    <div class="card-header">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/merchant">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="/merchant/profile">{{ $user['name'] }}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                            </ol>
+                        </nav>
+                    </div>
                     <div class="card-body">
                         <h3>{{ $user['name'] }}</h3>
                         <form action="{{ route('merchant.profile.update', $user) }}" method="POST"
@@ -68,8 +76,8 @@
 
                             {{-- TODO upload immagine ristorante (non obligatorio) --}}
 
-                            <button type="submit" class="btn btn-primary">Modifica</button>
-                            <a href="{{ route('merchant.profile.show') }}" class="btn btn-danger">Annulla</a>
+                            <button type="submit" class="btn-alert">Modifica</button>
+                            <a href="{{ route('merchant.profile.show') }}" class="btn-danger">Annulla</a>
 
                         </form>
                     </div>
