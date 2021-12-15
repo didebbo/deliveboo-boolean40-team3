@@ -61,8 +61,10 @@
 
       <!-- bottom -->
       <div class="cart-bottom">
-        <h3>Prezzo totale €</h3>
-        <button class="btn-alert">Procedi all'ordine</button>
+        <h3>Prezzo totale € {{ cart.total_price }}</h3>
+        <button class="btn-alert" @click="deleteDish(4)">
+          Procedi all'ordine
+        </button>
       </div>
     </div>
   </section>
@@ -79,7 +81,9 @@ export default {
       //
 
       // [GN] Carrello che verrà sincronizzato con il localStorage.cart
-      cart: {},
+      cart: {
+        total_price: 0,
+      },
     };
   },
   methods: {
@@ -88,11 +92,19 @@ export default {
         this.cart = JSON.parse(localStorage.cart);
       }
     },
+    synLocalStorage() {
+      this.cart["total_price"] = 0;
+      this.cart["dishes"].forEach((dish) => {
+        this.cart["total_price"] += dish["price"] * dish["quantity"];
+      });
+      if (this.cart["dishes"].length <= 0) this.cart["user_id"] = null;
+      localStorage.cart = JSON.stringify(this.cart);
+    },
     deleteDish(id) {
       this.cart["dishes"] = this.cart["dishes"].filter(
         (dish) => dish["dish_id"] != id
       );
-      localStorage.cart = JSON.stringify(this.cart);
+      this.synLocalStorage();
     },
     removeOne(id) {
       this.cart["dishes"].forEach((dish) => {
@@ -101,13 +113,13 @@ export default {
       this.cart["dishes"] = this.cart["dishes"].filter(
         (dish) => dish["quantity"] > 0
       );
-      localStorage.cart = JSON.stringify(this.cart);
+      this.synLocalStorage();
     },
     addOne(id) {
       this.cart["dishes"].forEach((dish) => {
         if (dish["dish_id"] == id) dish["quantity"]++;
       });
-      localStorage.cart = JSON.stringify(this.cart);
+      this.synLocalStorage();
     },
   },
   mounted() {

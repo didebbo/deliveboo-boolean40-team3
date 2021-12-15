@@ -27,7 +27,7 @@
           :foodName="dish.name"
           :price="dish.price"
           :img="dish.url_picture"
-          @addToCart="addToCart(dish.id)"
+          @addToCart="addToCart(dish)"
         />
       </div>
 
@@ -55,7 +55,9 @@ export default {
       ristorante: null,
 
       // [GN] Carrello che verrà sincronizzato con il localStorage.cart
-      cart: {},
+      cart: {
+        dishes: [],
+      },
     };
   },
   methods: {
@@ -64,24 +66,31 @@ export default {
         this.cart = JSON.parse(localStorage.cart);
       }
     },
-    addToCart(id) {
+    synLocalStorage() {
+      this.cart["total_price"] = 0;
+      this.cart["dishes"].forEach((dish) => {
+        this.cart["total_price"] += dish["price"] * dish["quantity"];
+      });
+      localStorage.cart = JSON.stringify(this.cart);
+    },
+    addToCart(dish) {
       if (!this.cart["user_id"]) {
         this.cart["user_id"] = this.ristorante.id;
-        this.cart["dishes"] = [];
       } else if (this.cart["user_id"] != this.ristorante.id) {
-        console.log("Non puoi selezionare un piatto da un ristorante diverso");
+        alert("Non puoi selezionare un piatto da un ristorante diverso");
         return -1;
       }
-      if (!this.isDishInCart(id)) {
+      if (!this.isDishInCart(dish.id)) {
         this.cart["dishes"].push({
-          dish_id: id,
+          dish_id: dish.id,
           quantity: 1,
+          price: dish.price,
         });
         console.log("added new dish");
       } else {
-        this.addDishQuantity(id);
+        this.addDishQuantity(dish.id);
       }
-      localStorage.cart = JSON.stringify(this.cart);
+      this.synLocalStorage();
     },
     isDishInCart(id) {
       let isDishInCart = false;
@@ -100,7 +109,7 @@ export default {
       this.cart["dishes"].forEach((dish) => {
         console.log(dish, id);
         if (dish["dish_id"] == id) {
-          dish["quantity"] += 1;
+          dish["quantity"]++;
           console.log("quantity + 1");
           return;
         }

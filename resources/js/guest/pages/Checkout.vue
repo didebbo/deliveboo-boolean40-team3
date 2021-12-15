@@ -88,30 +88,31 @@ export default {
         .querySelector("meta[name='csrf-token']")
         .getAttribute("content"),
       order: {
-        // customer_firstname: null,
-        // customer_lastname: null,
-        // customer_email: null,
-        // customer_phone: null,
-        // customer_address: null,
-        // notes: null,
-        // user_id: 1, // Arriva dal carrello (param)
-        // total_price: 20, // Arriva dal carrello (param)
-        // dishes: Prendo da localStorage
-        // dishes: [
-        //   {
-        //     dish_id: 1,
-        //     quantity: 2,
-        //   },
-        //   {
-        //     dish_id: 2,
-        //     quantity: 1,
-        //   },
-        // ],
+        customer_firstname: null,
+        customer_lastname: null,
+        customer_email: null,
+        customer_phone: null,
+        customer_address: null,
+        notes: null,
+        user_id: null,
+        total_price: null,
       },
+      dishes: [],
       errors: {},
     };
   },
   methods: {
+    synCart() {
+      if (localStorage.cart) {
+        const cart = JSON.parse(localStorage.cart);
+        this.order["user_id"] = cart["user_id"];
+        this.order["total_price"] = cart["total_price"];
+        this.dishes = cart["dishes"];
+      }
+    },
+    synLocalStorage() {
+      if (localStorage.cart) localStorage.removeItem("cart");
+    },
     onSuccess(payload) {
       let params = {
         nonce: payload.nonce,
@@ -127,6 +128,7 @@ export default {
         })
         .then((response) => {
           console.log(response.data);
+          if (response.data.success) this.synLocalStorage();
           this.$router.push("/");
           /* 
             Se data.success === true 
@@ -138,6 +140,9 @@ export default {
           console.log(this.errors);
         });
     },
+  },
+  mounted() {
+    this.synCart();
   },
 };
 </script>

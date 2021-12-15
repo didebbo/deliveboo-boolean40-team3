@@ -18,6 +18,15 @@ class GuestOrderController extends Controller
         'order.notes' => 'nullable|max:255'
     ];
 
+    protected $validator2 = [
+        'customer_email' => 'required|email|max:255',
+        'customer_firstname' => 'required|string|max:50',
+        'customer_lastname' => 'required|string|max:50',
+        'customer_phone' => 'required|string|max:20',
+        'customer_address' => 'required|string|max:150',
+        'notes' => 'nullable|max:255'
+    ];
+
     /**
      * Show the form for creating a new resource.
      *
@@ -36,9 +45,9 @@ class GuestOrderController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate($this->validator);
+        $request->validate($this->validator2);
         $newOrder = Order::create($request->all());
-        $newOrder->dishes()->attach($request['categories']);
+        // $newOrder->dishes()->attach($request['categories']);
         return redirect()->route('guest.index');
     }
 
@@ -63,7 +72,14 @@ class GuestOrderController extends Controller
         if ($result->success) {
             $data['order']['status'] = 0;
             $order = Order::create($data['order']);
-            $order->dishes()->attach($data['order']['dishes']);
+            $dishes = [];
+            foreach ($data['dishes'] as $dish) {
+                $dishes[] = [
+                    'dish_id' => $dish['dish_id'],
+                    'quantity' => $dish['quantity']
+                ];
+            }
+            $order->dishes()->attach($dishes);
         }
         return response()->json(['success' => $result->success]);
     }
