@@ -1,159 +1,267 @@
 <template>
-    <section id="ShopCart">
+  <section id="ShopCart">
+    <div class="container-m">
+      <!-- top -->
+      <div class="cart-top">
+        <h1>Il mio ordine</h1>
+        <button class="btn-success">Aggiungi altri piatti</button>
+      </div>
 
-            <div class="container-m">
-                <!-- top -->
-                <div class="cart-top">
-                    <h1>Il mio ordine</h1>
-                    <button class="btn-success">Aggiungi altri piatti</button>
-                </div>
+      <!-- center -->
+      <div class="cart-center">
+        <div class="record-row">
+          <div class="name-dish">nome piatto</div>
 
-                <!-- center -->
-                <div class="cart-center">
-                        
-                    <div class="record-row">
-                        <div class="name-dish">nome piatto</div>
+          <div class="price-dish">198.00€</div>
+          <div class="quantity-dish">
+            <img
+              class="arrow-less"
+              src="../../../media/icons/small-arrow.svg"
+              alt="Freccia quantità"
+            />
+            <div class="num-quantity">18</div>
+            <img
+              class="arrow-more"
+              src="../../../media/icons/small-arrow.svg"
+              alt="Freccia quantità"
+            />
+          </div>
+          <div class="delete-dish">
+            <button class="btn-danger">Elimina</button>
+          </div>
+        </div>
+      </div>
 
-                            <div class="price-dish">198.00€</div>
-                            <div class="quantity-dish">
-                                <img class="arrow-less" src="../../../media/icons/small-arrow.svg" alt="Freccia quantità">
-                                <div class="num-quantity">18</div>
-                                <img class="arrow-more" src="../../../media/icons/small-arrow.svg" alt="Freccia quantità">
-                            </div>
-                            <div class="delete-dish">
-                                <button class="btn-danger">Elimina</button>
-                            </div>
-                        
-                    </div>
-
-                </div>
-
-                <!-- bottom -->
-                <div class="cart-bottom">
-                    <h3>Prezzo totale  €</h3>
-                    <button class="btn-alert">Procedi all'ordine</button>
-                </div>
-
-            </div>
-
-    </section>
-
+      <!-- bottom -->
+      <div class="cart-bottom">
+        <h3>Prezzo totale €</h3>
+        <button class="btn-alert">Procedi all'ordine</button>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
 export default {
-    name: "ShopCart",
-    props: {
+  name: "ShopCart",
+  props: {
     // msg: String
-    },
-    data() {
+  },
+  data() {
     return {
-        //
-        /* Salvare l'ordine con questa struttura
-        order: {
-        user_id: 1,                 // Usare l'id del ristorante selezionato
-        total_price: 20,            // Sommare il prezzo dei vari piatti 
-        dishes: [
-            {                         // Piatto 1
-            dish_id: 1,             // ID piatto
-            quantity: 2,            // Quantità del piatto
-            },
-            {
-            dish_id: 2,
-            quantity: 1,
-            },
-        ],
-        }, */
+      //
+
+      // [GN] Carrello che verrà sincronizzato con il localStorage.cart
+      cart: {
+        total_price: 0,
+      },
     };
+  },
+  methods: {
+    synCart() {
+      if (localStorage.cart) {
+        this.cart = JSON.parse(localStorage.cart);
+      }
     },
-    methods: {
-    //
+    synLocalStorage() {
+      this.cart["total_price"] = 0;
+      this.cart["dishes"].forEach((dish) => {
+        this.cart["total_price"] += dish["price"] * dish["quantity"];
+      });
+      if (this.cart["dishes"].length <= 0) this.cart["user_id"] = null;
+      localStorage.cart = JSON.stringify(this.cart);
     },
+    deleteDish(id) {
+      this.cart["dishes"] = this.cart["dishes"].filter(
+        (dish) => dish["dish_id"] != id
+      );
+      this.synLocalStorage();
+    },
+    removeOne(id) {
+      this.cart["dishes"].forEach((dish) => {
+        if (dish["dish_id"] == id) dish["quantity"]--;
+      });
+      this.cart["dishes"] = this.cart["dishes"].filter(
+        (dish) => dish["quantity"] > 0
+      );
+      this.synLocalStorage();
+    },
+    addOne(id) {
+      this.cart["dishes"].forEach((dish) => {
+        if (dish["dish_id"] == id) dish["quantity"]++;
+      });
+      this.synLocalStorage();
+    },
+  },
+  mounted() {
+    this.synCart();
+  },
 };
 </script>
 
 <style scoped lang="scss">
 @import "../../../sass/_variables.scss";
 
-#ShopCart{
-    padding-top: $top-heigth;
-    min-height: 800px;
-    
-    .cart-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+#ShopCart {
+  padding-top: $top-heigth;
+  min-height: 800px;
+
+  .cart-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // =======
+    // #ShopCart {
+    //   padding-top: $top-heigth;
+    //   min-height: 100px;
+
+    //   .cart-top,
+    //   .cart-center ul {
+    //     display: flex;
+    //     justify-content: space-between;
+    //     align-items: center;
+    //   }
+    //   button {
+    //     color: #fff;
+    //     cursor: pointer;
+    //   }
+    //   .cart-top {
+    //     padding: 2.5rem 0;
+
+    //     h1 {
+    //       @include f-section-title;
+    //       color: #fffae9;
+    // >>>>>>> braintree
+  }
+
+  .cart-center {
+    border-top: 3px solid $c-03;
+    padding-top: 40px;
+
+    .top-tab {
+      display: flex;
+      justify-content: center;
+
+      .dish {
+        width: 50%;
+      }
+      .price {
+        padding: 0 15px;
+      }
+      .quantity {
+        padding: 0 15px;
+      }
     }
-    button {
-        color: #fff;
-        cursor: pointer;
-    }
     .cart-top {
-        padding: 2.5rem 0;
-        
-        h1 {
+      padding: 2.5rem 0;
+
+      h1 {
         @include f-section-title;
-        color: #FFFAE9;
-        }
+        color: #fffae9;
+      }
     }
     .cart-center {
-        border-top: 3px solid $c-03;
-        color:#FFFAE9;
-        
-        .record-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 0;
-            @include f-corpo-white;
+      border-top: 3px solid $c-03;
+      color: #fffae9;
 
-            .name-dish, .price-dish, 
-            .quantity-dish {
-                padding: 0 15px;
-            }
-            .name-dish{
-                width: 60%;
-            }
-            
-            .quantity-dish {
-                display: flex;
-                align-items: center;
-                
-                [class^="arrow-"]{
-                    height: 50px;
-                }
-                .arrow-more {
-                    transform: rotate(180deg);
-                }
-                .num-quantity {
-                    margin: 0 15px;
-                }
-            }
-            .delete-dish {
-                align-self:flex-end;
-                margin-left: 15px;
-            }
+      .record-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 0;
+        @include f-corpo-white;
+
+        .name-dish,
+        .price-dish,
+        .quantity-dish {
+          padding: 0 15px;
         }
+        .name-dish {
+          width: 60%;
+        }
+
+        .quantity-dish {
+          display: flex;
+          align-items: center;
+
+          [class^="arrow-"] {
+            height: 50px;
+          }
+          .arrow-more {
+            transform: rotate(180deg);
+          }
+          .num-quantity {
+            margin: 0 15px;
+          }
+        }
+        .delete-dish {
+          align-self: flex-end;
+          margin-left: 15px;
+        }
+      }
     }
-        .cart-bottom {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            margin-top: 10.5rem;
-            border-top: 3px solid $c-03;
-            padding-top: 1rem;
-            
+    .cart-bottom {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: 10.5rem;
+      border-top: 3px solid $c-03;
+      padding-top: 1rem;
 
-            h3 {
-            @include f-corpo-white;
-            margin-right: 4rem;
-            font-weight: 800;
+      h3 {
+        @include f-corpo-white;
+        margin-right: 4rem;
+        font-weight: 800;
+      }
+      .btn-alert {
+        color: $c-05;
+      }
+    }
 
-            }
-            .btn-alert {
-                color: $c-05;
-            }
-        }
+    ul {
+      list-style: none;
+      .name-dish {
+        width: 50%;
+        overflow: hidden;
+      }
+      .price-dish,
+      .quantity-dish {
+        padding: 0 15px;
+      }
+    }
+    ul li {
+      color: #fffae9;
+      font-size: 1.5625rem;
+    }
+    ul li:nth-child(3) {
+      display: flex;
+      align-items: center;
+      img {
+        height: 40px;
+      }
+      img:last-child {
+        transform: rotate(180deg);
+      }
+      span {
+        margin: 0 20px;
+      }
+    }
+  }
+  .cart-bottom {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 10.5rem;
+    border-top: 3px solid $c-03;
+    padding-top: 1rem;
 
+    h3 {
+      margin-right: 4rem;
+      color: #fffae9;
+    }
+    .btn-alert {
+      color: $c-05;
+    }
+  }
 }
 </style>

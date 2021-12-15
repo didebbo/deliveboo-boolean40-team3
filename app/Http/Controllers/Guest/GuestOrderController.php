@@ -4,46 +4,50 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use App\Order;
+use Braintree;
 use Illuminate\Http\Request;
 
 class GuestOrderController extends Controller
 {
     protected $validator = [
-        'user_id' => 'required|exists:users,id',
-        'total_price' => 'required|numeric|min:0|max:9999.99',
-        'status' => 'required|numeric|min:0|max:2',
-        'customer_email' => 'required|string|max:255',
-        'customer_firstname' => 'required|string|max:50',
-        'customer_lastname' => 'required|string|max:50',
-        'customer_phone' => 'required|string|max:20',
-        'customer_address' => 'required|string|max:150',
-        'notes' => 'nullable|max:255'
+        'order.customer_email' => 'required|email|max:255',
+        'order.customer_firstname' => 'required|string|max:50',
+        'order.customer_lastname' => 'required|string|max:50',
+        'order.customer_phone' => 'required|string|max:20',
+        'order.customer_address' => 'required|string|max:150',
+        'order.notes' => 'nullable|max:255'
     ];
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('guest.orders.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function checkout(Request $request)
     {
         $request->validate($this->validator);
-        $newOrder = Order::create($request->all());
-        
-        $newOrder->dishes()->attach($request['categories']);
-
-        return redirect()->route('guest.index');
+        $data = $request->all();
+        $gateway = new Braintree\Gateway([
+            'environment' => env('BT_ENVIRONMENT'),
+            'merchantId' => env('BT_MERCHANT_ID'),
+            'publicKey' => env('BT_PUBLIC_KEY'),
+            'privateKey' => env('BT_PRIVATE_KEY'),
+        ]);
+        $nonceFromTheClient = $data["nonce"];
+        $result = $gateway->transaction()->sale([
+            'amount' => $data['order']['total_price'],
+            'paymentMethodNonce' => $nonceFromTheClient,
+            'options' => [
+                'submitForSettlement' => True
+            ]
+        ]);
+        if ($result->success) {
+            $data['order']['status'] = 0;
+            $order = Order::create($data['order']);
+            $dishes = [];
+            foreach ($data['dishes'] as $dish) {
+                $dishes[] = [
+                    'dish_id' => $dish['dish_id'],
+                    'quantity' => $dish['quantity']
+                ];
+            }
+            $order->dishes()->attach($dishes);
+        }
+        return response()->json(['success' => $result->success]);
     }
-
 }
