@@ -20,8 +20,8 @@
               alt="Freccia quantità"
               @click="removeOne(dish.dish_id)"
             />
-            <div class="num-quantity">{{dish.quantity}}</div>
-            <img 
+            <div class="num-quantity">{{ dish.quantity }}</div>
+            <img
               class="arrow-more"
               src="../../../media/icons/small-arrow.svg"
               alt="Freccia quantità"
@@ -30,14 +30,17 @@
           </div>
           <div class="delete-dish">
             <button class="btn-danger" @click="deleteDish(dish.dish_id)">Elimina</button>
+
           </div>
         </div>
       </div>
 
       <!-- bottom -->
       <div class="cart-bottom">
-        <h3>{{(cart.total_price )}} €</h3>
-        <button class="btn-alert">Procedi all'ordine</button>
+        <h3>Prezzo totale €</h3>
+        <button class="btn-alert" @click="$router.push('/checkout')">
+          Procedi all'ordine
+        </button>
       </div>
     </div>
   </section>
@@ -89,7 +92,6 @@ export default {
       this.synLocalStorage();
     },
     addOne(id) {
-      console.log(id);
       this.cart["dishes"].forEach((dish) => {
         if (dish["dish_id"] == id) dish["quantity"]++;
       });
@@ -104,85 +106,83 @@ export default {
 
 <style scoped lang="scss">
 @import "../../../sass/_variables.scss";
-#ShopCart{
-    padding-top: $top-heigth;
-    min-height: 800px;
-    
-    .cart-top {
+#ShopCart {
+  padding-top: $top-heigth;
+  min-height: 800px;
+
+  .cart-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  button {
+    color: #fff;
+    cursor: pointer;
+  }
+  .cart-top {
+    padding: 2.5rem 0;
+
+    h1 {
+      @include f-section-title;
+      color: #fffae9;
+    }
+  }
+  .cart-center {
+    border-top: 3px solid $c-03;
+    color: #fffae9;
+
+    .record-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 0;
+      @include f-corpo-white;
+
+      .name-dish,
+      .price-dish,
+      .quantity-dish {
+        padding: 0 15px;
+      }
+      .name-dish {
+        width: 60%;
+      }
+
+      .quantity-dish {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-    }
-    button {
-        color: #fff;
-        cursor: pointer;
-    }
-    .cart-top {
-        padding: 2.5rem 0;
-        
-        h1 {
-        @include f-section-title;
-        color: #FFFAE9;
+
+        [class^="arrow-"] {
+          height: 50px;
         }
-    }
-    .cart-center {
-        border-top: 3px solid $c-03;
-        color:#FFFAE9;
-        
-        .record-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 0;
-            @include f-corpo-white;
-
-            .name-dish, .price-dish, 
-            .quantity-dish {
-                padding: 0 15px;
-            }
-            .name-dish{
-                width: 60%;
-            }
-            
-            .quantity-dish {
-                display: flex;
-                align-items: center;
-                
-                [class^="arrow-"]{
-                    height: 50px;
-                }
-                .arrow-more {
-                    transform: rotate(180deg);
-                }
-                .num-quantity {
-                    margin: 0 15px;
-                }
-            }
-            .delete-dish {
-                align-self:flex-end;
-                margin-left: 15px;
-            }
+        .arrow-more {
+          transform: rotate(180deg);
         }
-    }
-        .cart-bottom {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            margin-top: 10.5rem;
-            border-top: 3px solid $c-03;
-            padding-top: 1rem;
-            
-
-            h3 {
-            @include f-corpo-white;
-            margin-right: 4rem;
-            font-weight: 800;
-
-            }
-            .btn-alert {
-                color: $c-05;
-            }
+        .num-quantity {
+          margin: 0 15px;
         }
+      }
+      .delete-dish {
+        align-self: flex-end;
+        margin-left: 15px;
+      }
+    }
+  }
+  .cart-bottom {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 10.5rem;
+    border-top: 3px solid $c-03;
+    padding-top: 1rem;
 
+    h3 {
+      @include f-corpo-white;
+      margin-right: 4rem;
+      font-weight: 800;
+    }
+    .btn-alert {
+      color: $c-05;
+    }
+  }
 }
 </style>

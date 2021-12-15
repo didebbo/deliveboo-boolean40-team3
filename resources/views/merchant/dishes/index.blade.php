@@ -5,7 +5,14 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">I tuoi piatti</div>
+                    <div class="card-header">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/merchant">Dashboard</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Piatti</li>
+                            </ol>
+                        </nav>
+                    </div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -18,13 +25,13 @@
                             <ul class="list-unstyled">
                                 @foreach ($dishes as $dish)
                                     <li>
-                                        <a href="{{ route('merchant.dishes.show', $dish['id']) }}">
+                                        <a class="text-white" href="{{ route('merchant.dishes.show', $dish['id']) }}">
                                             {{ $dish['name'] }}
                                         </a>
                                     </li>
                                 @endforeach
                                 <li>
-                                    <a class="btn btn-primary" href="{{ url('/merchant/dishes/create') }}">Aggiungi Piatto</a>
+                                    <a class="btn-success mt-3" href="{{ url('/merchant/dishes/create') }}">Aggiungi Piatto</a>
                                 </li>
                             </ul>
                         </div>

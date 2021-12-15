@@ -5,30 +5,48 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ $dish['name'] }}</div>
+                    <div class="card-header">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/merchant">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="/merchant/dishes">Piatti</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ $dish['name'] }}</li>
+                            </ol>
+                        </nav>
+                        
+                    </div>
 
                     <div class="card-body">
-                        <ul class="list-unstyled">
+                        <ul class="list-unstyled" id="dish-show">
                             <li>
-                                name: {{ $dish['name'] }}
+                                <p>Nome piatto</p>
+                                <h5>{{ $dish['name'] }}</h5>
                             </li>
                             <li>
-                                ingredients: {{ $dish['ingredients'] }}
+                                <p>Ingredienti</p>
+                                <h5>{{ $dish['ingredients'] }}</h5>
                             </li>
                             <li>
-                                description: {{ $dish['description'] }}
+                                <p>Descrizione</p>
+                                @if ($dish['description'])
+                                    <h5>{{ $dish['description'] }}</h5>
+                                @else
+                                    <h5><i>nessuna descrizione inserita</i></h5>
+                                @endif
                             </li>
                             <li>
-                                price: {{ $dish['price'] }}€
+                                <p>Prezzo</p>
+                                <h5>{{ $dish['price'] }}€</h5>
                             </li>
                         </ul>
                         @if ($dish['url_picture'])
                             <div class="mb-2">
-                                <img style="width: 90%" src="{{ asset('/storage/' . $dish['url_picture']) }}">
+                                <p class="tit-img">Immagine Piatto</p>
+                                <img class="img-preview" src="{{ asset('/storage/' . $dish['url_picture']) }}">
                             </div>
                         @endif
-                        <a href="{{ route('merchant.dishes.edit', $dish['id']) }}" class="btn btn-primary">
-                            Edit
+                        <a href="{{ route('merchant.dishes.edit', $dish['id']) }}" class="btn-alert">
+                            Modifica
                         </a>
                         <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                             Delete
