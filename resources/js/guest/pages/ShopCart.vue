@@ -9,34 +9,34 @@
 
       <!-- center -->
       <div class="cart-center">
-        <div class="record-row" v-for="dish in cart.dishes" v-bind:key="dish.id">
+        <div class="record-row" v-for="dish in cart.dishes" v-bind:key="dish.dish_id">
           <div class="name-dish">{{dish.name}}</div>
 
-          <div class="price-dish" >{{dish.price}} €</div>
+          <div class="price-dish" >{{dish.price + "0"}} €</div>
           <div class="quantity-dish">
             <img
               class="arrow-less"
               src="../../../media/icons/small-arrow.svg"
               alt="Freccia quantità"
-              @click="removeOne(dish.id)"
+              @click="removeOne(dish.dish_id)"
             />
             <div class="num-quantity">{{dish.quantity}}</div>
             <img 
               class="arrow-more"
               src="../../../media/icons/small-arrow.svg"
               alt="Freccia quantità"
-              @click="addOne(dish.id)"
+              @click="addOne(dish.dish_id)"
             />
           </div>
           <div class="delete-dish">
-            <button class="btn-danger" @click="deleteDish(dish.id)">Elimina</button>
+            <button class="btn-danger" @click="deleteDish(dish.dish_id)">Elimina</button>
           </div>
         </div>
       </div>
 
       <!-- bottom -->
       <div class="cart-bottom">
-        <h3>Prezzo totale €</h3>
+        <h3>{{(cart.total_price )}} €</h3>
         <button class="btn-alert">Procedi all'ordine</button>
       </div>
     </div>
@@ -89,14 +89,11 @@ export default {
       this.synLocalStorage();
     },
     addOne(id) {
-      alert("funziono!");
-
+      console.log(id);
       this.cart["dishes"].forEach((dish) => {
         if (dish["dish_id"] == id) dish["quantity"]++;
       });
       this.synLocalStorage();
-      alert("fine!");
-
     },
   },
   mounted() {
