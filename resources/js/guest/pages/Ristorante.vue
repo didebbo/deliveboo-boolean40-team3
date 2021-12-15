@@ -123,7 +123,7 @@ export default {
 		
 		.title-foods {
 			color: $c-02;
-			margin-top: 50px;
+			margin: 50px 0 40px;
 			font-size: 25px;
 			border-bottom: 4px solid $c-02;
 			padding-bottom: 10px;
