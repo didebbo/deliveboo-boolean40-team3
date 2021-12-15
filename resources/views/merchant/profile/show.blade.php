@@ -42,8 +42,8 @@
                         </ul>
                         @if ($user['url_picture'])
                             <div class="mb-2">
-                                <p id="tit-img-rist">Immagine Ristorante</p>
-                                <img class="img-user-profile" src="{{ asset('/storage/' . $user['url_picture']) }}">
+                                <p class="tit-img">Immagine Ristorante</p>
+                                <img class="img-preview" src="{{ asset('/storage/' . $user['url_picture']) }}">
                             </div>
                         @endif
                         <a href="{{ route('merchant.profile.edit') }}" class="btn-success">

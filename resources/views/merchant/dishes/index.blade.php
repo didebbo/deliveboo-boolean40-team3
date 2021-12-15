@@ -25,13 +25,13 @@
                             <ul class="list-unstyled">
                                 @foreach ($dishes as $dish)
                                     <li>
-                                        <a href="{{ route('merchant.dishes.show', $dish['id']) }}">
+                                        <a class="text-white" href="{{ route('merchant.dishes.show', $dish['id']) }}">
                                             {{ $dish['name'] }}
                                         </a>
                                     </li>
                                 @endforeach
                                 <li>
-                                    <a class="btn btn-primary mt-3" href="{{ url('/merchant/dishes/create') }}">Aggiungi Piatto</a>
+                                    <a class="btn-success mt-3" href="{{ url('/merchant/dishes/create') }}">Aggiungi Piatto</a>
                                 </li>
                             </ul>
                         </div>
