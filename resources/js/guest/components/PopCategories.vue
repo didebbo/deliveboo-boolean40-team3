@@ -130,7 +130,7 @@ export default {
     .carousel {
         display: flex;
         // justify-content: center;
-        padding-left: 28%;
+        padding-left: 20%;
         overflow-x: auto;
 
         a{
