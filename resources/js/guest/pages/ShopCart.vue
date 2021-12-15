@@ -4,7 +4,7 @@
       <!-- top -->
       <div class="cart-top">
         <h1>Il mio ordine</h1>
-        <button class="btn-success">Aggiungi altri piatti</button>
+        <button class="btn-success" @click="$router.push('/ristorante/' + cart.user_id)">Aggiungi altri piatti</button>
       </div>
 
       <!-- center -->
