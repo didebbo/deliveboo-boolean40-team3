@@ -128,8 +128,15 @@ export default {
         })
         .then((response) => {
           console.log(response.data);
-          if (response.data.success) this.synLocalStorage();
-          this.$router.push("/");
+          if (response.data.success) {
+            this.synLocalStorage();
+            this.$router.push("/"); // Andare alla pagine success.
+          } else if (!response.data.success) {
+            alert(
+              "Impossibile effettuare la transazione, controlla che il carrello sia pieno"
+            );
+            this.$router.push("/il-tuo-carrello");
+          }
           /* 
             Se data.success === true 
             portami alla pagina di Success
