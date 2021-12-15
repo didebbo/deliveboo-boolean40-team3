@@ -1,5 +1,5 @@
 // Needs
-$top-heigth: 120px;
+$top-heigth: 87px;
 
 // Palette COLORS
 $c-01: #FF5334;
@@ -94,6 +94,18 @@ $shadow-white: -3px 2px 0px white;
     @include sans-medium;
     font-size: 1.5625rem;
     color: white;
+}
+
+@mixin f-title-card {
+    @include sans-extrabold-i;
+    font-size: 1.375rem;
+    color: $c-05;
+}
+
+@mixin f-type-type-card {
+    @include sans-extrabold-i;
+    font-size: 1.375rem;
+    color: $c-02;
 }
 
 // Magic

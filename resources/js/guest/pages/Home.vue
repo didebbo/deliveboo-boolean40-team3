@@ -3,7 +3,7 @@
 
     <Hero url="fast-food-2.jpg" headline="Il vero Fast che stavi aspettando!"/>
 
-    <!-- Components (categories) -->
+    <pop-categories/>
 
     <RandomRestaurant/>
 
@@ -20,7 +20,7 @@
               Potrai inserire il tuo menù e ricevere subito i tuoi primi ordini
             </p>
           </div>
-          <button class="btn-danger">Registrati come Ristoratore</button>
+          <a href="/register" class="btn-danger">Registrati come Ristoratore</a>
         </div>
       </div>
 
@@ -31,18 +31,20 @@
 import Hero from '../components/Hero.vue'
 import RandomRestaurant from '../components/RandomRestaurant.vue'
 import WhyUs from '../components/WhyUs.vue'
+import PopCategories from '../components/PopCategories.vue'
 
 export default {
   name: "Home",
   components: {
     Hero,
     RandomRestaurant,
-    WhyUs
+    WhyUs,
+    PopCategories
   },
 };
 </script>
 
-<style scoped lang="scss">
+<style scoped, lang="scss">
 @import '../../../sass/_variables.scss';
 
 #call-to-restaurant {
@@ -66,6 +68,10 @@ export default {
 
     p {
       color: white;
+    }
+
+    a{
+      text-decoration: none;
     }
   }
 }

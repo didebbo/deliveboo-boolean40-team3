@@ -1,6 +1,6 @@
 <template>
 	<section id="Search">
-		<div id="top-search">
+		<section id="top-search">
 			<div class="img-top-box">
 				<img src="../../../media/images/search-bg.jpg" alt="">
 				<h1>Ricerca Avanzata</h1>
@@ -24,7 +24,7 @@
 				<div class="categories">
 					<h4>Categorie:</h4>
 					<ul>
-						<li  :id="`cat-li-${category.id}`" v-for="category in categories" :key="category.id" @click="toggleActive(category.id, category.name)">
+						<li  :id="`cat-li-${category.name}`" v-for="category in categories" :key="category.id" @click="toggleActive(category.name)">
 							<div><img src="../../../media/images/search-bg.jpg" alt=""></div>
 							{{category.name}}
 						</li>
@@ -32,27 +32,35 @@
 				</div>
 			</div>
 			<img class="search-box-after-decoration" src="../../../media/images/search-box-after-decoration.png" alt="">
-		</div>
+		</section>
 
 		<!-- Lista Ristoranti -->
-		<section>
-			<ul style="margin:80px">
-				<li v-for="restaurant in restaurantList" :key="restaurant.id">
-					<router-link :to="{ name: 'ristorante', params: { id: restaurant.id }}">
-						{{restaurant.name}}
-					</router-link>
-				</li>
-			</ul>
+		<section id="restaurants-list">
+
+			<router-link 
+			:to="{ name: 'ristorante', params: { id: restaurant.id }}" 
+			v-for="restaurant in restaurantList" 
+			:key="restaurant.id">
+
+				<ObjRst :nameRst="restaurant.name" :url="restaurant.url_picture" />
+
+			</router-link>
+
 		</section>
 
 	</section>
 </template>
 
 <script>
+import ObjRst from '../components/small/ObjRst.vue'
+
 export default {
 	name: 'SearchPage',
+	components: {
+		ObjRst
+	},
 	props:{
-		// msg: String
+		selCategory: null,
 	},
 	data(){
 		return{
@@ -66,8 +74,8 @@ export default {
 		}
 	},
 	methods: {
-		toggleActive(idElm, elmName) {
-			let elm = document.getElementById(`cat-li-${idElm}`).classList;
+		toggleActive(elmName) {
+			let elm = document.getElementById(`cat-li-${elmName}`).classList;
 
 			if ( elm == "active") {
 				elm.remove("active");
@@ -98,7 +106,7 @@ export default {
 					this.restaurantList = response.data.data;
 					console.log(response.data.data);
 				});
-		}
+		},
 
 	},
 	mounted() {
@@ -109,9 +117,19 @@ export default {
 			array.forEach(element => {
 				this.categories.push(element);
 			});
-		}),
+		});
 
-		this.getRestaurants()
+
+		this.$nextTick(function () {
+
+			if(this.selCategory){
+				setTimeout(() => {
+					this.toggleActive(this.selCategory)
+				}, 400);
+			} else {
+				this.getRestaurants()
+			}
+		})
 	}
 }
 </script>
@@ -171,6 +189,8 @@ export default {
 			@include flex-center;
 			flex-wrap: wrap;
 			list-style: none;
+			max-width: 1000px;
+			margin: auto;
 
 			li{
 				cursor: pointer;
@@ -180,6 +200,7 @@ export default {
 				border-radius: 10px;
 				background-color: $c-05;
 				color: $text-light-white;
+				transition: 0.5s;
 
 				div{
 					position: absolute;
@@ -203,6 +224,15 @@ export default {
 				}
 			}
 		}
+	}
+}
+
+#restaurants-list{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	a{
+		text-decoration: none;
 	}
 }
 
