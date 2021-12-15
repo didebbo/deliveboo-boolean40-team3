@@ -82,6 +82,7 @@ export default {
       }
       if (!this.isDishInCart(dish.id)) {
         this.cart["dishes"].push({
+          name: dish.name,
           dish_id: dish.id,
           quantity: 1,
           price: dish.price,
