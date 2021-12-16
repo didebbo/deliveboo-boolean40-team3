@@ -108,7 +108,7 @@ export default {
 @import "../../../sass/_variables.scss";
 #ShopCart {
   padding-top: $top-heigth;
-  min-height: 800px;
+
 
   .cart-top {
     display: flex;
