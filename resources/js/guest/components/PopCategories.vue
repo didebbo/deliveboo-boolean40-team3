@@ -13,7 +13,7 @@
         </div>
         <div class="carousel" ref="carousel">
             <router-link 
-            :to="{ name: 'search', params: { selCategory: category.name }}" 
+            :to="{ name: 'searchCat', params: { selCategory: category.name }}" 
             class="card" 
             v-for="category in homeCategories" 
             :key="category.id">

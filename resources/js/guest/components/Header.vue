@@ -15,7 +15,7 @@
           </li>
 
           <li>
-            <router-link :to="{ name: 'About' }">
+            <router-link :to="{ name: 'about' }">
               <!-- TODO: Fare Pagina about-us -->
               <p>Chi siamo</p>
             </router-link>
