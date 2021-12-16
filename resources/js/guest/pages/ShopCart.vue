@@ -4,7 +4,7 @@
       <!-- top -->
       <div class="cart-top">
         <h1>Il mio ordine</h1>
-        <button class="btn-success">Aggiungi altri piatti</button>
+        <button v-if="cart.user_id" class="btn-success" @click="$router.push('/ristorante/' + cart.user_id)">Aggiungi altri piatti</button>
       </div>
 
       <!-- center -->
@@ -12,7 +12,7 @@
         <div class="record-row" v-for="dish in cart.dishes" v-bind:key="dish.dish_id">
           <div class="name-dish">{{dish.name}}</div>
 
-          <div class="price-dish" >{{dish.price + "0"}} €</div>
+          <div class="price-dish" >{{dish.price}} €</div>
           <div class="quantity-dish">
             <img
               class="arrow-less"
@@ -37,7 +37,7 @@
 
       <!-- bottom -->
       <div class="cart-bottom">
-        <h3>Prezzo totale €</h3>
+        <h3>prezzo totale {{cart.total_price}} €</h3>
         <button class="btn-alert" @click="$router.push('/checkout')">
           Procedi all'ordine
         </button>

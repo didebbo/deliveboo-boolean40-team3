@@ -48,38 +48,38 @@
                         <a href="{{ route('merchant.dishes.edit', $dish['id']) }}" class="btn-alert">
                             Modifica
                         </a>
-                        <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-                            Delete
+                        <a type="button" class="btn-danger" data-toggle="modal" data-target="#exampleModal">
+                            Elimina
                         </a>
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Eliminazione piatto</h5>
                                         <button type="button" class="close" data-dismiss="modal"
                                             aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        Cancellare {{ $dish['name'] }}
+                                        Sei sicuro di voler eliminare {{ $dish['name'] }}?
                                     </div>
                                     <div class="modal-footer">
                                         <form style="display: inline-block"
                                             action="{{ route('merchant.dishes.destroy', $dish['id']) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">
-                                                Delete
+                                            <button type="submit" class="btn-danger">
+                                                Elimina
                                             </button>
                                         </form>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn-success" data-dismiss="modal">Annulla</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <a href="{{ route('merchant.dishes.index') }}" class="btn btn-primary">
+                        <a href="{{ route('merchant.dishes.index') }}" class="btn-success float-right">
                             Tutti i piatti
                         </a>
                     </div>

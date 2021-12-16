@@ -190,9 +190,6 @@ export default {
         object-fit: cover;
       }
     }
-    .bottom-page {
-      margin-top: 100px;
-
       .drinks,
       .dishes {
         display: flex;
@@ -216,24 +213,6 @@ export default {
         padding-bottom: 10px;
         width: 250px;
       }
-    }
-
-    .title-foods {
-      color: $c-02;
-      margin-top: 50px;
-      font-size: 25px;
-      border-bottom: 4px solid $c-02;
-      padding-bottom: 10px;
-      width: 250px;
-    }
-    .title-drinks {
-      color: $c-04;
-      margin-top: 50px;
-      font-size: 25px;
-      border-bottom: 4px solid $c-02;
-      padding-bottom: 10px;
-      width: 250px;
-    }
   }
 }
 </style>
