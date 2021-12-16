@@ -16,9 +16,9 @@
 
                             <div class="price-dish">198.00€</div>
                             <div class="quantity-dish">
-                                <img class="arrow-less" src="../../../media/icons/small-arrow.svg" alt="Freccia quantità">
+                                <img class="less-quantity" src="../../../media/icons/minus.svg" alt="Freccia quantità">
                                 <div class="num-quantity">18</div>
-                                <img class="arrow-more" src="../../../media/icons/small-arrow.svg" alt="Freccia quantità">
+                                <img class="more-quantity" src="../../../media/icons/plus.svg" alt="Freccia quantità">
                             </div>
                             <div class="delete-dish">
                                 <button class="btn-danger">Elimina</button>
@@ -119,14 +119,13 @@ export default {
                 display: flex;
                 align-items: center;
                 
-                [class^="arrow-"]{
-                    height: 50px;
-                }
-                .arrow-more {
-                    transform: rotate(180deg);
-                }
-                .num-quantity {
+                .less-quantity, .more-quantity{
+                    width: 45px;
+                    cursor: pointer;
                     margin: 0 15px;
+                }
+                .less-quantity {
+                    padding: 20px 0;
                 }
             }
             .delete-dish {
