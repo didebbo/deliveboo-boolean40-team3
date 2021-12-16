@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+   {{-- @dd(json_decode($order, true)) --}}
+   @php
+       $order = json_decode($order, true);
+   @endphp
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -34,7 +38,14 @@
                             </li>
                             <li>
                                 <p>piatti ordinati</p>
-                                <h5>Pasta Carbonara, Pizza Margherita</h5>
+                                <ul class="list-unstyled">
+                                   @foreach ($order['dishes'] as $dish)
+
+                                       <li>
+                                           <h5>{{ $dish['name'] }} <span style="margin-left: 40px">x{{$dish['pivot']['quantity']}}</span></h5> 
+                                       </li>
+                                   @endforeach
+                                </ul>
                             </li>
                             <li>
                                 <p>prezzo totale</p>
