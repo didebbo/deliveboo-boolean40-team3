@@ -130,6 +130,7 @@ export default {
           console.log(response.data);
           if (response.data.success) {
             this.synLocalStorage();
+            alert("Transazione effettuata con successo");
             this.$router.push("/"); // Andare alla pagine success.
           } else if (!response.data.success) {
             alert(
