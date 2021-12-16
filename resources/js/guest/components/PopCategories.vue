@@ -82,13 +82,11 @@ export default {
     background: $c-05;
     padding: 3.125rem 0;
 
-
-    /* Hide scrollbar */
+/* Hide scrollbar */
     -ms-overflow-style: none;  // IE and Edge
-    scrollbar-width: none;  // Firefox
-    ::-webkit-scrollbar {
-    display: none; //Chrome, Safari and Opera
-    }
+    .carousel {scrollbar-width: none;  } // Firefox
+    ::-webkit-scrollbar {display: none; } //Chrome, Safari and Opera
+/* Hide scrollbar */
 
     .title {
         margin-bottom: 3.75rem;
