@@ -132,7 +132,6 @@ header {
       &.shopping-cart {
         a {
           color: white;
-        }
         height: 62px;
         width: 62px;
         border-radius: 50%;
@@ -143,6 +142,7 @@ header {
         left: 100%;
 
         background-color: $c-01;
+        }
 
         img,
         p {
