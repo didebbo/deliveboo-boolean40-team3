@@ -73,11 +73,22 @@ export default {
       });
       localStorage.cart = JSON.stringify(this.cart);
     },
+    refreshCart(dish) {
+      if (!parseInt(prompt("Refresh cart? 0 | 1"))) {
+        alert("Cancellazione annullata");
+        return 0;
+      }
+      if (localStorage.cart) localStorage.removeItem("cart");
+      this.cart = { dishes: [] };
+      alert("Creato nuovo carrello!");
+      this.addToCart(dish);
+      return 1;
+    },
     addToCart(dish) {
       if (!this.cart["user_id"]) {
         this.cart["user_id"] = this.ristorante.id;
       } else if (this.cart["user_id"] != this.ristorante.id) {
-        alert("Non puoi selezionare un piatto da un ristorante diverso");
+        this.refreshCart(dish);
         return -1;
       }
       if (!this.isDishInCart(dish.id)) {
@@ -190,29 +201,29 @@ export default {
         object-fit: cover;
       }
     }
-      .drinks,
-      .dishes {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-      }
+    .drinks,
+    .dishes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
 
-      .title-foods {
-        color: $c-02;
-        margin: 50px 0 40px;
-        font-size: 25px;
-        border-bottom: 4px solid $c-02;
-        padding-bottom: 10px;
-        width: 250px;
-      }
-      .title-drinks {
-        color: $c-04;
-        margin-top: 50px;
-        font-size: 25px;
-        border-bottom: 4px solid $c-02;
-        padding-bottom: 10px;
-        width: 250px;
-      }
+    .title-foods {
+      color: $c-02;
+      margin: 50px 0 40px;
+      font-size: 25px;
+      border-bottom: 4px solid $c-02;
+      padding-bottom: 10px;
+      width: 250px;
+    }
+    .title-drinks {
+      color: $c-04;
+      margin-top: 50px;
+      font-size: 25px;
+      border-bottom: 4px solid $c-02;
+      padding-bottom: 10px;
+      width: 250px;
+    }
   }
 }
 </style>
