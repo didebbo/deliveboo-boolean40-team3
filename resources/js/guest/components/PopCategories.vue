@@ -1,7 +1,7 @@
 <template>
     <section id="PopularCategories">
         <div class="title">
-            <h2><span>Categorie</span> Popolari</h2>
+            <h2>Cerca per <span>Categorie</span></h2>
             <div class="buttons-box">
                 <button @click="clickBefore()">
                     <img src="../../../media/icons/small-arrow.svg" alt="">
