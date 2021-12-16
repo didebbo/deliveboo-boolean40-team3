@@ -56,7 +56,11 @@ export default {
       if (localStorage.cart) {
         this.cart = JSON.parse(localStorage.cart);
         this.cart["total_dishes"] = 0;
-      }
+      } else if (this.cart.total_dishes > 0 || this.cart.dishes.length > 0)
+        this.cart = {
+          dishes: [],
+          total_dishes: 0,
+        };
     },
     loadQuantity() {
       this.cart.dishes.forEach((dish) => {
