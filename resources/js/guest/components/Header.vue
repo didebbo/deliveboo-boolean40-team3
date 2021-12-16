@@ -2,7 +2,9 @@
 	<header>
         <div class="container-l">
             <div class="logo">
-                <img src="../../../media/images/logo-int-4x.png" alt="">
+                <router-link :to="{ name: 'home' }">
+                    <img src="../../../media/images/logo-int-4x.png" alt="">
+                </router-link>
             </div>
             <nav>
                 <ul>
