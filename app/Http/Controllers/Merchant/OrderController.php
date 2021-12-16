@@ -23,9 +23,12 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
+        
         if ($order['user_id'] != Auth::id()) {
                 abort(403);
             }
+        $order = $order->where('id', $order['id'])->with('dishes')->first();
+        $order = json_encode($order);
         return view('merchant.orders.show', compact('order'));
     }
 }
