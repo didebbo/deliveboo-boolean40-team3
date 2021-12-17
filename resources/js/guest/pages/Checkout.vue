@@ -73,6 +73,20 @@
       :authorization="clientToken"
       @success="onSuccess"
     ></v-braintree>
+    <!-- Delete-Cart PopUp -->
+    <div v-if="popup.visible" class="popup-confirm">
+      <span>
+        <h3>{{ popup.message }}</h3>
+        <p v-if="popup.submessage">
+          {{ popup.submessage }}
+        </p>
+      </span>
+      <div>
+        <button class="btn-warning" @click="redirect('/')">
+          {{ popup.btnText }}
+        </button>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -81,6 +95,13 @@ export default {
   name: "Checkout",
   data() {
     return {
+      popup: {
+        visible: false,
+        message: null,
+        submessage: null,
+        btnText: null,
+        error: false,
+      },
       clientToken: document
         .querySelector("meta[name='clientToken']")
         .getAttribute("content"),
@@ -114,6 +135,10 @@ export default {
       if (localStorage.cart) localStorage.removeItem("cart");
       this.order.user_id = null;
     },
+    redirect(path) {
+      this.popup.visible = false;
+      if (!this.popup.error) this.$router.push(path);
+    },
     onSuccess(payload) {
       let params = {
         nonce: payload.nonce,
@@ -131,13 +156,18 @@ export default {
           console.log(response.data);
           if (response.data.success) {
             this.synLocalStorage();
-            alert("Transazione effettuata con successo");
-            this.$router.push("/"); // Andare alla pagine success.
+            this.popup.message = "Transazione effettuata con successo";
+            this.popup.submessage = null;
+            this.popup.btnText = "Torna alla Home";
+            this.popup.error = false;
+            this.popup.visible = true;
           } else if (!response.data.success) {
-            alert(
-              "Impossibile effettuare la transazione, controlla che il carrello sia pieno"
-            );
-            this.$router.push("/il-tuo-carrello");
+            this.popup.message = "Transazione rifiutata, riprova.";
+            this.popup.submessage =
+              "Se il problema persiste contatta l'assistenza";
+            this.popup.btnText = "Conferma";
+            this.popup.error = true;
+            this.popup.visible = true;
           }
           /* 
             Se data.success === true 
@@ -168,6 +198,39 @@ export default {
     input,
     textarea {
       margin: 1em;
+    }
+  }
+  [class^="popup"] {
+    padding: 20px;
+    background-color: #fefae9;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 30px;
+    @include flex-center;
+    flex-direction: column;
+    text-align: center;
+    border: 5px solid $c-02;
+    z-index: 2;
+    span {
+      margin: 50px 0;
+      h3 {
+        font-size: 1.5rem;
+      }
+      p {
+        font-size: 1.25rem;
+      }
+    }
+  }
+  .popup-confirm {
+    max-width: 600px;
+    div {
+      width: 100%;
+      @include flex-center;
+      .btn-warning {
+        margin-left: 25px;
+      }
     }
   }
 }
