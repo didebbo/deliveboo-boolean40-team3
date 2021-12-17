@@ -19,20 +19,39 @@
     </section>
 
     <section class="bottom-page container-l">
+      <!-- Food -->
       <h3 class="title-foods">Cibi e menù</h3>
       <div class="dishes">
         <ObjDish
-          v-for="dish in ristorante.dishes"
+          v-for="dish in foodDishes"
           :key="dish.id"
           :ingredients="dish.ingredients"
           :foodName="dish.name"
           :price="dish.price"
+          type="food"
           :img="dish.url_picture"
           @addToCart="addToCart(dish)"
         />
       </div>
 
-      <div v-if="confirmPopup[0]" class="popup-confirm">
+      <!-- Beverage -->
+      <h3 v-if="beverageDishes.length > 0" class="title-drinks">Cibi e menù</h3>
+			<div class="drinks">
+				<ObjDish
+          v-for="dish in beverageDishes"
+          :key="dish.id"
+          :ingredients="dish.ingredients"
+          :foodName="dish.name"
+          :price="dish.price"
+          type="drinks"
+          :img="dish.url_picture"
+          @addToCart="addToCart(dish)"
+        />
+			</div>
+    </section>
+
+    <!-- Delete-Cart PopUp -->
+    <div v-if="confirmPopup[0]" class="popup-confirm">
         <p>Non puoi ordinare piatti da ristoranti differenti</p>
         <h3>Vuoi svuotare il tuo carrello?</h3>
         <div>
@@ -43,13 +62,6 @@
       <div v-if="popup" class="popup">
         <h3>Il carrello è stato svuotato</h3>
       </div>
-      <!-- <h3 class="title-drinks">Cibi e menù</h3>
-			<div class="drinks">
-				<ObjDish/>
-				<ObjDish/>
-				<ObjDish/>
-			</div> -->
-    </section>
   </section>
 </template>
 
@@ -65,7 +77,8 @@ export default {
   data() {
     return {
       ristorante: null,
-
+      foodDishes: [],
+      beverageDishes: [],
       confirmPopup: [false],
       popup: false,
       // [GN] Carrello che verrà sincronizzato con il localStorage.cart
@@ -150,7 +163,12 @@ export default {
     this.synCart();
     axios.get(`/api/restaurants/${this.id}`).then((response) => {
       this.ristorante = response.data.data;
-      // console.log(this.ristorante);
+      this.foodDishes = this.ristorante.dishes.filter((dish)=>{
+        return dish.beverage == 0
+      });
+      this.beverageDishes = this.ristorante.dishes.filter((dish)=>{
+        return dish.beverage == 1
+      });
     });
   },
 };
@@ -270,7 +288,7 @@ export default {
       color: $c-04;
       margin-top: 50px;
       font-size: 25px;
-      border-bottom: 4px solid $c-02;
+      border-bottom: 4px solid $c-04;
       padding-bottom: 10px;
       width: 250px;
     }

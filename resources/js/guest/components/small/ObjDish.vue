@@ -96,7 +96,7 @@ export default {
       }
     }
 
-    &.drink {
+    &.drinks {
       // filter: $shadow-04;
       .circle-img {
         border: 4px solid $c-04;
