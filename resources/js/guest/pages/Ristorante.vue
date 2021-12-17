@@ -31,11 +31,17 @@
         />
       </div>
 
-      <!-- <div class="popup">
-        <div class="si" @click="refreshCart(dish)"></div>
-        <div class="si" @click="popup = false"></div>
-      </div> -->
-
+      <div v-if="confirmPopup[0]" class="popup-confirm">
+        <p>Non puoi ordinare piatti da ristoranti differenti</p>
+        <h3>Vuoi svuotare il tuo carrello?</h3>
+        <div>
+          <button class="btn-success" @click="refreshCart(confirmPopup[1])">Sì</button>
+          <button class="btn-warning" @click="confirmPopup = [false]">No</button>
+        </div>
+      </div>
+      <div v-if="popup" class="popup">
+        <h3>Il carrello è stato svuotato</h3>
+      </div>
       <!-- <h3 class="title-drinks">Cibi e menù</h3>
 			<div class="drinks">
 				<ObjDish/>
@@ -59,7 +65,7 @@ export default {
     return {
       ristorante: null,
 
-      confirmPopup: false,
+      confirmPopup: [false],
       popup: false,
       // [GN] Carrello che verrà sincronizzato con il localStorage.cart
       cart: {
@@ -85,17 +91,21 @@ export default {
       this.popup = true;
       if (localStorage.cart) localStorage.removeItem("cart");
       this.cart = { dishes: [] };
-      this.addToCart(dish);
+
       setTimeout(() => {
         this.popup = false;
-      }, 2000);
+      }, 1500);
+
+        this.addToCart(dish);
+      
+
       return 1;
     },
     addToCart(dish) {
       if (!this.cart["user_id"]) {
         this.cart["user_id"] = this.ristorante.id;
       } else if (this.cart["user_id"] != this.ristorante.id) {
-        this.confirmPopup = true;
+        this.confirmPopup = [true, dish];
         return -1;
       }
       if (!this.isDishInCart(dish.id)) {
@@ -147,6 +157,38 @@ export default {
 
 <style scoped lang="scss">
 @import "../../../sass/_variables.scss";
+
+[class^="popup"]{
+  padding: 20px;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 30px;
+  @include flex-center;
+  flex-direction: column;
+  text-align: center;
+  border: 5px solid $c-02;
+
+  h3{
+    font-size: 2.5rem;
+    margin: 20px 0;
+  }
+  p{
+    font-size: 1.25rem;
+  }
+}
+.popup-confirm{
+  max-width: 600px;
+  div{
+    width: 100%;
+    @include flex-center;
+    .btn-warning{
+      margin-left: 25px;
+    }
+  }
+}
 
 #Ristorante {
   padding-top: $top-heigth;
