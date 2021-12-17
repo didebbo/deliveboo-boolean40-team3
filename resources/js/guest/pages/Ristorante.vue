@@ -40,7 +40,7 @@
 				<ObjDish
           v-for="dish in beverageDishes"
           :key="dish.id"
-          :ingredients="dish.ingredients"
+          :ingredients="dish.description"
           :foodName="dish.name"
           :price="dish.price"
           type="drinks"
