@@ -1,90 +1,93 @@
 <template>
   <section id="Checkout">
-    <form>
-      <label for="customer_firstname">
-        customer_firstname:
-        <input
-          type="text"
-          name="customer_firstname"
-          id="customer_firstname"
-          v-model="order.customer_firstname"
-        />
-        <small v-if="errors['order.customer_firstname']">
-          {{ errors["order.customer_firstname"][0] }}
-        </small>
-      </label>
-      <label for="customer_lastname">
-        customer_lastname:
-        <input
-          type="text"
-          name="customer_lastname"
-          id="customer_lastname"
-          v-model="order.customer_lastname"
-        />
-        <small v-if="errors['order.customer_lastname']">
-          {{ errors["order.customer_lastname"][0] }}
-        </small>
-      </label>
-      <label for="customer_email">
-        customer_email:
-        <input
-          type="email"
-          name="customer_email"
-          id="customer_email"
-          v-model="order.customer_email"
-        />
-        <small v-if="errors['order.customer_email']">
-          {{ errors["order.customer_email"][0] }}
-        </small>
-      </label>
-      <label for="customer_phone">
-        customer_phone:
-        <input
-          type="tel"
-          name="customer_phone"
-          id="customer_phone"
-          v-model="order.customer_phone"
-        />
-        <small v-if="errors['order.customer_phone']">
-          {{ errors["order.customer_phone"][0] }}
-        </small>
-      </label>
-      <label for="customer_address">
-        customer_address:
-        <input
-          type="text"
-          name="customer_address"
-          id="customer_address"
-          v-model="order.customer_address"
-        />
-        <small v-if="errors['order.customer_address']">
-          {{ errors["order.customer_address"][0] }}
-        </small>
-      </label>
-      <label for="notes">
-        notes:
-        <textarea name="notes" id="notes" v-model="order.notes"></textarea>
-        <small v-if="errors['order.notes']">
-          {{ errors["order.notes"][0] }}
-        </small>
-      </label>
-    </form>
-    <v-braintree
-      :authorization="clientToken"
-      @success="onSuccess"
-    ></v-braintree>
-    <!-- Delete-Cart PopUp -->
-    <div v-if="popup.visible" class="popup-confirm">
-      <span>
-        <h3>{{ popup.message }}</h3>
-        <p v-if="popup.submessage">
-          {{ popup.submessage }}
-        </p>
-      </span>
-      <div>
-        <button class="btn-warning" @click="redirect('/')">
-          {{ popup.btnText }}
-        </button>
+    <div class="container-xs">
+      <form>
+        <h2 class="title-payment">Inserisci i dati di pagamento</h2>
+        <label for="customer_firstname">
+          <div class="user-details">Nome</div>
+          <input
+            type="text"
+            name="customer_firstname"
+            id="customer_firstname"
+            v-model="order.customer_firstname"
+          />
+          <small v-if="errors['order.customer_firstname']">
+            Errore, il nome è un dato obbligatorio
+          </small>
+        </label>
+        <label for="customer_lastname">
+          <div class="user-details">Cognome</div>
+          <input
+            type="text"
+            name="customer_lastname"
+            id="customer_lastname"
+            v-model="order.customer_lastname"
+          />
+          <small v-if="errors['order.customer_lastname']">
+            Errore, il cognome è un dato obbligatorio
+          </small>
+        </label>
+        <label for="customer_email">
+          <div class="user-details">E-mail</div>
+          <input
+            type="email"
+            name="customer_email"
+            id="customer_email"
+            v-model="order.customer_email"
+          />
+          <small v-if="errors['order.customer_email']">
+            Errore, e-mail non valida
+          </small>
+        </label>
+        <label for="customer_phone">
+          <div class="user-details">Telefono</div>
+          <input
+            type="tel"
+            name="customer_phone"
+            id="customer_phone"
+            v-model="order.customer_phone"
+          />
+          <small v-if="errors['order.customer_phone']">
+            Errore, il numero di telefono è un dato obbligatorio
+          </small>
+        </label>
+        <label for="customer_address">
+          <div class="user-details">Indirizzo</div>
+          <input
+            type="text"
+            name="customer_address"
+            id="customer_address"
+            v-model="order.customer_address"
+          />
+          <small v-if="errors['order.customer_address']">
+            Errore, l'indirizzo è un dato obbligatorio
+          </small>
+        </label>
+        <label for="notes">
+          <div class="user-details">Note:</div>
+          <textarea name="notes" id="notes" v-model="order.notes"></textarea>
+          <small v-if="errors['order.notes']"> Errore, dato non valido </small>
+        </label>
+      </form>
+      <v-braintree :authorization="clientToken" @success="onSuccess">
+        <template v-slot:button="slotProps">
+          <v-btn class="btn-warning" @click="slotProps.submit">Paga!</v-btn>
+        </template>
+      </v-braintree>
+
+      <!-- Delete-Cart PopUp -->
+      <div v-if="popup.visible" class="popup-confirm">
+        <span>
+          <h3>{{ popup.message }}</h3>
+          <p v-if="popup.submessage">
+            {{ popup.submessage }}
+          </p>
+        </span>
+        <div>
+          <button class="btn-warning" @click="redirect('/')">
+            {{ popup.btnText }}
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -191,13 +194,45 @@ export default {
 @import "../../../sass/_variables.scss";
 #Checkout {
   padding-top: $top-heigth;
-  form {
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    input,
-    textarea {
-      margin: 1em;
+
+  .container-xs {
+    border: 4px solid $c-04;
+    border-radius: 30px;
+    margin-top: 50px;
+    padding: 40px;
+    background-color: #fff;
+    color: black;
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      .title-payment {
+        text-align: center;
+        margin-bottom: 30px;
+        color: $c-05;
+      }
+
+      input,
+      textarea {
+        margin: 0.5em 0 0;
+        width: 100%;
+        padding: 5px;
+      }
+      textarea {
+        margin-bottom: 2em;
+      }
+      small {
+        color: red;
+        font-size: 1rem;
+      }
+      .user-details {
+        margin-top: 1em;
+      }
+    }
+    .btn-warning {
+      color: #1a1f71;
+      margin-top: 30px;
     }
   }
   [class^="popup"] {
