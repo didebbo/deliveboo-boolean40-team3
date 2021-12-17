@@ -160,7 +160,7 @@ export default {
 
 [class^="popup"]{
   padding: 20px;
-  background-color: white;
+  background-color: #FEFAE9;
   position: absolute;
   top: 50%;
   left: 50%;
