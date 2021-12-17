@@ -81,6 +81,8 @@ export default {
         this.cart["dishes"].forEach((dish) => {
             this.cart["total_price"] += dish["price"] * dish["quantity"];
         });
+        this.cart["total_price"] = this.cart["total_price"].toFixed(2);
+        
         if (this.cart["dishes"].length <= 0) this.cart["user_id"] = null;
         localStorage.cart = JSON.stringify(this.cart);
         },
