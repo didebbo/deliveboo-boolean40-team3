@@ -26,9 +26,17 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="text-dark" href="{{ url('/merchant') }}">
-                    Dashboard
-                </a>
+                @guest 
+                    <a class="nav-link" href="{{ url('/') }}">
+                        <img 
+                        style="height: 17px;"
+                        src="{{asset('/images/logo-int-4x.png?b0a915484e9ce6ac51163e57ef469185')}}" alt="Deliveboo">
+                    </a>
+                @else
+                    <a class="text-dark" href="{{ url('/merchant') }}">
+                        Dashboard
+                    </a>
+                @endguest
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
