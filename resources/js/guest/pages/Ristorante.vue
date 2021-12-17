@@ -35,7 +35,7 @@
       </div>
 
       <!-- Beverage -->
-      <h3 v-if="beverageDishes.length > 0" class="title-drinks">Cibi e menù</h3>
+      <h3 v-if="beverageDishes.length > 0" class="title-drinks">Bevande</h3>
 			<div class="drinks">
 				<ObjDish
           v-for="dish in beverageDishes"
@@ -180,7 +180,7 @@ export default {
 [class^="popup"]{
   padding: 20px;
   background-color: #FEFAE9;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

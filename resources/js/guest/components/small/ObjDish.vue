@@ -77,40 +77,26 @@ export default {
     box-shadow: $shadow-02;
     display: flex;
     flex-direction: column;
-    // align-items: center;
     justify-content: center;
-    // filter: $shadow-02;
-
-    .circle-img {
-      border: 4px solid $c-02;
-      background-color: $c-02;
-    }
 
     &.food {
       // filter: $shadow-02;
       .circle-img {
         border: 4px solid $c-02;
       }
-      &.icon-cart {
+      .icon-cart {
         background-color: $c-02;        
       }
     }
 
     &.drinks {
-      // filter: $shadow-04;
+      box-shadow: $shadow-04;
       .circle-img {
         border: 4px solid $c-04;
       }
-      &.icon-cart {
+      .icon-cart {
         background-color: $c-04;
       }
-    }
-
-    &.icon-cart {
-      background-color: $c-02;
-    }
-    &.icon-cart::after {
-      content: "Text inserted after via CSS";
     }
 
     .circle-img {
@@ -121,6 +107,8 @@ export default {
       position: absolute;
       left: -12px;
       top: -20px;
+      border: 4px solid $c-02;
+      background-color: $c-02;
       img {
         width: 100%;
         height: 100%;
@@ -140,7 +128,6 @@ export default {
       width: 62px;
       height: 62px;
       border-radius: 50%;
-      background-color: $c-02;
       position: absolute;
       right: -35px;
       top: -20px;
