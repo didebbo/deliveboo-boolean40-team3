@@ -11,7 +11,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Auth::user()->orders;
+        $orders = Auth::user()->orders->sortByDesc('created_at');
         return view('merchant.orders.index', compact('orders'));
     }
 
@@ -28,7 +28,9 @@ class OrderController extends Controller
                 abort(403);
             }
         $order = $order->where('id', $order['id'])->with('dishes')->first();
+        $order['date'] = $order->created_at->format('d/m/Y h:m');
         $order = json_encode($order);
+
         return view('merchant.orders.show', compact('order'));
     }
 }

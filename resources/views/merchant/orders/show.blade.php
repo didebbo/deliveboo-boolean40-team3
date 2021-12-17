@@ -21,6 +21,10 @@
                     <div class="card-body">
                         <ul class="list-unstyled" id="order-show">
                             <li>
+                                <p>Data Ordine</p>
+                                <h5>{{ $order['date']}}</h5>
+                            </li>
+                            <li>
                                 <p>nome cliente</p>
                                 <h5>{{ $order['customer_firstname'] . ' ' . $order['customer_lastname']}}</h5>
                             </li>
@@ -42,7 +46,7 @@
                                    @foreach ($order['dishes'] as $dish)
 
                                        <li>
-                                           <h5>{{ $dish['name'] }} <span style="margin-left: 40px">x{{$dish['pivot']['quantity']}}</span></h5> 
+                                           <h5>{{ $dish['name'] }} <span style="margin-left: 40px">x {{$dish['pivot']['quantity']}}</span></h5> 
                                        </li>
                                    @endforeach
                                 </ul>
