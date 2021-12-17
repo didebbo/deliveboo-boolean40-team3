@@ -31,6 +31,11 @@
         />
       </div>
 
+      <!-- <div class="popup">
+        <div class="si" @click="refreshCart(dish)"></div>
+        <div class="si" @click="popup = false"></div>
+      </div> -->
+
       <!-- <h3 class="title-drinks">Cibi e menù</h3>
 			<div class="drinks">
 				<ObjDish/>
@@ -54,6 +59,8 @@ export default {
     return {
       ristorante: null,
 
+      confirmPopup: false,
+      popup: false,
       // [GN] Carrello che verrà sincronizzato con il localStorage.cart
       cart: {
         dishes: [],
@@ -74,21 +81,21 @@ export default {
       localStorage.cart = JSON.stringify(this.cart);
     },
     refreshCart(dish) {
-      if (!parseInt(prompt("Refresh cart? 0 | 1"))) {
-        alert("Cancellazione annullata");
-        return 0;
-      }
+      this.confirmPopup = false;
+      this.popup = true;
       if (localStorage.cart) localStorage.removeItem("cart");
       this.cart = { dishes: [] };
-      alert("Creato nuovo carrello!");
       this.addToCart(dish);
+      setTimeout(() => {
+        this.popup = false;
+      }, 2000);
       return 1;
     },
     addToCart(dish) {
       if (!this.cart["user_id"]) {
         this.cart["user_id"] = this.ristorante.id;
       } else if (this.cart["user_id"] != this.ristorante.id) {
-        this.refreshCart(dish);
+        this.confirmPopup = true;
         return -1;
       }
       if (!this.isDishInCart(dish.id)) {
