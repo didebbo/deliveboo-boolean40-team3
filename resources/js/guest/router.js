@@ -40,11 +40,11 @@ const router = new VueRouter({
             name: 'shop-cart',
             component: ShopCart,
         },
-        {
-            path: '/chi-siamo',
-            name: 'about',
-            component: About,
-        },
+        // {
+        //     path: '/chi-siamo',
+        //     name: 'about',
+        //     component: About,
+        // },
         {
             path: '/checkout',
             name: 'checkout',
