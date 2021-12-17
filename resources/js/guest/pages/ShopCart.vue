@@ -21,19 +21,18 @@
           v-bind:key="dish.dish_id"
         >
           <div class="name-dish">{{ dish.name }}</div>
-
           <div class="price-dish">{{ dish.price }} €</div>
           <div class="quantity-dish">
             <img
-              class="arrow-less"
-              src="../../../media/icons/small-arrow.svg"
+              class="less-quantity" 
+              src="../../../media/icons/minus.svg"
               alt="Freccia quantità"
               @click="removeOne(dish.dish_id)"
             />
             <div class="num-quantity">{{ dish.quantity }}</div>
             <img
-              class="arrow-more"
-              src="../../../media/icons/small-arrow.svg"
+              class="more-quantity" 
+              src="../../../media/icons/plus.svg"
               alt="Freccia quantità"
               @click="addOne(dish.dish_id)"
             />
@@ -122,19 +121,18 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  button {
-    color: #fff;
-    cursor: pointer;
-  }
-  .cart-top {
     padding: 2.5rem 0;
-
     h1 {
-      @include f-section-title;
-      color: #fffae9;
+        @include f-section-title;
+        color: #fffae9;
+        }
+    button {
+        color: #fff;
+        cursor: pointer;
     }
   }
+    
+
   .cart-center {
     border-top: 3px solid $c-03;
     color: #fffae9;
@@ -146,33 +144,31 @@ export default {
       padding: 15px 0;
       @include f-corpo-white;
 
-      .name-dish,
-      .price-dish,
-      .quantity-dish {
-        padding: 0 15px;
-      }
-      .name-dish {
-        width: 60%;
-      }
-
-      .quantity-dish {
-        display: flex;
-        align-items: center;
-
-        [class^="arrow-"] {
-          height: 50px;
-        }
-        .arrow-more {
-          transform: rotate(180deg);
-        }
-        .num-quantity {
-          margin: 0 15px;
-        }
-      }
-      .delete-dish {
-        align-self: flex-end;
-        margin-left: 15px;
-      }
+      .name-dish, .price-dish, 
+            .quantity-dish {
+                padding: 0 15px;
+            }
+            .name-dish{
+                width: 60%;
+            }
+            
+            .quantity-dish {
+                display: flex;
+                align-items: center;
+                
+                .less-quantity, .more-quantity{
+                    width: 45px;
+                    cursor: pointer;
+                    margin: 0 15px;
+                }
+                .less-quantity {
+                    padding: 20px 0;
+                }
+            }
+            .delete-dish {
+                align-self:flex-end;
+                margin-left: 15px;
+            }
     }
   }
   .cart-bottom {
