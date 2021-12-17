@@ -149,7 +149,7 @@ export default {
                 padding: 0 15px;
             }
             .name-dish {
-                width: 60%;
+                flex-grow: 1;
             }
 
             .quantity-dish {
@@ -167,7 +167,6 @@ export default {
                 }
             }
             .delete-dish {
-                align-self: flex-end;
                 margin-left: 15px;
             }
         }
