@@ -18,6 +18,8 @@
                     <thead>
                       <tr>
                         <th scope="col">Ordine</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Ora</th>
                         <th scope="col">Cliente</th>
                         <th scope="col">Totale</th>
                         <th scope="col"></th>
@@ -27,6 +29,8 @@
                       @foreach ($orders as $order)
                       <tr>
                         <td>{{$order['id']}}</td>
+                        <td>{{$order->created_at->format('d/m/Y')}}</td>
+                        <td>{{$order->created_at->format('h:m')}}</td>
                         <td>{{$order['customer_firstname'] . ' ' . $order['customer_lastname']}}</td>
                         <td>{{$order['total_price']}}€</td>
                         <td>
