@@ -13,6 +13,7 @@
         </template>
       </div>
       <p class="name-dish">{{ foodName }}</p>
+      <p class="ingredients-dish">{{ingredients}}</p>
 
       <div class="icon-cart" @click="startPopup()" >
         <img src="../../../../media/icons/cart-white-ADD.svg" alt="" />
@@ -31,6 +32,7 @@ export default {
   name: "ObjDish",
   props: {
     foodName: String,
+    ingredients: String,
     img: String,
     price: Number,
     type: String,
@@ -74,7 +76,9 @@ export default {
     position: relative;
     box-shadow: $shadow-02;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    // align-items: center;
+    justify-content: center;
     // filter: $shadow-02;
 
     .circle-img {
@@ -124,9 +128,13 @@ export default {
       }
     }
 
-    .name-dish {
+    .name-dish, .ingredients-dish{
       margin-left: 140px;
+      font-size: 1.125rem;
+    }
+    .name-dish {
       @include f-title-card;
+      font-size: 1.6875rem;
     }
     .icon-cart {
       width: 62px;
