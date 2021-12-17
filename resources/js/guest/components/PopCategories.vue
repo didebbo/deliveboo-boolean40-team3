@@ -143,32 +143,28 @@ export default {
             padding: 5px;
             border-radius: 10%;
             box-shadow: $shadow-02;
-            margin: 35px 1.25rem 20px 1.25rem;
+            margin: 45px 1.25rem 20px 1.25rem;
 
-            min-height: 80px;
-            min-width: 134px;
+            min-height: 100px;
+            min-width: 164px;
 
             .food {
-                display: flex;
-                justify-content: center;
                 position: absolute;
-                width: 3.75rem;
-                height: 3.75rem;
+                width: 75px;
+                height: 75px;
                 left: 50%;
                 top: 0;
                 transform: translate(-50%, -50%);
-                background: white;
+                background: $c-03;
                 border-radius: 50%;
-
-                img {
-                    width: 100%;
-                    border-radius: 50%;
-                    padding: .1875rem;
-                }
+                border: 3px solid white;
+                overflow: hidden;
+                @include img-fit-cover;
             }
 
             .food-title {
                 text-align: center;
+                font-size: 22px;
                 margin-top: 10px;
             }
 
@@ -182,7 +178,7 @@ export default {
                 position: absolute;
 
                 img {
-                    height: 1rem;
+                    height: 16px;
                     position: absolute;
                     left: 50%;
                     top: 50%;

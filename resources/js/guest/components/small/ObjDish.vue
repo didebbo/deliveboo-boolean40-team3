@@ -72,6 +72,7 @@ export default {
 
     .circle-img {
       border: 4px solid $c-02;
+      background-color: $c-02;
     }
 
     &.food {
