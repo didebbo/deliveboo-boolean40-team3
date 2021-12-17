@@ -14,11 +14,16 @@
             </router-link>
           </li>
 
-          <li>
+          <!-- <li>
             <router-link :to="{ name: 'about' }">
-              <!-- TODO: Fare Pagina about-us -->
               <p>Chi siamo</p>
             </router-link>
+          </li> -->
+
+          <li>
+            <a href="/login">
+              <p>Accedi</p>
+            </a>
           </li>
 
           <li class="search">
