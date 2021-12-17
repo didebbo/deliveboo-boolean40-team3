@@ -24,6 +24,7 @@
         <ObjDish
           v-for="dish in ristorante.dishes"
           :key="dish.id"
+          :ingredients="dish.ingredients"
           :foodName="dish.name"
           :price="dish.price"
           :img="dish.url_picture"
@@ -149,7 +150,7 @@ export default {
     this.synCart();
     axios.get(`/api/restaurants/${this.id}`).then((response) => {
       this.ristorante = response.data.data;
-      console.log(this.ristorante);
+      // console.log(this.ristorante);
     });
   },
 };
