@@ -165,9 +165,9 @@ export default {
           padding: 16px;
           position: absolute;
           z-index: 1;
-          left: 50%;
+          right: 50%;
           bottom: calc(100% + 5px);
-          transform: translateX(-50%);
+          transform: translateX(26px);
           font-size: 17px;
           transition-timing-function: ease-out;
           transition: 0.5s;
