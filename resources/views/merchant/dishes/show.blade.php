@@ -38,6 +38,16 @@
                                 <p>Prezzo</p>
                                 <h5>{{ $dish['price'] }}€</h5>
                             </li>
+                            {{-- <li>
+                                <p>Visibilità</p>
+                                <h5>
+                                    @if ($dish['visible']) 
+                                        visibile                                        
+                                    @else                                        
+                                        nascosto
+                                    @endif
+                                </h5>
+                            </li> --}}
                         </ul>
                         @if ($dish['url_picture'])
                             <div class="mb-2">

@@ -46,7 +46,7 @@
                                 <input type="checkbox" name="beverage" id="beverage" @if (old('beverage'))
                                 checked
                                 @endif>
-                                <label for="beverage">Beverage</label>
+                                <label class="mb-0" for="beverage">Beverage</label>
                                 @error('beverage')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
@@ -59,16 +59,16 @@
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="price">Visibilità</label>
                                 <select id="visible" name="visible" class="form-control form-control-sm">
-                                    <option value="0">non visibile</option>
-                                    <option value="1">visibile</option>
+                                    <option {{ old('visible')==0 ? 'selected' : null }} value="0">non visibile</option>
+                                    <option {{ old('visible')==1 ? 'selected' : null }} value="1">visibile</option>
                                 </select>
                                 @error('visible')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
-                            </div>
+                            </div> --}}
                             <div class="form-group">
                                 <input type="file" id="url_picture" name="url_picture" accept="image/jpeg">
                                 @error('url_picture')
