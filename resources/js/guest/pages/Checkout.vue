@@ -112,6 +112,7 @@ export default {
     },
     synLocalStorage() {
       if (localStorage.cart) localStorage.removeItem("cart");
+      this.order.user_id = null;
     },
     onSuccess(payload) {
       let params = {
@@ -151,6 +152,7 @@ export default {
   },
   mounted() {
     this.synCart();
+    if (this.order.user_id == null) this.$router.push("/");
   },
 };
 </script>
