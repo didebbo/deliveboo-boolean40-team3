@@ -1,8 +1,11 @@
 <template>
   <section id="Checkout">
+    <div class="container-xs">
+
     <form>
+      <h2 class="title-payment">Inserisci i dati di pagamento</h2>
       <label for="customer_firstname">
-        customer_firstname:
+        <div class="user-details">Nome</div>
         <input
           type="text"
           name="customer_firstname"
@@ -10,11 +13,11 @@
           v-model="order.customer_firstname"
         />
         <small v-if="errors['order.customer_firstname']">
-          {{ errors["order.customer_firstname"][0] }}
+            Errore, il nome è un dato obbligatorio
         </small>
       </label>
       <label for="customer_lastname">
-        customer_lastname:
+        <div class="user-details">Cognome</div>
         <input
           type="text"
           name="customer_lastname"
@@ -22,11 +25,11 @@
           v-model="order.customer_lastname"
         />
         <small v-if="errors['order.customer_lastname']">
-          {{ errors["order.customer_lastname"][0] }}
+          Errore, il cognome è un dato obbligatorio
         </small>
       </label>
       <label for="customer_email">
-        customer_email:
+        <div class="user-details">E-mail</div>
         <input
           type="email"
           name="customer_email"
@@ -34,11 +37,11 @@
           v-model="order.customer_email"
         />
         <small v-if="errors['order.customer_email']">
-          {{ errors["order.customer_email"][0] }}
+          Errore, e-mail non valida
         </small>
       </label>
       <label for="customer_phone">
-        customer_phone:
+        <div class="user-details">Telefono</div>
         <input
           type="tel"
           name="customer_phone"
@@ -46,11 +49,11 @@
           v-model="order.customer_phone"
         />
         <small v-if="errors['order.customer_phone']">
-          {{ errors["order.customer_phone"][0] }}
+          Errore, il numero di telefono è un dato obbligatorio
         </small>
       </label>
       <label for="customer_address">
-        customer_address:
+        <div class="user-details">Indirizzo</div>
         <input
           type="text"
           name="customer_address"
@@ -58,21 +61,28 @@
           v-model="order.customer_address"
         />
         <small v-if="errors['order.customer_address']">
-          {{ errors["order.customer_address"][0] }}
+          Errore, l'indirizzo è un dato obbligatorio
         </small>
       </label>
       <label for="notes">
-        notes:
+        <div class="user-details">Note:</div>
         <textarea name="notes" id="notes" v-model="order.notes"></textarea>
         <small v-if="errors['order.notes']">
-          {{ errors["order.notes"][0] }}
+          Errore, dato non valido
         </small>
       </label>
     </form>
-    <v-braintree
+    <v-braintree 
       :authorization="clientToken"
       @success="onSuccess"
-    ></v-braintree>
+    >
+      <template v-slot:button="slotProps">
+      <v-btn class="btn-warning" @click="slotProps.submit">Paga!</v-btn>
+      </template>
+    </v-braintree>
+
+    </div>
+
   </section>
 </template>
 
@@ -161,14 +171,48 @@ export default {
 @import "../../../sass/_variables.scss";
 #Checkout {
   padding-top: $top-heigth;
+
+  .container-xs {
+    border: 4px solid $c-04;
+    border-radius: 30px;
+    margin-top: 50px;
+    padding: 40px;
+    background-color: #fff;
+    color: black;
+
+  
   form {
-    color: #fff;
+    
     display: flex;
     flex-direction: column;
+
+    .title-payment {
+      text-align: center;
+      margin-bottom: 30px;
+      color: $c-05;
+    }
+
     input,
     textarea {
-      margin: 1em;
+      margin: 0.5em 0 0;
+      width: 100%;
+      padding: 5px;
     }
+    textarea{
+      margin-bottom: 2em;
+    }
+    small {
+      color: red;
+      font-size: 1rem;
+    }
+    .user-details {
+      margin-top: 1em;
+    }
+  }
+  .btn-warning {
+    color: #1a1f71;
+    margin-top: 30px;
+  }
   }
 }
 </style>

@@ -40,6 +40,12 @@ main{
     margin: auto;
 }
 
+.container-xs {
+    max-width: 500px;
+    padding: 0 10px;
+    margin: auto;
+}
+
 // Buttons
 [class^="btn-"] {
     @include sans-extrabold-i;
