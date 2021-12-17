@@ -14,9 +14,11 @@
       </div>
       <p class="name-dish">{{ foodName }}</p>
 
-      <div class="icon-cart" @click="$emit('addToCart')">
+      <div class="icon-cart" @click="startPopup()" >
         <img src="../../../../media/icons/cart-white-ADD.svg" alt="" />
+        <div id="popup-cart" :class="showPopup">Aggiunto al carrello!</div>
       </div>
+
       <div class="obj-price">
         <p class="price-dish">{{ price }} €</p>
       </div>
@@ -35,11 +37,16 @@ export default {
   },
   data() {
     return {
-      //
+      showPopup: ''
     };
   },
   methods: {
-    //
+    startPopup() {
+
+      this.$emit('addToCart');
+      this.showPopup= 'show';
+      setTimeout(()=>{ this.showPopup= '' }, 1500);
+    }
   },
 };
 </script>
@@ -81,7 +88,7 @@ export default {
         border: 4px solid $c-02;
       }
       &.icon-cart {
-        background-color: $c-02;
+        background-color: $c-02;        
       }
     }
 
@@ -97,6 +104,9 @@ export default {
 
     &.icon-cart {
       background-color: $c-02;
+    }
+    &.icon-cart::after {
+      content: "Text inserted after via CSS";
     }
 
     .circle-img {
@@ -135,6 +145,32 @@ export default {
         height: 50px;
         bottom: 5px;
       }
+
+// Inizio popup
+        #popup-cart {
+          opacity: 0;
+          min-width: 250px;
+          background-color: #fff;
+          color: #000;
+          text-align: center;
+          border-radius: 30px;
+          padding: 16px;
+          position: absolute;
+          z-index: 1;
+          left: 50%;
+          bottom: calc(100% + 5px);
+          transform: translateX(-50%);
+          font-size: 17px;
+          transition-timing-function: ease-out;
+          transition: 0.5s;
+        }
+
+        #popup-cart.show {
+          opacity: 1;
+        }        
+        }
+        
+        // Fine popup
     }
     .obj-price {
       color: $c-05;
@@ -153,5 +189,4 @@ export default {
       }
     }
   }
-}
 </style>
