@@ -189,4 +189,9 @@ export default {
     }
 }
 
+@media screen and (max-width: 730px){
+    .buttons-box{
+        display: none;
+    }
+}
 </style>
