@@ -86,7 +86,7 @@ export default {
 				p {
 					color: $text-light-white;
 					max-width: 26.5625rem;
-					margin-bottom: 3rem;
+					margin-bottom: 45px;
 					font-size: 1.375rem;
 				}
 			}
@@ -127,5 +127,35 @@ export default {
 			}
 		}
     }
+}
+
+@media screen and (max-width: 1271px){
+	
+	.vertical-text{
+		display: none;
+	}
+	.box-left{
+		padding: 0 30px;
+	}
+	.box-hand-img, .box-right{
+		width: 80% !important;
+	}
+}
+
+@media screen and (max-width: 760px){
+	.box-right{
+		display: none !important;
+	}
+	.box-left{
+		width: 100% !important;
+		text-align: center;
+
+		p{
+			max-width: 100% !important;
+		}
+	}
+	#WhyUs{
+		margin: 30px 0;
+	}
 }
 </style>

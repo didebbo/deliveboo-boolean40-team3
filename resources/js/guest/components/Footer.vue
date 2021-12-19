@@ -18,12 +18,6 @@
 
 				<li>|</li>
 
-				<li><router-link :to="{ name: 'about' }">
-					Chi Siamo
-				</router-link></li>
-
-				<li>|</li>
-
 				<li><router-link :to="{ name: 'shop-cart' }">
 					Visualizza il Carrello
 				</router-link></li>
