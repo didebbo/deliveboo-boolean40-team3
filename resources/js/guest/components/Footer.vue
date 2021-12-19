@@ -98,5 +98,29 @@ export default {
 		}
 	}
 
+// Media Queries
+	@media screen and (max-width: 1080px){
+		.footer-center ul{
+			transform: translateX(0) !important;
+		}
+	}
+	@media screen and (max-width: 930px){
+		.footer-center{
+			max-width: 300px;
+			text-align: center;
 
+			ul{
+				align-items: center;
+			}
+
+			li{
+				margin: 0 15px;
+			}
+		}
+	}
+	@media screen and (max-width: 780px){
+		.footer-center{
+			display: none;
+		}
+	}
 </style>

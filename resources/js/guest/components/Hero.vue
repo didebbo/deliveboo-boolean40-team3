@@ -47,7 +47,7 @@ export default {
         div{
             position: absolute;
             bottom: 50px;
-            left: 0;
+            left: 15px;
         }
     }
 
