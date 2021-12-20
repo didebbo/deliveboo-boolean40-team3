@@ -47,7 +47,7 @@
 
         <!-- bottom -->
         <div class="cart-bottom">
-            <h3>prezzo totale {{ cart.total_price }} €</h3>
+            <h3>Totale {{ cart.total_price }} €</h3>
             <button class="btn-alert" @click="$router.push('/checkout')">
             Procedi all'ordine
             </button>
@@ -146,6 +146,7 @@ export default {
         padding: 15px 0;
         @include f-corpo-white;
         flex-wrap: wrap;
+        position: relative;
 
             .name-dish,
             .price-dish,
@@ -194,9 +195,33 @@ export default {
         }
     }
 }
-@media screen and (max-width: 1100px){
+@media screen and (max-width: 990px){
     .name-dish{
+        min-width: 100%;
+    }
+    [class^="btn-danger"]{
+        padding: 10px;
+        font-size: 1.125rem;
+        height: 40px;
+        min-width: 100px;
+    }
+    .record-row::after{
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        display: block;
+        height: 1px;
         width: 100%;
+        background-color: lightslategray;
+    }
+}
+@media screen and (max-width: 500px){
+    [class^="btn-danger"]{
+        padding: 5px;
+        font-size: .9375rem;
+        height: 30px;
+        min-width: 100px;
     }
 }
 </style>
