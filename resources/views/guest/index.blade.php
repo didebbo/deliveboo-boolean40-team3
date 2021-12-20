@@ -22,8 +22,8 @@ $clientToken = $gateway->clientToken()->generate();
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-    <meta name="msapplication-TileColor" content="#31BFA0">
-    <meta name="theme-color" content="#31BFA0">
+    <meta name="msapplication-TileColor" content="#FFF">
+    <meta name="theme-color" content="#FFF">
 
 </head>
 
