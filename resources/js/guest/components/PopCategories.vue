@@ -22,7 +22,7 @@
                     {{category.name}}
                 </p>
                 <div class="food">
-                    <img src="../../../media/images/fast-food-2.jpg" alt="Panino Americano">
+                    <img src="../../../media/images/search-bg.jpg" alt="Panino Americano">
                 </div>
                 <div class="search_icon">
                     <img src="../../../media/icons/search-white.svg" alt="Icona Ricerca">
