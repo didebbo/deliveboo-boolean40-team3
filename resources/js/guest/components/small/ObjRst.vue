@@ -79,5 +79,26 @@ export default {
     }
   }
 }
-
+@media screen and (max-width: 623px){
+  .rst-card {
+    width: 530px;
+  }
+}
+@media screen and (max-width: 571px){
+  .rst-card {
+    width: 100%;
+    padding: 20px 20px 20px 157px;
+  }
+  .rst-img {
+    width: 150px;
+  }
+}
+@media screen and (max-width: 502px){
+  .rst-card {
+    padding: 20px 20px 20px 118px;
+  }
+  .rst-img {
+    width: 115px;
+  }
+}
 </style>

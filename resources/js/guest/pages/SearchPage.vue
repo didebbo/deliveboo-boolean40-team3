@@ -236,4 +236,14 @@ export default {
 	}
 }
 
+@media screen and (max-width: 502px ){
+	.search-box-after-decoration {
+		height: 30px;
+	}
+}
+@media screen and (max-width: 350px ){
+	.search-box-after-decoration {
+		display: none;
+	}
+}
 </style>
