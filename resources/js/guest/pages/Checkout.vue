@@ -76,6 +76,7 @@
       </v-braintree>
 
       <!-- Delete-Cart PopUp -->
+      <span v-if="popup.visible" class="cover"></span>
       <div v-if="popup.visible" class="popup-confirm">
         <span>
           <h3>{{ popup.message }}</h3>
@@ -260,6 +261,7 @@ export default {
   }
   .popup-confirm {
     max-width: 600px;
+    z-index: 3;
     div {
       width: 100%;
       @include flex-center;
@@ -267,6 +269,16 @@ export default {
         margin-left: 25px;
       }
     }
+  }
+  .cover {
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    z-index: 2;
   }
 }
 </style>

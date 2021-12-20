@@ -36,8 +36,8 @@
 
       <!-- Beverage -->
       <h3 v-if="beverageDishes.length > 0" class="title-drinks">Bevande</h3>
-			<div class="drinks">
-				<ObjDish
+      <div class="drinks">
+        <ObjDish
           v-for="dish in beverageDishes"
           :key="dish.id"
           :ingredients="dish.description"
@@ -47,21 +47,24 @@
           :img="dish.url_picture"
           @addToCart="addToCart(dish)"
         />
-			</div>
+      </div>
     </section>
 
     <!-- Delete-Cart PopUp -->
+    <span v-if="confirmPopup[0]" class="cover"></span>
     <div v-if="confirmPopup[0]" class="popup-confirm">
-        <p>Non puoi ordinare piatti da ristoranti differenti</p>
-        <h3>Vuoi svuotare il tuo carrello?</h3>
-        <div>
-          <button class="btn-success" @click="refreshCart(confirmPopup[1])">Sì</button>
-          <button class="btn-warning" @click="confirmPopup = [false]">No</button>
-        </div>
+      <p>Non puoi ordinare piatti da ristoranti differenti</p>
+      <h3>Vuoi svuotare il tuo carrello?</h3>
+      <div>
+        <button class="btn-success" @click="refreshCart(confirmPopup[1])">
+          Sì
+        </button>
+        <button class="btn-warning" @click="confirmPopup = [false]">No</button>
       </div>
-      <div v-if="popup" class="popup">
-        <h3>Il carrello è stato svuotato</h3>
-      </div>
+    </div>
+    <div v-if="popup" class="popup">
+      <h3>Il carrello è stato svuotato</h3>
+    </div>
   </section>
 </template>
 
@@ -110,8 +113,7 @@ export default {
         this.popup = false;
       }, 1500);
 
-        this.addToCart(dish);
-      
+      this.addToCart(dish);
 
       return 1;
     },
@@ -163,11 +165,11 @@ export default {
     this.synCart();
     axios.get(`/api/restaurants/${this.id}`).then((response) => {
       this.ristorante = response.data.data;
-      this.foodDishes = this.ristorante.dishes.filter((dish)=>{
-        return dish.beverage == 0
+      this.foodDishes = this.ristorante.dishes.filter((dish) => {
+        return dish.beverage == 0;
       });
-      this.beverageDishes = this.ristorante.dishes.filter((dish)=>{
-        return dish.beverage == 1
+      this.beverageDishes = this.ristorante.dishes.filter((dish) => {
+        return dish.beverage == 1;
       });
     });
   },
@@ -177,9 +179,9 @@ export default {
 <style scoped lang="scss">
 @import "../../../sass/_variables.scss";
 
-[class^="popup"]{
+[class^="popup"] {
   padding: 20px;
-  background-color: #FEFAE9;
+  background-color: #fefae9;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -190,23 +192,35 @@ export default {
   text-align: center;
   border: 5px solid $c-02;
 
-  h3{
+  h3 {
     font-size: 2.5rem;
     margin: 20px 0;
   }
-  p{
+  p {
     font-size: 1.25rem;
   }
 }
-.popup-confirm{
+.popup-confirm {
   max-width: 600px;
-  div{
+  z-index: 3;
+  div {
     width: 100%;
     @include flex-center;
-    .btn-warning{
+    .btn-warning {
       margin-left: 25px;
     }
   }
+}
+
+.cover {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  z-index: 2;
 }
 
 #Ristorante {
