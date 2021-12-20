@@ -254,7 +254,7 @@ header {
     }
     &::before{
       // transform: translate(50%, calc(-50% - 6px));
-      top: 17px;
+      top: 20px;
     }
     &::after{
       // transform: translate(50%, calc(-50% + 6px));
@@ -274,6 +274,7 @@ header {
   width: 100%;
   height: 110vh;
   border-radius: 0;
+  overflow: hidden;
 
   ul{
     display: flex;
