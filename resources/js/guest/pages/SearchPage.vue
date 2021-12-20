@@ -155,7 +155,7 @@ export default {
 	}
 
 	.search-box{
-		height: 350px;
+		min-height: 350px;
 		width: 100%;
 		background-color: $c-03;
 		border-top-left-radius: 30px;
