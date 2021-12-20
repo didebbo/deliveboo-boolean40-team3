@@ -145,6 +145,7 @@ export default {
         justify-content: space-between;
         padding: 15px 0;
         @include f-corpo-white;
+        flex-wrap: wrap;
 
             .name-dish,
             .price-dish,
@@ -153,6 +154,7 @@ export default {
             }
             .name-dish {
                 flex-grow: 1;
+                max-width: 530px;
             }
 
             .quantity-dish {
@@ -190,6 +192,11 @@ export default {
         .btn-alert {
         color: $c-05;
         }
+    }
+}
+@media screen and (max-width: 1100px){
+    .name-dish{
+        width: 100%;
     }
 }
 </style>
