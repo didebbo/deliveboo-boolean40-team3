@@ -9,15 +9,19 @@
 				<!-- top-search inputs -->
 				<div class="inputs">
 					<!-- input name of restaurant -->
-					<label for="restaurant-name">Ristorante:</label>
-					<input name="restaurant-name" id="restaurant-name" type="text" placeholder="nome del ristorante" v-model="srcName" @change="getRestaurants()">
+					<div>
+						<label for="restaurant-name">Ristorante:</label>
+						<input name="restaurant-name" id="restaurant-name" type="text" placeholder="nome del ristorante" v-model="srcName" @change="getRestaurants()">
+					</div>
 
 					<!-- select city -->
-					<label for="city-select">città:</label>
-					<select name="city-select" id="city-select" @change="getRestaurants()" v-model="srcCity">
-						<option value="milan">Milano</option>
-						<!-- <option value="torino">Torino</option> -->
-					</select>
+					<div>
+						<label for="city-select">città:</label>
+						<select name="city-select" id="city-select" @change="getRestaurants()" v-model="srcCity">
+							<option value="milan">Milano</option>
+							<!-- <option value="torino">Torino</option> -->
+						</select>
+					</div>
 				</div>
 
 				<!-- bottom-search / Categories -->
@@ -171,6 +175,8 @@ export default {
 
 	.inputs{
 		padding: 30px;
+		@include flex-center;
+		flex-wrap: wrap;
 		input, select{
 			height: 30px;
 			border: none;
@@ -236,14 +242,19 @@ export default {
 	}
 }
 
-@media screen and (max-width: 502px ){
+@media screen and (max-width: 670px ){
 	.search-box-after-decoration {
-		height: 30px;
+		height: 30px !important;
+	}
+}
+@media screen and (max-width: 518px){
+	#city-select{
+		margin-top: 15px;
 	}
 }
 @media screen and (max-width: 350px ){
 	.search-box-after-decoration {
-		display: none;
+		display: none !important;
 	}
 }
 </style>

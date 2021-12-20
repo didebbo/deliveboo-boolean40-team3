@@ -81,24 +81,24 @@ export default {
 }
 @media screen and (max-width: 623px){
   .rst-card {
-    width: 530px;
+    width: 530px !important;
   }
 }
 @media screen and (max-width: 571px){
   .rst-card {
-    width: 100%;
-    padding: 20px 20px 20px 157px;
+    width: 100% !important;
+    padding: 20px 20px 20px 157px !important;
   }
   .rst-img {
-    width: 150px;
+    width: 150px !important;
   }
 }
 @media screen and (max-width: 502px){
   .rst-card {
-    padding: 20px 20px 20px 118px;
+    padding: 20px 20px 20px 118px !important;
   }
   .rst-img {
-    width: 115px;
+    width: 115px !important;
   }
 }
 </style>
