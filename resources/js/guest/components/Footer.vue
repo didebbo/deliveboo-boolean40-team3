@@ -24,7 +24,9 @@
 			</ul>
         </div>
         <div class="footer-right">
-			<a href="#"><img src="../../../media/icons/search-white.svg" alt="Icona ricerca"></a>
+			<router-link :to="{ name: 'search' }">
+				<img src="../../../media/icons/search-white.svg" alt="Icona ricerca">
+            </router-link>
         </div>
 	</footer>
 </template>
