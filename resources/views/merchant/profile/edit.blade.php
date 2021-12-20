@@ -49,34 +49,36 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group">                                
+                                <div><label for="url_picture">Immagine di copertina</label></div>        
                                 <input type="file" id="url_picture" name="url_picture" accept="image/jpeg">
                                 @error('url_picture')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
 
-                            @foreach ($categories as $category)
-                                <div class="form-group form-check">
-                                    @if ($errors->any())
-                                        <input type="checkbox"
-                                            {{ in_array($user['categories'], old('categories', [])) ? 'checked' : null }}
-                                            name="categories[]" id="{{ 'category-' . $category['id'] }}"
-                                            value="{{ $category['id'] }}" class="form-check-input">
-                                    @else
-                                        <input type="checkbox"
-                                            {{ $user['categories']->contains($category['id']) ? 'checked' : null }}
-                                            name="categories[]" value="{{ $category['id'] }}" class="form-check-input"
-                                            id="{{ 'category-' . $category['id'] }}">
-                                    @endif
-                                    <label class="form-check-label"
-                                        for="{{ 'category-' . $category['id'] }}">{{ $category['name'] }}</label>
-                                </div>
-                            @endforeach
+                            <div class="form-group">
+                                <label>Categorie</label> 
+                                @foreach ($categories as $category)
+                                    <div class="form-check">
+                                        @if ($errors->any())
+                                            <input type="checkbox"
+                                                {{ in_array($user['categories'], old('categories', [])) ? 'checked' : null }}
+                                                name="categories[]" id="{{ 'category-' . $category['id'] }}"
+                                                value="{{ $category['id'] }}" class="form-check-input">
+                                        @else
+                                            <input type="checkbox"
+                                                {{ $user['categories']->contains($category['id']) ? 'checked' : null }}
+                                                name="categories[]" value="{{ $category['id'] }}" class="form-check-input"
+                                                id="{{ 'category-' . $category['id'] }}">
+                                        @endif
+                                        <label class="form-check-label"
+                                            for="{{ 'category-' . $category['id'] }}">{{ $category['name'] }}</label>
+                                    </div>
+                                @endforeach
+                            </div>
 
-                            {{-- TODO upload immagine ristorante (non obligatorio) --}}
-
-                            <button type="submit" class="btn-alert">Modifica</button>
+                            <button type="submit" class="btn-alert mb-3">Modifica</button>
                             <a href="{{ route('merchant.profile.show') }}" class="btn-danger">Annulla</a>
 
                         </form>

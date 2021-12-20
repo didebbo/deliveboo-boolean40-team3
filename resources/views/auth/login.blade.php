@@ -14,7 +14,7 @@
                             @csrf
 
                             <div class="form-group">
-                                <label for="email">Email</label>
+                                <label for="email">Email *</label>
                                 <input type="email" class="form-control" id="email" name="email" placeholder="email"
                                     value="{{ old('email') }}" required>
                                 @error('email')
@@ -23,12 +23,16 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="password">Password</label>
+                                <label for="password">Password *</label>
                                 <input type="password" class="form-control" id="password" name="password"
                                     placeholder="password" required>
                                 @error('password')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <small id="emailHelp" class="form-text text-muted">* Campi obbligatori</small>
                             </div>
 
                             {{-- <div class="form-group row">

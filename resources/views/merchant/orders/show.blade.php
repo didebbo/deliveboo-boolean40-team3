@@ -46,7 +46,7 @@
                                    @foreach ($order['dishes'] as $dish)
 
                                        <li>
-                                           <h5>{{ $dish['name'] }} <span style="margin-left: 40px">x {{$dish['pivot']['quantity']}}</span></h5> 
+                                           <h5>x {{$dish['pivot']['quantity']}} <span style="margin-left: 10px">{{ $dish['name'] }}</span></h5> 
                                        </li>
                                    @endforeach
                                 </ul>

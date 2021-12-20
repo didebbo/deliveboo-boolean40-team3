@@ -19,7 +19,7 @@
                         <form action="{{ route('merchant.dishes.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="name">Nome piatto</label>
+                                <label for="name">Nome piatto *</label>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="nome"
                                     value="{{ old('name') }}">
                                 @error('name')
@@ -29,7 +29,7 @@
                             <div class="form-group">
                                 <label for="ingredients">Ingredienti</label>
                                 <textarea class="form-control" name="ingredients" id="ingredienti"
-                                    placeholder="ingredients">{{ old('ingredients') }}</textarea>
+                                    placeholder="ingredienti">{{ old('ingredients') }}</textarea>
                                 @error('ingredients')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
@@ -46,13 +46,13 @@
                                 <input type="checkbox" name="beverage" id="beverage" @if (old('beverage'))
                                 checked
                                 @endif>
-                                <label class="mb-0" for="beverage">Beverage</label>
+                                <label class="mb-0" for="beverage">Bevanda</label>
                                 @error('beverage')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="price">Prezzo in €</label>
+                                <label for="price">Prezzo in € *</label>
                                 <input type="number" step="0.01" class="form-control" id="price" name="price"
                                     placeholder="prezzo" value="{{ old('price') }}">
                                 @error('price')
@@ -70,10 +70,14 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <div><label for="url_picture">Immagine Piatto</label></div>   
                                 <input type="file" id="url_picture" name="url_picture" accept="image/jpeg">
                                 @error('url_picture')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
+                            </div>
+                            <div class="form-group">
+                                <small id="emailHelp" class="form-text text-muted">* Campi obbligatori</small>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn-success">Salva</button>

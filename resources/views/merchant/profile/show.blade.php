@@ -25,7 +25,11 @@
                             </li>
                             <li>
                                 <p>Città</p>
-                                <h5>{{ $user['city'] }}</h5>
+                                @if ($user['city']='milan')
+                                    <h5>Milano</h5>
+                                @else
+                                    <h5>{{ $user['city'] }}</h5>                                
+                                @endif
                             </li>
                             <li>
                                 <p>Indirizzo</p>
@@ -42,11 +46,11 @@
                         </ul>
                         @if ($user['url_picture'])
                             <div class="mb-2">
-                                <p class="tit-img">Immagine Ristorante</p>
+                                <p class="tit-img">Immagine di copertina</p>
                                 <img class="img-preview" src="{{ asset('/storage/' . $user['url_picture']) }}">
                             </div>
                         @endif
-                        <a href="{{ route('merchant.profile.edit') }}" class="btn-success">
+                        <a href="{{ route('merchant.profile.edit') }}" class="btn-alert">
                             Modifica
                         </a>
                     </div>

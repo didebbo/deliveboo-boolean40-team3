@@ -23,7 +23,7 @@
                             @method('PUT')
                             <div class="form-group">
                                 <label for="name">Nome piatto</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="name"
+                                <input type="text" class="form-control" id="name" name="name" placeholder="nome"
                                     value="{{ old('name') ?? $dish['name'] }}">
                                 @error('name')
                                     <small class="form-text text-danger">{{ $message }}</small>
@@ -32,7 +32,7 @@
                             <div class="form-group">
                                 <label for="ingredients">Ingredienti</label>
                                 <textarea class="form-control" name="ingredients" id="ingredients"
-                                    placeholder="ingredients">{{ old('ingredients') ?? $dish['ingredients'] }}</textarea>
+                                    placeholder="ingredienti">{{ old('ingredients') ?? $dish['ingredients'] }}</textarea>
                                 @error('ingredients')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label for="description">Descrizione</label>
                                 <textarea class="form-control" name="description" id="description"
-                                    placeholder="description">{{ old('description') ?? $dish['description'] }}</textarea>
+                                    placeholder="descrizione">{{ old('description') ?? $dish['description'] }}</textarea>
                                 @error('description')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
@@ -65,7 +65,7 @@
                             <div class="form-group">
                                 <label for="price">Prezzo in €</label>
                                 <input type="number" step="0.01" class="form-control" id="price" name="price"
-                                    placeholder="price" value="{{ old('price') ?? $dish['price'] }}">
+                                    placeholder="prezzo" value="{{ old('price') ?? $dish['price'] }}">
                                 @error('price')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
@@ -81,13 +81,14 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <div><label for="url_picture">Immagine Piatto</label></div> 
                                 <input type="file" id="url_picture" name="url_picture" accept="image/jpeg">
                                 @error('url_picture')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn-alert">Modifica</button>
+                                <button type="submit" class="btn-alert mb-3">Modifica</button>
                                 <a href="{{ route('merchant.dishes.show', $dish['id']) }}"
                                     class="btn-danger">Annulla</a>
                             </div>

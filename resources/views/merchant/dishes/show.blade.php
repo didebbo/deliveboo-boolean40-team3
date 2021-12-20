@@ -24,14 +24,18 @@
                             </li>
                             <li>
                                 <p>Ingredienti</p>
-                                <h5>{{ $dish['ingredients'] }}</h5>
+                                @if ($dish['ingredients'])
+                                    <h5>{{ $dish['ingredients'] }}</h5>
+                                @else
+                                    <h5><i class="text-muted">-- nessun ingrediente inserito</i></h5>
+                                @endif
                             </li>
                             <li>
                                 <p>Descrizione</p>
                                 @if ($dish['description'])
                                     <h5>{{ $dish['description'] }}</h5>
                                 @else
-                                    <h5><i>nessuna descrizione inserita</i></h5>
+                                    <h5><i class="text-muted">-- nessuna descrizione inserita</i></h5>
                                 @endif
                             </li>
                             <li>
@@ -55,10 +59,10 @@
                                 <img class="img-preview" src="{{ asset('/storage/' . $dish['url_picture']) }}">
                             </div>
                         @endif
-                        <a href="{{ route('merchant.dishes.edit', $dish['id']) }}" class="btn-alert">
+                        <a href="{{ route('merchant.dishes.edit', $dish['id']) }}" class="btn-alert mb-3">
                             Modifica
                         </a>
-                        <a type="button" class="btn-danger" data-toggle="modal" data-target="#exampleModal">
+                        <a type="button" class="btn-danger mb-3" data-toggle="modal" data-target="#exampleModal">
                             Elimina
                         </a>
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
