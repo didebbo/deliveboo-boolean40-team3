@@ -47,7 +47,7 @@ export default {
         div{
             position: absolute;
             bottom: 50px;
-            left: 0;
+            left: 15px;
         }
     }
 
@@ -61,6 +61,12 @@ export default {
     }
     button{
         margin-top: 15px;
+    }
+}
+@media screen and (max-width: 416px){
+    h2{
+        font-size: 42px !important;
+        padding: 5px;
     }
 }
 

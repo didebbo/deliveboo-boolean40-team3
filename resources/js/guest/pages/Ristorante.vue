@@ -228,6 +228,7 @@ export default {
 
   .top-page {
     display: flex;
+    justify-content: flex-end;
     margin-bottom: 30px;
     .left-side {
       width: 65%;
@@ -270,19 +271,7 @@ export default {
       color: $c-04;
       padding: 20px 0;
     }
-    .right-side {
-      width: 35%;
-      border-bottom: 5px solid $c-03;
-      border-left: 5px solid $c-03;
-      border-bottom-left-radius: 30px;
-      height: 400px;
-      overflow: hidden;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
+
     .drinks,
     .dishes {
       display: flex;
@@ -307,5 +296,44 @@ export default {
       width: 250px;
     }
   }
+}
+@media screen and (max-width: 1320px){
+  .dishes, .drinks {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  h3:is(.title-drinks, .title-foods){
+    text-align: center !important;
+    margin: 30px auto !important;
+  }
+}
+@media screen and (max-width: 1200px ){
+  .top-page {
+    // justify-content: center !important;
+    margin-top: 20px;
+  }
+  .right-side {
+    border-radius: 50% !important;
+    border: 5px solid $c-03;
+    height: 200px !important;
+    width: 200px !important;
+  }
+}
+@media screen and (max-width: 620px){
+  .top-page {
+    justify-content: center !important;
+  }
+  .right-side {
+    display: none;
+  }
+  .left-side {
+    text-align: center !important;
+    h2 {
+      font-size: 35px !important;
+    }
+  }
+
+
 }
 </style>
