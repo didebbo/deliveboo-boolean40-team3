@@ -74,7 +74,9 @@ export default {
         synCart() {
         if (localStorage.cart) {
             this.cart = JSON.parse(localStorage.cart);
-            this.cart["total_price"] = this.cart["total_price"].toFixed(2);
+            if(this.cart["total_price"] > 0){
+                this.cart["total_price"] = this.cart["total_price"].toFixed(2);
+            }
         }
         },
         synLocalStorage() {
