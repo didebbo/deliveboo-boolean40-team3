@@ -63,5 +63,11 @@ export default {
         margin-top: 15px;
     }
 }
+@media screen and (max-width: 416px){
+    h2{
+        font-size: 42px !important;
+        padding: 5px;
+    }
+}
 
 </style>
