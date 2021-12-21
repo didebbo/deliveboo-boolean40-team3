@@ -129,7 +129,7 @@ export default {
 			if(this.selCategory){
 				setTimeout(() => {
 					this.toggleActive(this.selCategory)
-				}, 1000);
+				}, 400);
 			} else {
 				this.getRestaurants()
 			}
