@@ -104,4 +104,10 @@ export default {
         }
     }
 }
+
+@media screen and (max-width: 743px){
+    #RandomRestaurant{
+        display: none;
+    }
+}
 </style>

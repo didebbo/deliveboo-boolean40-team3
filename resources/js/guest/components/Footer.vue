@@ -18,19 +18,15 @@
 
 				<li>|</li>
 
-				<li><router-link :to="{ name: 'about' }">
-					Chi Siamo
-				</router-link></li>
-
-				<li>|</li>
-
 				<li><router-link :to="{ name: 'shop-cart' }">
 					Visualizza il Carrello
 				</router-link></li>
 			</ul>
         </div>
         <div class="footer-right">
-			<a href="#"><img src="../../../media/icons/search-white.svg" alt="Icona ricerca"></a>
+			<router-link :to="{ name: 'search' }">
+				<img src="../../../media/icons/search-white.svg" alt="Icona ricerca">
+            </router-link>
         </div>
 	</footer>
 </template>
@@ -98,5 +94,29 @@ export default {
 		}
 	}
 
+// Media Queries
+	@media screen and (max-width: 1080px){
+		.footer-center ul{
+			transform: translateX(0) !important;
+		}
+	}
+	@media screen and (max-width: 930px){
+		.footer-center{
+			max-width: 300px;
+			text-align: center;
 
+			ul{
+				align-items: center;
+			}
+
+			li{
+				margin: 0 15px;
+			}
+		}
+	}
+	@media screen and (max-width: 780px){
+		.footer-center{
+			display: none;
+		}
+	}
 </style>

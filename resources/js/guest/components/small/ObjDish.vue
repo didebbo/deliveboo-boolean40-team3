@@ -84,7 +84,7 @@ export default {
     border-radius: 30px;
     height: 155px;
     width: 580px;
-    margin: 20px auto;
+    margin: 20px 30px 20px 20px;
     padding: 20px;
     position: relative;
     box-shadow: $shadow-02;
@@ -178,8 +178,6 @@ export default {
         opacity: 1;
       }
     }
-
-    // Fine popup
   }
   .obj-price {
     color: $c-05;
@@ -196,6 +194,27 @@ export default {
     .price-dish {
       @include f-title-card;
     }
+  }
+}
+@media screen and (max-width: 670px) {
+  .dish-card {
+    width: 530px !important;
+  }
+}
+@media screen and (max-width: 620px) {
+  .dish-card {
+    width: 400px !important;
+  }
+}
+@media screen and (max-width: 502px) {
+  .circle-img {
+    display: none;
+  }
+  .dish-card {
+    width: 270px !important;
+  }
+  p:is(.name-dish, .ingredients-dish) {
+    margin: 20px 5px !important;
   }
 }
 </style>
