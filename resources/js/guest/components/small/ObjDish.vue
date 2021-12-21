@@ -51,6 +51,7 @@ export default {
       }
     },
     startPopup() {
+      this.synCart();
       if (this.cart["user_id"] == this.ristorante.id) {
         this.showPopup = "show";
         setTimeout(() => {
@@ -59,9 +60,6 @@ export default {
       }
       this.$emit("addToCart");
     },
-  },
-  mounted() {
-    this.synCart();
   },
 };
 </script>
