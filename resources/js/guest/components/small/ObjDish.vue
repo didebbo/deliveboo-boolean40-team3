@@ -13,9 +13,9 @@
         </template>
       </div>
       <p class="name-dish">{{ foodName }}</p>
-      <p class="ingredients-dish">{{ingredients}}</p>
+      <p class="ingredients-dish">{{ ingredients }}</p>
 
-      <div class="icon-cart" @click="startPopup()" >
+      <div class="icon-cart" @click="startPopup()">
         <img src="../../../../media/icons/cart-white-ADD.svg" alt="" />
         <div id="popup-cart" :class="showPopup">Aggiunto al carrello!</div>
       </div>
@@ -36,19 +36,32 @@ export default {
     img: String,
     price: Number,
     type: String,
+    ristorante: Object,
   },
   data() {
     return {
-      showPopup: ''
+      showPopup: "",
+      cart: {},
     };
   },
   methods: {
+    synCart() {
+      if (localStorage.cart) {
+        this.cart = JSON.parse(localStorage.cart);
+      }
+    },
     startPopup() {
-
-      this.$emit('addToCart');
-      this.showPopup= 'show';
-      setTimeout(()=>{ this.showPopup= '' }, 1500);
-    }
+      if (this.cart["user_id"] == this.ristorante.id) {
+        this.showPopup = "show";
+        setTimeout(() => {
+          this.showPopup = "";
+        }, 1500);
+      }
+      this.$emit("addToCart");
+    },
+  },
+  mounted() {
+    this.synCart();
   },
 };
 </script>
@@ -85,7 +98,7 @@ export default {
         border: 4px solid $c-02;
       }
       .icon-cart {
-        background-color: $c-02;        
+        background-color: $c-02;
       }
     }
 
@@ -116,7 +129,8 @@ export default {
       }
     }
 
-    .name-dish, .ingredients-dish{
+    .name-dish,
+    .ingredients-dish {
       margin-left: 140px;
       font-size: 1.125rem;
     }
@@ -141,47 +155,47 @@ export default {
         bottom: 5px;
       }
 
-// Inizio popup
-        #popup-cart {
-          opacity: 0;
-          min-width: 250px;
-          background-color: #fff;
-          color: #000;
-          text-align: center;
-          border-radius: 30px;
-          padding: 16px;
-          position: absolute;
-          z-index: 1;
-          right: 50%;
-          bottom: calc(100% + 5px);
-          transform: translateX(26px);
-          font-size: 17px;
-          transition-timing-function: ease-out;
-          transition: 0.5s;
-        }
+      // Inizio popup
+      #popup-cart {
+        opacity: 0;
+        min-width: 250px;
+        background-color: #fff;
+        color: #000;
+        text-align: center;
+        border-radius: 30px;
+        padding: 16px;
+        position: absolute;
+        z-index: 1;
+        right: 50%;
+        bottom: calc(100% + 5px);
+        transform: translateX(26px);
+        font-size: 17px;
+        transition-timing-function: ease-out;
+        transition: 0.5s;
+      }
 
-        #popup-cart.show {
-          opacity: 1;
-        }        
-        }
-        
-        // Fine popup
-    }
-    .obj-price {
-      color: $c-05;
-      width: 130px;
-      height: 58px;
-      border-radius: 30px;
-      background-color: $c-03;
-      position: absolute;
-      right: -35px;
-      bottom: -15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      .price-dish {
-        @include f-title-card;
+      #popup-cart.show {
+        opacity: 1;
       }
     }
+
+    // Fine popup
   }
+  .obj-price {
+    color: $c-05;
+    width: 130px;
+    height: 58px;
+    border-radius: 30px;
+    background-color: $c-03;
+    position: absolute;
+    right: -35px;
+    bottom: -15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .price-dish {
+      @include f-title-card;
+    }
+  }
+}
 </style>

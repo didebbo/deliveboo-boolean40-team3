@@ -30,6 +30,7 @@
           :price="dish.price"
           type="food"
           :img="dish.url_picture"
+          :ristorante="ristorante"
           @addToCart="addToCart(dish)"
         />
       </div>
@@ -45,6 +46,7 @@
           :price="dish.price"
           type="drinks"
           :img="dish.url_picture"
+          :ristorante="ristorante"
           @addToCart="addToCart(dish)"
         />
       </div>
