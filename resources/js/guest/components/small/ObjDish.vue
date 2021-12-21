@@ -203,6 +203,9 @@ export default {
   .dish-card {
     width: 400px !important;
   }
+  .ingredients-dish{
+    display: none;
+  }
 }
 @media screen and (max-width: 502px) {
   .circle-img {
