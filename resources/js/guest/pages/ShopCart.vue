@@ -223,7 +223,8 @@ export default {
         padding: 5px;
         font-size: .9375rem;
         height: 30px;
-        min-width: 100px;
+        min-width: 95vw;
+        margin-top: 15px;
     }
 }
 </style>
