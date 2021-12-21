@@ -144,7 +144,7 @@ export default {
         .record-row {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-end;
         padding: 15px 0;
         @include f-corpo-white;
         flex-wrap: wrap;
@@ -157,7 +157,7 @@ export default {
             }
             .name-dish {
                 flex-grow: 1;
-                max-width: 530px;
+                // max-width: 530px;
             }
 
             .quantity-dish {
