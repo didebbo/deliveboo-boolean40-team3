@@ -22,10 +22,10 @@
                     {{category.name}}
                 </p>
                 <div class="food">
-                    <img src="../../../media/images/search-bg.jpg" alt="Panino Americano">
+                    <img src="../../../media/images/search-bg.jpg" alt="">
                 </div>
                 <div class="search_icon">
-                    <img src="../../../media/icons/search-white.svg" alt="Icona Ricerca">
+                    <img src="../../../media/icons/search-white.svg" alt="Ricerca">
                 </div>
 
             </router-link>
