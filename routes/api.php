@@ -17,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// http://localhost:8000/api/restaurants
+Route::namespace('Api')->name('api.')->group(function () {
+    // Restaurants
+    Route::get('/restaurants', 'RestaurantController@index');
+    Route::get('/restaurants/{id}', 'RestaurantController@show');
+    // Categories
+    Route::get('/categories', 'CategoryController@index');
+});

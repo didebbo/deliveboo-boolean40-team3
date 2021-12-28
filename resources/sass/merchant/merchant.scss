@@ -1,0 +1,98 @@
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+@import '../app.scss';
+
+
+#order-show, #dish-show{
+  
+  li{
+    margin-bottom: 1em;
+  
+    h5{
+      color: white;
+    }
+  }
+}
+#order-show li p, p.tit-img, #dish-show li p, .card-body th{
+  margin: 0;
+  color: $c-backoffice;
+}
+.card-body td{
+  color: white;
+}
+.img-preview{
+  background-color: none;
+  border: 3px solid $c-backoffice;
+  border-radius: 15px;
+  max-width: 200px;
+  margin: 10px 0;
+}
+
+.card{
+  border: 3px solid $c-04;
+  background-color: $c-05;
+}
+.card-body{
+  // padding: 35px 45px;
+
+  &>h3{
+    color: $c-04;
+  }
+
+  form{
+    label{
+      color: $c-backoffice;
+    }
+    .form-check label{
+      color: white;
+    }
+    input[type="file"]{
+      color: $c-backoffice;
+    }
+  }
+}
+.breadcrumb{
+  background-color: transparent;
+  margin-bottom: 0;
+  a{
+    color: $c-backoffice;
+  }
+  li.breadcrumb-item.active{
+    color: $c-04;
+  }
+}
+
+.card-header.user-title{
+  background-color: $c-backoffice;
+  h2{
+    @include f-hero-title;
+    filter: drop-shadow(-2px 1px 0px $c-02);
+    font-size: 1.875rem;
+  }
+}
+
+.text-white{
+  color: white;
+  &:hover{
+    color: $c-03 !important;
+  }
+}
+
+[class^="btn-"] {
+  font-size: 20px;
+  min-width: 40px;
+  display: inline-block;
+  padding: 10px 15px;
+  margin-right: 15px;
+}
+.btn-small{
+  font-size: 16px;
+  height: 33px;
+  padding: 0 15px;
+}
+
+#app nav.navbar{
+  border-bottom-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+}

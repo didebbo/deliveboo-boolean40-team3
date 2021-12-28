@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Category;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
@@ -53,7 +55,20 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            // 'password_confirmation' => ['required', 'string', 'min:8', 'confirmed'],
+            'city' => ['required', 'string', 'max:50'],
+            'address' => ['required', 'string', 'max:150'],
+            'vat' => ['required', 'string', 'size:11', 'unique:users,vat'],
+            'adv' => ['nullable', 'string', 'max:65535'],
+            'url_picture' => ['nullable', 'image', 'max:1000'],
         ]);
+    }
+
+    protected function showRegistrationForm()
+    {
+        $categories = Category::all();
+        // dd($categories);
+        return view('auth.register', compact('categories'));
     }
 
     /**
@@ -64,10 +79,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $data["password"] = Hash::make($data['password']);
+        // $data["url_picture"] = $data["url_picture"] ?? NULL;
+        $data['categories'] = $data['categories'] ?? [];
+        if (isset($data["url_picture"])) {
+            $ulr_path = Storage::put('uploads/users', $data["url_picture"]);
+            $data["url_picture"] = $ulr_path;
+        }
+        $user = User::create($data);
+        $user->categories()->attach($data['categories']);
+        return $user;
     }
 }

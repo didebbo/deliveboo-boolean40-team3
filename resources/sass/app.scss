@@ -1,8 +1,91 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
+// @import url('https://fonts.googleapis.com/css?family=Nunito');
 // Variables
-@import 'variables';
-
+@import '_variables.scss';
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// @import '~bootstrap/scss/bootstrap';
+
+// Reset
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Sarabun', sans-serif;
+    background-color: $c-05;
+}
+
+main{
+    min-height: calc(100vh - 211px);
+}
+
+// Containers
+.container-l {
+    max-width: 1440px;
+    padding: 0 10px;
+    margin: auto;
+}
+
+.container-m {
+    max-width: 1210px;
+    padding: 0 10px;
+    margin: auto;
+}
+
+.container-s {
+    max-width: 1000px;
+    padding: 0 10px;
+    margin: auto;
+}
+
+.container-xs {
+    max-width: 500px;
+    padding: 0 10px;
+    margin: auto;
+}
+
+// Buttons
+[class^="btn-"] {
+    @include sans-extrabold-i;
+    font-size: 20px;
+    text-align: center;
+    height: 50px;
+    min-width: 210px;
+    padding: 15px;
+    border: none;
+    border-radius: 35px;
+    @include flex-center;
+    cursor: pointer;
+}
+
+.btn-dark {
+    background-color: $c-05;
+    color: white;
+    box-shadow: $shadow-02;
+}
+
+.btn-success {
+    background-color: $c-04;
+    color: $c-05;
+    box-shadow: $shadow-05;
+}
+
+.btn-alert {
+    background-color: $c-03;
+    color: $c-05;
+    box-shadow: $shadow-05;
+}
+
+.btn-warning {
+    background-color: $c-02;
+    color: white;
+    box-shadow: $shadow-05;
+}
+
+.btn-danger {
+    background-color: $c-01;
+    color: white;
+    box-shadow: $shadow-05;
+}
